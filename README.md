@@ -34,3 +34,5 @@ event -> detection -> triage -> investigation -> hunting -> DFIR -> response -> 
 ## Constraint
 
 The lab is designed for an 8 GB host. VMs are started by operating mode, not all at once.
+
+Hard rule: do not run SOC-DC01 + SOC-WIN10 + SOC-WAZUH + OPNsense at the same time.
