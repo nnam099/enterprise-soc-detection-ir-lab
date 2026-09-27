@@ -1,0 +1,62 @@
+Chủ nhật, 27 Tháng 9 năm 2026 12:33:13 +07
+=== RAM ===
+               total        used        free      shared  buff/cache   available
+Mem:           7,5Gi       5,2Gi       1,1Gi       646Mi       2,1Gi       2,2Gi
+Swap:           11Gi       1,7Gi        10Gi
+
+=== SWAP ===
+NAME       TYPE      SIZE USED PRIO
+/swapfile  file        8G   0B   -1
+/dev/zram0 partition 3,7G 1,7G  100
+
+=== DISK ===
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/nvme0n1p2  477G  238G  238G  51% /
+/dev/nvme0n1p2  477G  238G  238G  51% /
+
+=== CPU ===
+CPU(s):                                  12
+On-line CPU(s) list:                     0-11
+CPU(s) scaling MHz:                      24%
+Virtualization:                          VT-x
+NUMA node0 CPU(s):                       0-11
+
+=== VM LIST ===
+ Id   Name              State
+----------------------------------
+ -    FLARE-Win10       shut off
+ -    Metasploitable2   shut off
+ -    OPNsense-Lab6     shut off
+
+
+=== LIBVIRT NETWORKS ===
+ Name           State    Autostart   Persistent
+-------------------------------------------------
+ cape-network   active   yes         yes
+ default        active   yes         yes
+ soc-net        active   yes         yes
+
+
+=== SOC-NET XML ===
+<network>
+  <name>soc-net</name>
+  <uuid>dce441a6-9af6-4016-9ba0-202ac3ddb3a9</uuid>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbr50' stp='on' delay='0'/>
+  <mac address='52:54:00:04:7f:06'/>
+  <ip address='192.168.50.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.50.100' end='192.168.50.200'/>
+    </dhcp>
+  </ip>
+</network>
+
+
+=== HOST NETWORK ===
+virbr0           DOWN           192.168.122.1/24 
+virbr1           DOWN           192.168.100.1/24 
+virbr50          DOWN           192.168.50.1/24 
