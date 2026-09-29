@@ -68,4 +68,25 @@
     </mitre>
   </rule>
 
+
+  <!--
+    SOC-LAB PowerShell Outbound Network Detection
+    Source: Sysmon Event ID 3 - Network Connection
+    Lab condition:
+      - powershell.exe
+      - TCP connection initiated by endpoint
+      - destination 192.168.50.30:55000
+    MITRE ATT&CK: T1095 - Non-Application Layer Protocol
+  -->
+  <rule id="100505" level="7">
+    <if_sid>92101</if_sid>
+    <field name="win.eventdata.initiated">^true$</field>
+    <field name="win.eventdata.destinationIp">^192\.168\.50\.30$</field>
+    <field name="win.eventdata.destinationPort">^55000$</field>
+    <description>SOC Lab: PowerShell initiated TCP connection to $(win.eventdata.destinationIp):$(win.eventdata.destinationPort) by $(win.eventdata.user)</description>
+    <mitre>
+      <id>T1095</id>
+    </mitre>
+  </rule>
+
 </group>
