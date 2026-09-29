@@ -49,4 +49,23 @@
     </mitre>
   </rule>
 
+
+  <!--
+    SOC-LAB Encoded PowerShell Command Detection
+    Source: Sysmon Event ID 1 - Process Create
+    Condition:
+      - powershell.exe process
+      - command line contains -EncodedCommand or -enc
+    MITRE ATT&CK: T1059.001 - PowerShell
+  -->
+  <rule id="100504" level="8">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.image" type="pcre2">(?i)powershell\.exe$</field>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)-EncodedCommand</field>
+    <description>SOC Lab: Encoded PowerShell command detected - $(win.eventdata.commandLine)</description>
+    <mitre>
+      <id>T1059.001</id>
+    </mitre>
+  </rule>
+
 </group>
