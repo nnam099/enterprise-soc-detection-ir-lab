@@ -33,4 +33,20 @@
     </mitre>
   </rule>
 
+
+  <!--
+    SOC-LAB Repeated Windows Failed Logon Detection
+    Parent: Wazuh rule 60122
+    Trigger: 5 failed logons within 60 seconds
+    MITRE ATT&CK: T1110 - Brute Force
+  -->
+  <rule id="100503" level="10" frequency="5" timeframe="60">
+    <if_matched_sid>60122</if_matched_sid>
+    <same_field>win.eventdata.targetUserName</same_field>
+    <description>SOC Lab: Repeated Windows failed logons detected for account $(win.eventdata.targetUserName)</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+  </rule>
+
 </group>
