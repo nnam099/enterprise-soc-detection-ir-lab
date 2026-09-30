@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SOC-LAB DFIR Timeline Record",
+  "type": "object",
+  "required": [
+    "timestamp",
+    "hunt_id",
+    "source_file",
+    "source_type",
+    "event_category"
+  ],
+  "properties": {
+    "timestamp": {
+      "type": ["string", "null"]
+    },
+    "hunt_id": {
+      "type": "string"
+    },
+    "source_file": {
+      "type": "string"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "raw_telemetry",
+        "wazuh_alert"
+      ]
+    },
+    "event_category": {
+      "type": "string"
+    },
+    "rule_id": {
+      "type": ["string", "integer", "null"]
+    },
+    "rule_level": {
+      "type": ["string", "integer", "null"]
+    },
+    "description": {
+      "type": ["string", "null"]
+    },
+    "event_id": {
+      "type": ["string", "integer", "null"]
+    },
+    "computer": {
+      "type": ["string", "null"]
+    },
+    "agent": {
+      "type": ["string", "null"]
+    },
+    "agent_ip": {
+      "type": ["string", "null"]
+    },
+    "user": {
+      "type": ["string", "null"]
+    },
+    "target_user": {
+      "type": ["string", "null"]
+    },
+    "target_domain": {
+      "type": ["string", "null"]
+    },
+    "subject_user": {
+      "type": ["string", "null"]
+    },
+    "image": {
+      "type": ["string", "null"]
+    },
+    "original_file_name": {
+      "type": ["string", "null"]
+    },
+    "command_line": {
+      "type": ["string", "null"]
+    },
+    "parent_image": {
+      "type": ["string", "null"]
+    },
+    "parent_command_line": {
+      "type": ["string", "null"]
+    },
+    "process_id": {
+      "type": ["string", "integer", "null"]
+    },
+    "parent_process_id": {
+      "type": ["string", "integer", "null"]
+    },
+    "target_object": {
+      "type": ["string", "null"]
+    },
+    "details": {
+      "type": ["string", "null"]
+    },
+    "source_ip": {
+      "type": ["string", "null"]
+    },
+    "source_port": {
+      "type": ["string", "integer", "null"]
+    },
+    "destination_ip": {
+      "type": ["string", "null"]
+    },
+    "destination_port": {
+      "type": ["string", "integer", "null"]
+    },
+    "logon_type": {
+      "type": ["string", "integer", "null"]
+    },
+    "authentication_package": {
+      "type": ["string", "null"]
+    },
+    "status": {
+      "type": ["string", "null"]
+    },
+    "substatus": {
+      "type": ["string", "null"]
+    },
+    "failure_reason": {
+      "type": ["string", "null"]
+    },
+    "mitre_ids": {
+      "type": ["array", "string", "null"]
+    },
+    "mitre_tactics": {
+      "type": ["array", "string", "null"]
+    },
+    "mitre_techniques": {
+      "type": ["array", "string", "null"]
+    }
+  },
+  "additionalProperties": true
+}

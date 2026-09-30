@@ -6,3 +6,5 @@ spice-transfer/
 # Local transfer artifacts
 spice-tools.iso
 spice-transfer/
+__pycache__/
+*.pyc
