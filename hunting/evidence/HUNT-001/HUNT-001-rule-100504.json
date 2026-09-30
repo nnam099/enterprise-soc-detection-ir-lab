@@ -1,0 +1,35 @@
+{
+  "timestamp": "2026-09-30T01:01:29.684+0000",
+  "rule": {
+    "id": "100504",
+    "level": 8,
+    "description": "SOC Lab: Encoded PowerShell command detected - powershell.exe  -NoProfile -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAEgAVQBOAFQAMAAwADEALQBDAE0ARAAtAFAAQQBSAEUATgBUAC0ARQBOAEMATwBEAEUARAAnAA==",
+    "mitre": {
+      "id": [
+        "T1059.001"
+      ],
+      "tactic": [
+        "Execution"
+      ],
+      "technique": [
+        "PowerShell"
+      ]
+    }
+  },
+  "agent": {
+    "id": "001",
+    "name": "SOC-WIN10",
+    "ip": "192.168.50.20"
+  },
+  "event": {
+    "event_id": "1",
+    "process_guid": "{e12a69d9-5f69-6abc-b701-000000001400}",
+    "process_id": "5552",
+    "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+    "command_line": "powershell.exe  -NoProfile -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAEgAVQBOAFQAMAAwADEALQBDAE0ARAAtAFAAQQBSAEUATgBUAC0ARQBOAEMATwBEAEUARAAnAA==",
+    "user": "WIN10-01\\\\localadmin",
+    "integrity_level": "High",
+    "parent_process_id": "5584",
+    "parent_image": "C:\\\\Windows\\\\System32\\\\cmd.exe"
+  }
+}
