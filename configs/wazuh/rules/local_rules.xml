@@ -21,18 +21,17 @@
 
   <!--
     SOC-LAB WinRM Remote Process Detection
-    Parent: Wazuh Sysmon rule 92052
+    Source: Sysmon Event ID 1 - Process Create
     MITRE ATT&CK: T1021.006 - Windows Remote Management
   -->
   <rule id="100502" level="8">
-    <if_sid>92052</if_sid>
-    <field name="win.eventdata.parentImage" type="pcre2">(?i)\wsmprovhost\.exe$</field>
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.parentImage" type="pcre2">(?i)wsmprovhost\.exe$</field>
     <description>SOC Lab: Process spawned via Windows Remote Management (WinRM) - $(win.eventdata.image) by $(win.eventdata.user)</description>
     <mitre>
       <id>T1021.006</id>
     </mitre>
-  </rule>
-
+</rule>
 
   <!--
     SOC-LAB Repeated Windows Failed Logon Detection
