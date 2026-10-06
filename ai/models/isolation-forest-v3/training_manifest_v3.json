@@ -1,0 +1,26 @@
+{
+  "rows": 727,
+  "features": 226,
+  "n_estimators": 300,
+  "contamination": 0.02,
+  "random_state": 42,
+  "threshold_quantile": 0.02,
+  "threshold": -0.4029047502536001,
+  "baseline_score_min": -0.42863508668342565,
+  "baseline_score_p01": -0.41761520005582803,
+  "baseline_score_p02": -0.4029047502536001,
+  "baseline_score_p05": -0.3934956202610167,
+  "baseline_score_median": -0.3452770565015094,
+  "baseline_score_mean": -0.3487609889167816,
+  "baseline_score_max": -0.31903473271045,
+  "baseline_flagged_below_threshold": 13,
+  "baseline_flag_rate": 0.017881705639614855,
+  "matrix_sha256": "eeca8e71a5e9a31fc352489e7041927c43d58554a79573aa7c7422f16d9ddefa",
+  "model_sha256": "44f05711c3709f14c719f6cd12f2fb421f963612b9cb544f720f0f1a10a882b1",
+  "scores_sha256": "0216c5714b827beddcb236bbe2667f82e06a73e64646300b55d9d8b15d4ab0de",
+  "artifacts": {
+    "model": "isolation_forest_v3.joblib",
+    "scores": "baseline_scores_v3.npy",
+    "manifest": "training_manifest_v3.json"
+  }
+}

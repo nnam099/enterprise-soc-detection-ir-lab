@@ -1,0 +1,13 @@
+{
+  "events": 1,
+  "anomalies": 1,
+  "anomaly_rate": 1.0,
+  "threshold": -0.3611374706468297,
+  "score_min": -0.3743586561220978,
+  "score_mean": -0.3743586561220978,
+  "score_max": -0.3743586561220978,
+  "matrix_shape": [
+    1,
+    210
+  ]
+}

@@ -8,3 +8,4 @@ spice-tools.iso
 spice-transfer/
 __pycache__/
 *.pyc
+.venv/

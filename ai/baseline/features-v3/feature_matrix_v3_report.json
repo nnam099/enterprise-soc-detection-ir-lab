@@ -1,0 +1,54 @@
+{
+  "rows": 727,
+  "features": 226,
+  "nnz": 22965,
+  "avg_nonzero_features_per_row": 31.58872077028886,
+  "min_nonzero_features_per_row": 30,
+  "max_nonzero_features_per_row": 33,
+  "base_numeric_fields": [
+    "hour",
+    "day_of_week",
+    "is_powershell",
+    "is_cmd",
+    "is_lolbin",
+    "is_system32",
+    "is_user_writable_path",
+    "has_encoded_command",
+    "has_url",
+    "has_ip_address",
+    "parent_is_office",
+    "parent_is_browser",
+    "parent_is_service",
+    "is_external_ip",
+    "path_depth"
+  ],
+  "derived_numeric_fields": [
+    "powershell_encoded",
+    "powershell_plain_command",
+    "is_browser",
+    "browser_gpu_process",
+    "browser_renderer",
+    "browser_utility",
+    "base64_like_non_browser",
+    "parent_same_image",
+    "parent_is_wazuh_agent",
+    "command_length_log"
+  ],
+  "categorical_fields": [
+    "event_id",
+    "channel",
+    "provider",
+    "image_name",
+    "parent_image_name",
+    "integrity_level",
+    "protocol",
+    "destination_port_category",
+    "command_length_bucket"
+  ],
+  "artifacts": {
+    "matrix": "X_baseline_v3.npz",
+    "vectorizer": "dict_vectorizer_v3.joblib",
+    "feature_names": "feature_names_v3.json",
+    "metadata": "metadata_v3.jsonl"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "input_lines": 69,
+  "written_events": 69,
+  "malformed_lines": 0,
+  "top_event_ids": [
+    [
+      "1",
+      52
+    ],
+    [
+      "11",
+      15
+    ],
+    [
+      "256",
+      1
+    ],
+    [
+      "22",
+      1
+    ]
+  ],
+  "channels": [
+    [
+      "Microsoft-Windows-Sysmon/Operational",
+      68
+    ],
+    [
+      "Application",
+      1
+    ]
+  ]
+}

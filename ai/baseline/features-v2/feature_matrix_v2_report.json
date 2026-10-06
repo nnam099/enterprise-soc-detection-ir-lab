@@ -1,0 +1,43 @@
+{
+  "rows": 619,
+  "features": 210,
+  "nnz": 13914,
+  "avg_nonzero_features_per_row": 22.478190630048466,
+  "min_nonzero_features_per_row": 21,
+  "max_nonzero_features_per_row": 24,
+  "numeric_fields": [
+    "hour",
+    "day_of_week",
+    "is_powershell",
+    "is_cmd",
+    "is_lolbin",
+    "is_system32",
+    "is_user_writable_path",
+    "has_encoded_command",
+    "has_url",
+    "has_ip_address",
+    "has_base64_like_string",
+    "parent_is_office",
+    "parent_is_browser",
+    "parent_is_service",
+    "is_external_ip",
+    "command_length",
+    "path_depth"
+  ],
+  "categorical_fields": [
+    "event_id",
+    "channel",
+    "provider",
+    "image_name",
+    "parent_image_name",
+    "integrity_level",
+    "protocol",
+    "destination_port_category"
+  ],
+  "artifacts": {
+    "matrix": "X_baseline_v2.npz",
+    "vectorizer": "dict_vectorizer_v2.joblib",
+    "feature_names": "feature_names_v2.json",
+    "metadata": "metadata_v2.jsonl"
+  }
+}
