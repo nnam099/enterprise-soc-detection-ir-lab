@@ -2,7 +2,7 @@
 
 import csv
 import json
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -31,6 +31,12 @@ MD_OUT = (
 
 COLUMNS = [
     "timestamp",
+    "source_file",
+    "endpoint_system_time",
+    "endpoint_utc_time",
+    "event_record_id",
+    "process_guid",
+    "parent_process_guid",
     "hunt_id",
     "source_type",
     "event_category",
@@ -130,7 +136,8 @@ def write_csv(records):
         writer = csv.DictWriter(
             f,
             fieldnames=COLUMNS,
-            extrasaction="ignore"
+            extrasaction="ignore",
+            lineterminator="\n"
         )
 
         writer.writeheader()
@@ -259,13 +266,13 @@ def analyst_summary(row):
 
         if image:
             result += (
-                f": {Path(image).name}"
+                f": {PureWindowsPath(image).name}"
             )
 
         if parent:
             result += (
                 " <- "
-                + Path(parent).name
+                + PureWindowsPath(parent).name
             )
 
         if user:
@@ -344,7 +351,7 @@ def write_markdown(records):
     lines.append("")
 
     lines.append(
-        "| Timestamp | Hunt | Source | Category | "
+        "| Wazuh timestamp | Hunt | Source | Category | "
         "Rule | Event | User | Summary |"
     )
 
@@ -419,13 +426,15 @@ def write_markdown(records):
     )
 
     lines.append(
-        "- `wazuh_alert` represents detection-layer evidence."
+        "- `wazuh_alert` identifies stored records containing Wazuh "
+        "rule metadata; it does not establish whether the export came "
+        "from alerts.json or archives.json."
     )
 
     lines.append(
-        "- Multiple records with the same timestamp may "
-        "represent the same underlying activity observed "
-        "at different evidence layers."
+        "- Multiple stored exports may describe the same underlying "
+        "event. A matching timestamp alone does not establish "
+        "independent evidence or a distinct activity."
     )
 
     lines.append(

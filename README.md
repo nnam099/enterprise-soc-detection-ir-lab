@@ -101,7 +101,8 @@ during the original September simulation.
 - [DFIR evidence manifest](dfir/cases/DFIR-001/evidence-manifest.md)
 - [Anomaly detection pipeline](ai/README.md)
 
-DFIR-001 remains open, and its investigation report requires completion.
+DFIR-001 has a completed controlled evidence review and a verified
+timeline rebuild within its documented scope.
 The repository includes Isolation Forest models and evaluation artifacts;
 their presence alone does not establish operational detection effectiveness.
 
@@ -113,7 +114,6 @@ and AD account disable and restoration.
 
 Remaining priorities:
 
-- Complete the DFIR-001 investigation report and review its evidence links.
 - Document original persistence cleanup and recovery monitoring.
 - Review the scope and supporting evidence of the WebView2 tuning rule.
 - Validate any new tuning change with before-and-after regression tests.

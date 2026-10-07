@@ -305,6 +305,59 @@ def check_source_types():
     return True
 
 
+
+def check_schema_and_sources():
+    print("[+] Validating JSON Schema and source references")
+    try:
+        from jsonschema import Draft202012Validator
+        schema = json.loads(SCHEMA_FILE.read_text(encoding="utf-8"))
+        Draft202012Validator.check_schema(schema)
+        validator = Draft202012Validator(schema)
+        manifest = load_hash_manifest()
+        rows = [
+            json.loads(line)
+            for line in TIMELINE_JSONL.read_text(
+                encoding="utf-8"
+            ).splitlines() if line.strip()
+        ]
+        if not rows:
+            raise ValueError("Timeline is empty")
+
+        ok = True
+        for number, row in enumerate(rows, 1):
+            errors = list(validator.iter_errors(row))
+            for error in errors:
+                print(f"    [FAIL] Record {number}: {error.message}")
+                ok = False
+            if errors:
+                continue
+
+            source = row["source_file"]
+            relative = Path(source)
+            resolved = (ROOT / relative).resolve()
+            if (
+                relative.is_absolute()
+                or not resolved.is_relative_to(ROOT.resolve())
+                or not resolved.is_file()
+                or source not in manifest
+            ):
+                print(f"    [FAIL] Source missing, outside repo, or unhashed: {source}")
+                ok = False
+
+        for derived in (TIMELINE_JSONL, TIMELINE_CSV, TIMELINE_MD):
+            name = derived.relative_to(ROOT).as_posix()
+            if name not in manifest:
+                print(f"    [FAIL] Derived file absent from manifest: {name}")
+                ok = False
+
+        if ok:
+            print(f"    [OK] Schema and hashed source references: {len(rows)} records")
+        return ok
+    except (ImportError, OSError, ValueError, TypeError, KeyError) as exc:
+        print(f"    [FAIL] Schema/source validation: {exc}")
+        return False
+
+
 def main():
     print(
         f"=== {CASE_ID} Verification ==="
@@ -315,6 +368,7 @@ def main():
         "hash_integrity": verify_hashes(),
         "jsonl_validity": check_jsonl(),
         "source_types": check_source_types(),
+        "schema_and_sources": check_schema_and_sources(),
     }
 
     print("")

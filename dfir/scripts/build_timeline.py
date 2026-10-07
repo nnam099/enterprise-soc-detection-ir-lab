@@ -84,6 +84,10 @@ def load_json_file(path):
 
 
 def infer_source_type(source_file, record):
+    # Classify the stored record, not its filename.
+    if safe_get(record, "rule", "id") is not None:
+        return "wazuh_alert"
+
     name = source_file.name.lower()
 
     if "rule-" in name:
@@ -316,6 +320,30 @@ def normalize(
     ):
         event_data = {}
 
+    # Support curated evidence with snake_case event fields.
+    curated = record.get("event")
+    if isinstance(curated, dict):
+        aliases = {
+            "image": "image",
+            "user": "user",
+            "command_line": "commandLine",
+            "process_id": "processId",
+            "process_guid": "processGuid",
+            "parent_image": "parentImage",
+            "parent_command_line": "parentCommandLine",
+            "parent_process_id": "parentProcessId",
+            "parent_process_guid": "parentProcessGuid",
+            "integrity_level": "integrityLevel",
+        }
+        event_data = dict(event_data)
+        for source_key, destination_key in aliases.items():
+            if event_data.get(destination_key) is None:
+                event_data[destination_key] = curated.get(source_key)
+        if event_id is None:
+            event_id = curated.get("event_id")
+        if computer is None:
+            computer = curated.get("computer")
+
     timestamp = record.get(
         "timestamp"
     )
@@ -379,6 +407,16 @@ def normalize(
         # Windows event
         "event_id": event_id,
         "computer": computer,
+        # Preserve endpoint and Wazuh timestamps as separate observations.
+        "endpoint_system_time": safe_get(
+            record, "data", "win", "system", "systemTime"
+        ),
+        "endpoint_utc_time": event_data.get("utcTime"),
+        "event_record_id": safe_get(
+            record, "data", "win", "system", "eventRecordID"
+        ),
+        "process_guid": event_data.get("processGuid"),
+        "parent_process_guid": event_data.get("parentProcessGuid"),
 
         # Agent
         "agent": safe_get(
