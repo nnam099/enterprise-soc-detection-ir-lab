@@ -125,3 +125,21 @@ Transferred historical records and live log files matched source hashes.
 The after-test Windows execution record also matched its source hash.
 
 This review is separate from SOC-INC-001 and does not establish a compromise.
+
+## Follow-up Live Observation
+
+On 2026-10-07, opening Microsoft 365 Copilot displayed a connection error.
+A Windows query covering the preceding 30 minutes returned nine WebView2
+Sysmon Event 1 records and no WebView2 Event 11 records.
+
+Event 1, Record ID 17302, was also found in Wazuh archives with matching
+ProcessGuid {e12a69d9-dcbc-6ac5-e001-000000001f00}.
+This confirms collection of that process creation event.
+
+The observed WebView2 version was 154.0.4258.53. The displayed process
+events ran under SOC-LAB\nam.user, while the inspection console ran under
+WIN10-01\localadmin.
+
+This attempt did not provide a matching file creation event.
+The intended level 3 branch therefore remains unverified by live telemetry.
+The previously verified PowerShell before/after results remain valid.
