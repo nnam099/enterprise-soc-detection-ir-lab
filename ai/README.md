@@ -1,116 +1,76 @@
 # AI-Assisted SOC Analytics
 
-Experimental AI-assisted anomaly detection pipeline for the Enterprise SOC Detection & Incident Response Lab.
+Experimental anomaly scoring for analyst triage in the controlled SOC lab.
 
-## Architecture
+## Current v3 Evaluation
 
-```text
-Windows / Sysmon
-      |
-      v
-    Wazuh
-      |
-      v
-Threat Hunting
-      |
-      v
-DFIR Normalized Timeline
-      |
-      v
-Feature Engineering
-      |
-      v
-Isolation Forest
-      |
-      v
-Anomaly Ranking
-      |
-      v
-SOC Analyst Investigation
-```
+The v3 experiment uses a Windows telemetry baseline, a separate benign
+validation dataset, and one controlled encoded PowerShell test event.
 
-## Pipeline
+| Dataset | Records | Anomaly flags |
+|---|---:|---:|
+| Training baseline | 727 | Not reassessed during scoring reproduction |
+| Benign validation | 69 | 2 |
+| Controlled encoded PowerShell test | 1 | 0 |
 
-### 1. Feature Engineering
+The benign validation flag rate was approximately 2.90%.
+The encoded PowerShell event was not flagged at the existing threshold.
 
-Script:
+The model therefore has a reproducible scoring result, but this test
+does not demonstrate effective detection of the encoded activity.
 
-```text
-ai/scripts/build_features.py
-```
+## Pipeline and Artifacts
 
-Input:
+- [Windows event normalization](scripts/normalize_windows_events.py)
+- [v3 feature matrix construction](scripts/build_feature_matrix_v3.py)
+- [v3 training script](scripts/train_isolation_forest_v3.py)
+- [v3 scoring script](scripts/score_events_v3.py)
+- [Training manifest](models/isolation-forest-v3/training_manifest_v3.json)
+- [Scoring reproduction and limitations](evaluation/repro-check-v3/README.md)
 
-```text
-dfir/timelines/DFIR-001-timeline.jsonl
-```
+The v3 feature set excludes Wazuh rule ID, rule severity, and MITRE
+metadata as direct model inputs. Normalized records retain rule metadata
+for investigation context.
 
-Output:
+For v3 score_samples output, lower values indicate greater statistical
+unusualness. The evaluation threshold was -0.4029047502536001.
+The encoded event score was -0.4004695065499241 and was not flagged.
 
-```text
-ai/features/DFIR-001-features.csv
-```
+## Reproducibility and Dataset Separation
 
-The feature extraction pipeline includes behavioral features including Wazuh rule severity, authentication activity, encoded PowerShell, WinRM Remote Execution, Registry Run Key activity, and MITRE ATT&CK {} metadata.
+Rerunning scoring with the existing v3 artifacts produced exactly matching
+parsed result records for both evaluation datasets.
 
-### 2. Isolation Forest
+Runtime versions and artifact hashes are preserved in the reproduction
+directory. Model training was not rerun.
 
-Training script:
+Source event identity checks found 727 unique training events, 69 unique
+validation events, and one unique encoded test event, with no shared
+event identities between these datasets.
 
-```text
-ai/scripts/train_isolation_forest.py
-```
+Collection time ranges overlap. This is not a strictly chronological
+holdout evaluation. Distinct event identities do not establish that
+related process activity is independent.
 
-Model:
+## Earlier DFIR Experiment
 
-```text
-ai/models/isolation_forest.joblib
-```
+An earlier experiment used 10 stored DFIR-001 records and marked two
+as anomalous. Its highest-ranked event was an authentication-success
+event. That experiment is separate from the v3 baseline evaluation.
 
-Metadata:
+- [Earlier anomaly report](results/DFIR-001-anomaly-report.md)
 
-```text
-ai/models/isolation_forest.metadata.json
-```
+Results and score conventions from different experiments should not be
+compared without checking their scripts and model configuration.
 
-### 3. Anomaly Scoring
+## Limitations and Future Work
 
-Script:
+- One encoded event is insufficient to estimate detection recall.
+- Benign validation flags do not establish a production false-positive rate.
+- Scoring reproduction does not establish training reproduction.
+- Broader evaluation requires additional independently collected,
+  reviewed benign and controlled suspicious activity.
+- Any future threshold tuning needs a separate final evaluation dataset.
 
-```text
-ai/scripts/score_anomalies.py
-```
-
-Output:
-
-```text
-ai/results/DFIR-001-anomaly-scores.csv
-```
-
-A larger anomaly score represents behavior that is more statistically unusual relative to the training dataset.
-
-Anomaly does not mean malicious.
-
-## Current Findings
-
-The current DFIR-001 experiment contains 10 controlled SOC events.
-
-The Isolation Forest model marked two events as anomalous.
-
-The highest-ranked event was an authentication-success event rather than one of the known attack simulations.
-
-This demonstrates an important property of unsupervised anomaly detection:
-
-```text
-rare behavior != malicious behavior
-```
-
-## Limitations
-
-The current model is an experimental SOC analyst-triage component.
-
-It is not a production IDS, a malware classifier, or a replacement for analyst investigation.
-
-## Next Phase
-
-Phase 6C will collect a larger benign Windows telemetry baseline and combine it with controlled suspicious activity.
+An anomaly flag indicates statistical unusualness, not malicious intent.
+The model remains an experimental analyst-triage component.

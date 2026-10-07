@@ -118,8 +118,10 @@ during the original September simulation.
 
 DFIR-001 has a completed controlled evidence review and a verified
 timeline rebuild within its documented scope.
-The repository includes Isolation Forest models and evaluation artifacts;
-their presence alone does not establish operational detection effectiveness.
+Isolation Forest v3 scoring was reproduced with exactly matching parsed
+results. It flagged 2 of 69 benign validation events and did not flag
+the single controlled encoded PowerShell test event.
+These results do not establish operational detection effectiveness.
 
 ## Current Status and Remaining Work
 
@@ -132,7 +134,7 @@ Remaining priorities:
 - Verify the intended WebView2 severity-reduction branch in Wazuh.
 - Assess any remaining application and desktop recovery requirements.
 - Define a longer monitoring scope if required for closure.
-- Review anomaly detection evaluation and reproducibility.
+- Expand anomaly detection evaluation beyond the single encoded test event.
 - Complete the final incident closure assessment.
 
 Historical Run Key deletion time and actor remain unverified.
