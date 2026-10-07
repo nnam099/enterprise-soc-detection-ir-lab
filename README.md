@@ -145,3 +145,5 @@ The sampled checks do not establish continuous absence or a fully clean endpoint
 This repository documents an isolated lab for defensive security
 education, detection engineering, and incident response practice.
 A detection match demonstrates observed behavior, not malicious intent.
+
+- [Lab completion and closure assessment](incidents/SOC-INC-001/closure-assessment.md)

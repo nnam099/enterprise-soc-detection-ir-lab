@@ -150,3 +150,5 @@ A missing custom rule ID does not imply missing detection.
 Telemetry gaps must be distinguished from rule failures.
 Response requires target identity checks and post-action verification.
 Independent exercises must retain separate users, timestamps, and evidence.
+
+- [Lab completion and closure assessment](closure-assessment.md)

@@ -119,3 +119,5 @@ authentication and process creation under the target account.
 Full incident closure remains open.
 
 - [Run Key current-state verification](recovery-verification.md)
+
+- [Lab completion and closure assessment](closure-assessment.md)
