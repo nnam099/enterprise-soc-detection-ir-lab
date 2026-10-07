@@ -63,8 +63,12 @@ Account exercise:
   Record ID 18248.
 - The enabled baseline was restored and corroborated by Event 4722,
   Record ID 18261.
-- Authentication blocking, existing session revocation, and successful
-  login after restoration were not tested.
+- Authentication blocking and existing session revocation were not tested.
+- A later runas check created PowerShell PID 2536 under the target SID.
+  DC01 Event 4768, Record ID 18763, recorded Status 0x0 at
+  2026-10-07T06:59:15.4728370Z from client 192.168.50.20.
+  This supports successful post-restoration domain authentication;
+  desktop sign-in and full application recovery remain unverified.
 
 ## Run Key Verification and Sampled Monitoring
 
@@ -77,8 +81,8 @@ were Running at every sample. A subsequent manager check reported
 agent 001 as Active.
 
 These are October current-state checks, not proof of the historical
-deletion action. Changes between samples and functional recovery
-remain outside the verified scope.
+deletion action. Changes between samples remain outside the verified scope.
+The later authentication check is documented separately in the recovery report.
 
 [Recovery report and supporting screenshots](recovery-verification.md)
 
@@ -127,7 +131,7 @@ must not be treated as part of this incident without correlation evidence.
 
 ## Closure Criteria Still Open
 
-- Assess required functional recovery and post-restoration authentication.
+- Assess any remaining application and desktop recovery requirements.
 - Define and complete any longer monitoring period required for closure.
 - Verify the intended WebView2 severity-reduction branch in Wazuh.
 - Document a final closure decision with accepted evidence limitations.

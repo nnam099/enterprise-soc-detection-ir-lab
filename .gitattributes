@@ -17,3 +17,7 @@
 
 # Preserve Windows recovery evidence bytes
 /incidents/SOC-INC-001/evidence/recovery/*.json -text
+
+# Preserve original post-restoration authentication evidence bytes
+/incidents/SOC-INC-001/evidence/recovery/authentication/auth-session.json -text
+/incidents/SOC-INC-001/evidence/recovery/authentication/dc01-security-4768-18763.xml -text

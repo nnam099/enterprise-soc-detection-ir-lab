@@ -40,8 +40,9 @@ before tuning. The intended WebView2 level 3 branch remains unverified
 through matching live telemetry.
 
 Process termination telemetry from Sysmon Event 5 remains unverified.
-Account restoration does not establish session revocation or successful
-post-recovery authentication.
+A separate post-restoration check verified successful domain authentication
+and creation of a PowerShell process under the target SID.
+Existing session revocation and full application recovery remain unverified.
 
 ## Lab Architecture
 
@@ -129,7 +130,7 @@ and AD account disable and restoration.
 Remaining priorities:
 
 - Verify the intended WebView2 severity-reduction branch in Wazuh.
-- Assess functional recovery and post-restoration domain authentication.
+- Assess any remaining application and desktop recovery requirements.
 - Define a longer monitoring scope if required for closure.
 - Review anomaly detection evaluation and reproducibility.
 - Complete the final incident closure assessment.

@@ -1,0 +1,10 @@
+﻿{
+    "CheckId":  "SOC-INC-001-POST-RESTORATION-LOGON",
+    "CheckedAtUtc":  "2026-10-07T06:59:26.9681147Z",
+    "Hostname":  "WIN10-01",
+    "User":  "SOC-LAB\\nam.user",
+    "SID":  "S-1-5-21-1324826322-2293316327-2538204677-1108",
+    "ProcessId":  2536,
+    "Method":  "runas without netonly",
+    "Scope":  "New process under target identity; DC authentication requires audit correlation"
+}

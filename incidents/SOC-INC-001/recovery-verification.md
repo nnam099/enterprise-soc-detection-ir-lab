@@ -66,8 +66,8 @@ Evidence:
 
 The monitoring record matched its Windows source SHA-256 after transfer.
 These checks establish sampled absence and service status only.
-Changes between samples, other persistence mechanisms, and successful
-post-recovery domain authentication remain unverified.
+Changes between samples and other persistence mechanisms remain unverified.
+Post-restoration domain authentication was assessed in the separate check below.
 
 ## Supporting Screenshots
 
@@ -77,3 +77,38 @@ The JSON samples and captured agent output remain the primary evidence.
 ![Run Key monitoring](../../screenshots/phase4-incident/63-soc-inc-001-recovery-monitoring.png)
 
 ![Agent status after monitoring](../../screenshots/phase4-incident/64-soc-inc-001-agent-after-monitoring.png)
+
+## Post-restoration Domain Authentication
+
+On 2026-10-07, the analyst used runas without /netonly to start a new
+PowerShell process as SOC-LAB\nam.user on WIN10-01.
+
+The attempt began at 06:59:04.1087133 UTC. DC01 Security Event 4768,
+Record ID 18763, recorded a successful Kerberos TGT request at
+06:59:15.4728370 UTC for the target account SID, with Status 0x0
+and client address ::ffff:192.168.50.20.
+
+At 06:59:26.9681147 UTC, the new PowerShell process, PID 2536,
+reported SOC-LAB\nam.user and the expected SID:
+S-1-5-21-1324826322-2293316327-2538204677-1108.
+
+Together, the DC audit event and new process identity support successful
+domain authentication and process creation after account restoration.
+
+Result: PASS for post-restoration domain authentication and creation
+of a process under the target identity.
+
+This check does not establish revocation of earlier sessions, successful
+desktop sign-in, or recovery of all applications. Endpoint Event 4624
+has not yet been incorporated into this evidence set.
+
+Evidence is stored in evidence/recovery/authentication/.
+Both transferred artifacts matched their source SHA-256 values.
+
+### Authentication Supporting Screenshots
+
+The JSON session record and DC event XML remain the primary evidence.
+
+![Target account process identity](../../screenshots/phase4-incident/65-soc-inc-001-domain-auth-session.png)
+
+![DC authentication audit](../../screenshots/phase4-incident/66-soc-inc-001-dc-authentication.png)
