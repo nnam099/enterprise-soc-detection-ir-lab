@@ -112,3 +112,5 @@ for the incident PowerShell process.
 
 The October response exercises are separate from the September simulation.
 Full incident closure and new tuning with before/after regression remain open.
+
+- [Run Key current-state verification](recovery-verification.md)

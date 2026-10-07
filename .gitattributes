@@ -14,3 +14,6 @@
 /incidents/INC-002-wazuh-fp-tuning/evidence/*.json -text
 /incidents/INC-002-wazuh-fp-tuning/evidence/*.jsonl -text
 /incidents/INC-002-wazuh-fp-tuning/evidence/*.xml -text
+
+# Preserve Windows recovery evidence bytes
+/incidents/SOC-INC-001/evidence/recovery/*.json -text
