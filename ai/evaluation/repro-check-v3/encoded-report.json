@@ -1,0 +1,30 @@
+{
+  "input": "ai/baseline/normalized/SOC-WIN10-ai-attack-test-normalized-v2.jsonl",
+  "events": 1,
+  "anomalies": 0,
+  "anomaly_rate": 0.0,
+  "threshold": -0.4029047502536001,
+  "score_min": -0.4004695065499241,
+  "score_p01": -0.4004695065499241,
+  "score_p02": -0.4004695065499241,
+  "score_p05": -0.4004695065499241,
+  "score_median": -0.4004695065499241,
+  "score_mean": -0.4004695065499241,
+  "score_max": -0.4004695065499241,
+  "matrix_shape": [
+    1,
+    226
+  ],
+  "artifacts": {
+    "vectorizer": "ai/baseline/features-v3/dict_vectorizer_v3.joblib",
+    "model": "ai/models/isolation-forest-v3/isolation_forest_v3.joblib",
+    "manifest": "ai/models/isolation-forest-v3/training_manifest_v3.json",
+    "results": "ai/evaluation/repro-check-v3/encoded-results.jsonl"
+  },
+  "sha256": {
+    "input": "bab821c4ac401c20af1aa800357b9628c28390d905f675c9ab94248229ad1ae0",
+    "vectorizer": "fd17509a54dfdf6f84b2c4b0e2ba389bc11dc146dd7b115bfed9830bf14cd76e",
+    "model": "44f05711c3709f14c719f6cd12f2fb421f963612b9cb544f720f0f1a10a882b1",
+    "manifest": "0c879772e6a01862b7e57ec2539e110e4fb32793eeea5de1ac331327fb5b5f1f"
+  }
+}

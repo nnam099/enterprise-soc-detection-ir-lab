@@ -1,0 +1,10 @@
+{
+  "python": "3.13.5 (main, Aug 10 2026, 12:06:59) [GCC 14.2.0]",
+  "executable": "/home/nnam09/enterprise-soc-detection-ir-lab/.venv/bin/python",
+  "platform": "Linux-7.1.13+parrot7-amd64-x86_64-with-glibc2.41",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "scikit_learn": "1.9.1",
+  "joblib": "1.6.0",
+  "scope": "Environment used to reproduce scoring with existing v3 artifacts"
+}
