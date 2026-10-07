@@ -143,3 +143,12 @@ WIN10-01\localadmin.
 This attempt did not provide a matching file creation event.
 The intended level 3 branch therefore remains unverified by live telemetry.
 The previously verified PowerShell before/after results remain valid.
+
+## Historical Telemetry Screenshot
+
+The screenshot shows Sysmon Event 11, Record ID 13956, PID 2856,
+and the WebView2 Speech DLL target path. Rule ID and alert severity
+are not visible in this capture. Preserved JSON remains primary evidence.
+This is historical telemetry, not post-deployment validation.
+
+![Historical WebView2 file creation](../../screenshots/phase4-incident/critical-alert-t1105-details.png)

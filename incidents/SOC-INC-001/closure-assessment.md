@@ -56,3 +56,11 @@ reported check. Original VM disks and backing files must be retained.
 - [Recovery verification](recovery-verification.md)
 - [Process response replay](response-replay.md)
 - [Account response](account-response.md)
+
+## Supporting Final Status Screenshot
+
+The screenshot records repository synchronization and powered-off VMs
+at commit ae0298c, before this screenshot documentation was committed.
+It does not establish completion of a VM disk backup.
+
+![Repository and VM status](../../screenshots/phase4-incident/71-soc-lab-final-repository-and-vm-status.png)
