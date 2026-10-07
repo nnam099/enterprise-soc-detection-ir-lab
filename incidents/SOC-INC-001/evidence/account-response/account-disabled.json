@@ -1,0 +1,13 @@
+﻿{
+    "ExerciseId":  "SOC-INC-001-ACCOUNT-RESPONSE",
+    "Action":  "Disable-ADAccount",
+    "RequestedAtUtc":  "2026-10-07T04:09:22.3931098Z",
+    "VerifiedAtUtc":  "2026-10-07T04:09:22.5180539Z",
+    "DomainController":  "DC01.SOC-LAB.LOCAL",
+    "Operator":  "SOC-LAB\\Administrator",
+    "SamAccountName":  "nam.user",
+    "SID":  "S-1-5-21-1324826322-2293316327-2538204677-1108",
+    "Enabled":  false,
+    "LockedOut":  false,
+    "DisableVerified":  true
+}

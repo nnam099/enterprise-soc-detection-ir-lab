@@ -1,0 +1,11 @@
+﻿{
+    "ExerciseId":  "SOC-INC-001-ACCOUNT-RESPONSE",
+    "CollectedAtUtc":  "2026-10-07T04:09:22.2680406Z",
+    "DomainController":  "DC01.SOC-LAB.LOCAL",
+    "Operator":  "SOC-LAB\\Administrator",
+    "SamAccountName":  "nam.user",
+    "SID":  "S-1-5-21-1324826322-2293316327-2538204677-1108",
+    "DistinguishedName":  "CN=Nam User,OU=SOC-Lab-Users,DC=SOC-LAB,DC=LOCAL",
+    "Enabled":  true,
+    "LockedOut":  false
+}

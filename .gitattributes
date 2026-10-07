@@ -2,3 +2,7 @@
 # Preserve original Windows response evidence bytes
 /incidents/SOC-INC-001/evidence/response-replay/process-before.json -text
 /incidents/SOC-INC-001/evidence/response-replay/process-after.json -text
+
+# Preserve original account response evidence bytes
+/incidents/SOC-INC-001/evidence/account-response/*.json -text
+/incidents/SOC-INC-001/evidence/account-response/*.xml -text
