@@ -1,0 +1,8 @@
+2026-10-07T06:29:07+00:00
+
+Wazuh agent_control. List of available agents:
+   ID: 000, Name: soc-wazuh (server), IP: 127.0.0.1, Active/Local
+   ID: 001, Name: SOC-WIN10, IP: any, Active
+
+List of agentless devices:
+

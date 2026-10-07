@@ -1,0 +1,111 @@
+﻿{
+    "CheckId":  "SOC-INC-001-RECOVERY-MONITORING",
+    "Hostname":  "WIN10-01",
+    "Operator":  "WIN10-01\\localadmin",
+    "TargetSID":  "S-1-5-21-1324826322-2293316327-2538204677-1108",
+    "RegistryPath":  "Registry::HKEY_USERS\\S-1-5-21-1324826322-2293316327-2538204677-1108\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+    "ValueName":  "SOC-INC-001",
+    "IntervalSeconds":  30,
+    "Scope":  "Sampled state only; changes between samples may be missed",
+    "Samples":  [
+                    {
+                        "Sample":  0,
+                        "CheckedAtUtc":  "2026-10-07T06:22:50.7140884Z",
+                        "HiveLoaded":  true,
+                        "RunKeyExists":  true,
+                        "ValueExists":  false,
+                        "SysmonStatus":  "Running",
+                        "WazuhStatus":  "Running"
+                    },
+                    {
+                        "Sample":  1,
+                        "CheckedAtUtc":  "2026-10-07T06:23:20.7298358Z",
+                        "HiveLoaded":  true,
+                        "RunKeyExists":  true,
+                        "ValueExists":  false,
+                        "SysmonStatus":  "Running",
+                        "WazuhStatus":  "Running"
+                    },
+                    {
+                        "Sample":  2,
+                        "CheckedAtUtc":  "2026-10-07T06:23:58.4485983Z",
+                        "HiveLoaded":  true,
+                        "RunKeyExists":  true,
+                        "ValueExists":  false,
+                        "SysmonStatus":  "Running",
+                        "WazuhStatus":  "Running"
+                    },
+                    {
+                        "Sample":  3,
+                        "CheckedAtUtc":  "2026-10-07T06:24:28.4641096Z",
+                        "HiveLoaded":  true,
+                        "RunKeyExists":  true,
+                        "ValueExists":  false,
+                        "SysmonStatus":  "Running",
+                        "WazuhStatus":  "Running"
+                    },
+                    {
+                        "Sample":  4,
+                        "CheckedAtUtc":  "2026-10-07T06:24:59.2127690Z",
+                        "HiveLoaded":  true,
+                        "RunKeyExists":  true,
+                        "ValueExists":  false,
+                        "SysmonStatus":  "Running",
+                        "WazuhStatus":  "Running"
+                    },
+                    {
+                        "Sample":  5,
+                        "CheckedAtUtc":  "2026-10-07T06:25:29.2292983Z",
+                        "HiveLoaded":  true,
+                        "RunKeyExists":  true,
+                        "ValueExists":  false,
+                        "SysmonStatus":  "Running",
+                        "WazuhStatus":  "Running"
+                    },
+                    {
+                        "Sample":  6,
+                        "CheckedAtUtc":  "2026-10-07T06:26:01.4016169Z",
+                        "HiveLoaded":  true,
+                        "RunKeyExists":  true,
+                        "ValueExists":  false,
+                        "SysmonStatus":  "Running",
+                        "WazuhStatus":  "Running"
+                    },
+                    {
+                        "Sample":  7,
+                        "CheckedAtUtc":  "2026-10-07T06:26:34.4166489Z",
+                        "HiveLoaded":  true,
+                        "RunKeyExists":  true,
+                        "ValueExists":  false,
+                        "SysmonStatus":  "Running",
+                        "WazuhStatus":  "Running"
+                    },
+                    {
+                        "Sample":  8,
+                        "CheckedAtUtc":  "2026-10-07T06:27:04.4479008Z",
+                        "HiveLoaded":  true,
+                        "RunKeyExists":  true,
+                        "ValueExists":  false,
+                        "SysmonStatus":  "Running",
+                        "WazuhStatus":  "Running"
+                    },
+                    {
+                        "Sample":  9,
+                        "CheckedAtUtc":  "2026-10-07T06:27:34.4479989Z",
+                        "HiveLoaded":  true,
+                        "RunKeyExists":  true,
+                        "ValueExists":  false,
+                        "SysmonStatus":  "Running",
+                        "WazuhStatus":  "Running"
+                    },
+                    {
+                        "Sample":  10,
+                        "CheckedAtUtc":  "2026-10-07T06:28:04.4634662Z",
+                        "HiveLoaded":  true,
+                        "RunKeyExists":  true,
+                        "ValueExists":  false,
+                        "SysmonStatus":  "Running",
+                        "WazuhStatus":  "Running"
+                    }
+                ]
+}

@@ -38,3 +38,33 @@ No registry modification was performed during this check.
 Historical deletion telemetry remains unverified.
 Other persistence locations and sustained recurrence monitoring were
 not assessed by this check. Full incident closure remains open.
+
+## Sampled Follow-up Monitoring
+
+Eleven samples were collected from 2026-10-07T06:22:50.7140884Z
+through 2026-10-07T06:28:04.4634662Z, spanning approximately
+5 minutes 14 seconds.
+
+At every sample:
+
+- the target user hive was loaded;
+- the Run key existed;
+- the SOC-INC-001 value was absent;
+- Sysmon64 and WazuhSvc were Running.
+
+The requested sleep interval was 30 seconds. Actual sample timestamps
+include processing and scheduling delays.
+
+A subsequent manager-side check reported agent 001 / SOC-WIN10 as Active.
+The captured UTC timestamp, 2026-10-07T06:29:07+00:00, preceded
+execution of the agent status command.
+
+Evidence:
+
+- [Monitoring samples](evidence/recovery/recovery-monitoring.json)
+- [Subsequent agent status](evidence/recovery/agent-after-monitoring.txt)
+
+The monitoring record matched its Windows source SHA-256 after transfer.
+These checks establish sampled absence and service status only.
+Changes between samples, other persistence mechanisms, and successful
+post-recovery domain authentication remain unverified.
