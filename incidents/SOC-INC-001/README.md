@@ -102,3 +102,13 @@ incident evidence.
 The network activity attempted during the simulation was excluded from the
 confirmed timeline because the expected Sysmon Event ID 3 was not observed
 for the incident PowerShell process.
+
+## Response Exercises and Current Status
+
+- [Capstone report and evidence boundaries](capstone-report.md)
+- [Verified process containment replay](response-replay.md)
+- [AD account containment and restoration](account-response.md)
+- [Live detection baseline](../../detections/wazuh/tests/encoded-powershell/README.md)
+
+The October response exercises are separate from the September simulation.
+Full incident closure and new tuning with before/after regression remain open.

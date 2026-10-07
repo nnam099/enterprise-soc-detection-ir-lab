@@ -1,129 +1,127 @@
 # Enterprise SOC Detection & Incident Response Lab
 
-Enterprise SOC lab for Windows telemetry, Wazuh detection engineering, and incident response.
+A controlled Windows security lab demonstrating telemetry collection,
+Wazuh detection engineering, threat hunting, investigation, and verified
+response exercises on an 8 GB Parrot OS host.
+
+All documented activity is authorized lab activity. Independent tests
+and response exercises retain separate timelines and evidence.
+
+## Start Here
+
+- [Investigation and response capstone](incidents/SOC-INC-001/capstone-report.md)
+- [Original incident investigation](incidents/SOC-INC-001/analysis.md)
+- [Verified process containment replay](incidents/SOC-INC-001/response-replay.md)
+- [AD account containment and restoration](incidents/SOC-INC-001/account-response.md)
+- [Encoded PowerShell live detection validation](detections/wazuh/tests/encoded-powershell/README.md)
+
+## Verified Outcomes
+
+| Work item | Result | Scope |
+|---|---|---|
+| Original incident simulation | Three correlated detections documented | WinRM, encoded PowerShell, Registry Run Key modification |
+| Process response replay | Target process absent after Stop-Process | Separate local-account exercise |
+| AD account response | Disabled state and restored enabled state verified | Security events 4725 and 4722 corroborated actions |
+| Encoded PowerShell validation | Four live tests passed their defined expectations | Three positive tests and one encoded negative control |
+| Evidence preservation | Source hashes matched for transferred Windows response and execution records | Git index hashes also checked |
+
+Process termination telemetry from Sysmon Event 5 remains unverified.
+Account restoration does not establish session revocation or successful
+post-recovery authentication.
 
 ## Lab Architecture
 
-| System | Role | IP |
-|---|---|---|
-| SOC-DC01 | Windows Server 2022 AD DS + DNS | 192.168.50.10 |
-| SOC-WIN10 | Windows 10 Endpoint | 192.168.50.20 |
-| SOC-WAZUH | Wazuh SIEM | 192.168.50.30 |
+| VM / agent name | Observed Windows hostname | Role | IP |
+|---|---|---|---|
+| SOC-DC01 | DC01 | Windows Server 2022 AD DS and DNS | 192.168.50.10 |
+| SOC-WIN10 | WIN10-01 | Windows endpoint with auditing and Sysmon | 192.168.50.20 |
+| SOC-WAZUH | — | Wazuh manager, indexer, and dashboard | 192.168.50.30 |
 
-## Telemetry Pipeline
+The host uses KVM/QEMU through qemu:///system.
+Resource limits require switching between operating modes rather than
+running every VM concurrently.
 
-The SOC-WIN10 endpoint provides Windows Security and Sysmon telemetry to Wazuh.
+- [Topology](architecture/topology.md)
+- [IP plan](architecture/ip-plan.md)
+- [Resource operating modes](architecture/resource-modes.md)
 
-```text
-Windows Activity
-      |
-      v
-Windows / Sysmon Logs
-      |
-      v
-Wazuh Agent
-      |
-      v
-SOC-WAZUH
-      |
-      v
-Custom Detection Rules
-```
+## Telemetry and Detection Engineering
 
-## Detection Engineering
+Windows Security and Sysmon events from SOC-WIN10 are collected by the
+Wazuh agent and analyzed on SOC-WAZUH.
 
-Five custom detections were implemented and validated.
-
-| Rule | Level | Detection | MITRE ATT&CK |
+| Rule | Level | Detection | ATT&CK mapping |
 |---|---:|---|---|
 | 100501 | 7 | Registry Run Key modification | T1112 / T1547.001 |
 | 100502 | 8 | WinRM process execution | T1021.006 |
 | 100503 | 10 | Repeated Windows failed logons | T1110 |
 | 100504 | 8 | Encoded PowerShell command | T1059.001 |
-| 100505 | 7 | PowerShell TCP connection to lab target | T1095* |
+| 100505 | 7 | PowerShell connection to the lab target | T1095, lab detection context |
 
-> *T1095 follows the Wazuh detection context used in this lab. The controlled traffic itself is not treated as proof of malicious C2 activity.
+The controlled network traffic is not treated as proof of malicious C2.
 
-## SOC-INC-001 — Controlled Incident Investigation
+[Custom rules](configs/wazuh/rules/local_rules.xml) are maintained in Git.
+Rule 100504 was synchronized with the live-validated manager configuration.
+This synchronization was not a newly deployed manager tuning change.
 
-The lab includes an end-to-end controlled incident simulation on SOC-WIN10.
+### Encoded PowerShell Live Baseline
 
-Confirmed sequence:
+| Test | Behavior | Observed rule / level |
+|---|---|---|
+| T01 | PowerShell parent, -EncodedCommand | 92057 / 12 |
+| T02 | CMD parent, -EncodedCommand | 100504 / 8 |
+| T03 | CMD parent, -enc | 100504 / 8 |
+| T04 | PowerShell parent, ordinary -Command | 92027 / 4 |
 
-```text
-WinRM Remote Execution
-        |
-        v
-Encoded PowerShell
-        |
-        v
-Registry Run Key Modification
-```
+Neither encoded detection was observed for T04's matching process event
+within the documented collection scope.
 
-| Time (UTC) | Rule | Observation |
-|---|---:|---|
-| 2026-09-29 14:25:06 | 100502 | WinRM process execution |
-| 2026-09-29 14:26:37 | 100504 | Encoded PowerShell execution |
-| 2026-09-29 14:34:07 | 100501 | Registry Run Key modification |
+## Original Incident and Separate Response Exercises
 
-- [Full incident investigation](incidents/SOC-INC-001/README.md)
-- [Incident timeline](incidents/SOC-INC-001/timeline.md)
-- [Analyst investigation](incidents/SOC-INC-001/analysis.md)
+The original simulation on 2026-09-29 documented WinRM execution,
+encoded PowerShell, and a Registry Run Key modification under
+SOC-LAB\nam.user.
 
-## Incident Evidence
+An attempted network connection was excluded from the confirmed incident
+timeline because corresponding Sysmon Event 3 evidence was not observed.
 
-### Alert Timeline
+The process and account response exercises on 2026-10-07 are documented
+separately. They must not be presented as response actions performed
+during the original September simulation.
 
-![SOC-INC-001 alert timeline](screenshots/phase4-incident/60-soc-inc-001-alert-timeline.png)
+- [Incident overview](incidents/SOC-INC-001/README.md)
+- [Original timeline](incidents/SOC-INC-001/timeline.md)
+- [Response evidence boundaries and remaining work](incidents/SOC-INC-001/capstone-report.md)
 
-### Encoded PowerShell
+## Threat Hunting, DFIR, and Anomaly Detection
 
-![Encoded PowerShell evidence](screenshots/phase4-incident/61-soc-inc-001-encoded-powershell-detail.png)
+- [Threat hunting investigations](hunting/README.md)
+- [ATT&CK coverage matrix](hunting/MITRE-COVERAGE.md)
+- [DFIR-001 investigation](dfir/cases/DFIR-001/investigation-report.md)
+- [DFIR evidence manifest](dfir/cases/DFIR-001/evidence-manifest.md)
+- [Anomaly detection pipeline](ai/README.md)
 
-### Registry Run Key Modification
+DFIR-001 remains open, and its investigation report requires completion.
+The repository includes Isolation Forest models and evaluation artifacts;
+their presence alone does not establish operational detection effectiveness.
 
-![Registry persistence evidence](screenshots/phase4-incident/62-soc-inc-001-registry-persistence-detail.png)
+## Current Status and Remaining Work
 
-## Detection Engineering Finding
+Completed evidence includes telemetry ingestion, custom detection
+validation, a controlled investigation, process containment verification,
+and AD account disable and restoration.
 
-During SOC-INC-001, network activity toward 192.168.50.30:55000 was attempted, but the expected Sysmon Event ID 3 was not observed for the incident PowerShell process.
+Remaining priorities:
 
-Therefore rule 100505 was not included in the confirmed incident timeline.
+- Complete the DFIR-001 investigation report and review its evidence links.
+- Document original persistence cleanup and recovery monitoring.
+- Review the scope and supporting evidence of the WebView2 tuning rule.
+- Validate any new tuning change with before-and-after regression tests.
+- Review anomaly detection evaluation and reproducibility.
+- Complete the final incident closure assessment.
 
-Earlier 100505 positive and negative validation remains independent detection evidence.
+## Lab Use
 
-```text
-Activity Generation != Telemetry Generation != Alert Generation
-```
-
-This distinction prevents unrelated validation events from being presented as part of the incident.
-
-## Repository Structure
-
-```text
-architecture/            Network and resource design
-evidence/                Host baseline evidence
-incidents/SOC-INC-001/   Incident investigation
-screenshots/phase1-*     Active Directory evidence
-screenshots/phase2-wazuh Wazuh and Sysmon evidence
-screenshots/phase3-*     Detection validation
-screenshots/phase4-*     Incident evidence
-```
-
-## Project Status
-
-- [x] KVM/QEMU SOC network
-- [x] Windows Server 2022 AD DS and DNS
-- [x] Windows 10 domain endpoint
-- [x] Windows auditing and Sysmon
-- [x] Wazuh SIEM and endpoint agent
-- [x] Windows/Sysmon log ingestion
-- [x] Five custom detection rules
-- [x] Positive/negative detection validation
-- [x] Controlled incident simulation
-- [x] Alert triage and event correlation
-- [x] Incident investigation documentation
-
-## Disclaimer
-
-All activity documented in this repository was performed in an isolated lab environment for defensive security education, detection engineering, and incident response practice.
+This repository documents an isolated lab for defensive security
+education, detection engineering, and incident response practice.
+A detection match demonstrates observed behavior, not malicious intent.

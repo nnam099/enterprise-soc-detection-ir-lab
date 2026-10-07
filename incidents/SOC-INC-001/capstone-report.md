@@ -1,0 +1,111 @@
+# SOC-INC-001 Capstone Investigation and Response Report
+
+## Executive Summary
+
+The original controlled simulation on 2026-09-29 produced evidence of
+WinRM process execution, encoded PowerShell, and a Registry Run Key
+modification on SOC-WIN10 under SOC-LAB\nam.user.
+
+Separate exercises on 2026-10-07 demonstrated verified process termination,
+AD account disable and restoration, and four live detection validation
+tests. These exercises extend the portfolio's response evidence but are
+not represented as actions performed during the original simulation.
+
+Verdict: authorized controlled lab activity; no real compromise established.
+Status: investigation documented; response exercises verified; full
+incident closure and new tuning with before/after regression remain open.
+
+## Scope and Evidence Boundaries
+
+| Work item | Date | Context | Evidence |
+|---|---|---|---|
+| Original simulation | 2026-09-29 | SOC-WIN10, SOC-LAB\nam.user | analysis.md and timeline.md |
+| Process response replay | 2026-10-07 | WIN10-01\localadmin | response-replay.md |
+| Account response exercise | 2026-10-07 | nam.user, operated by domain Administrator | account-response.md |
+| Live detection baseline | 2026-10-07 | WIN10-01\localadmin | Encoded PowerShell test report |
+
+VM and agent name SOC-WIN10 differs from observed Windows hostname WIN10-01.
+VM name SOC-DC01 differs from observed Windows hostname DC01.
+Only two VMs were operated concurrently during the response exercises.
+
+## Original Investigation
+
+The original incident documents report three correlated observations:
+
+| Timestamp UTC on 2026-09-29 | Detection | Observation |
+|---|---|---|
+| 14:25:06 | 100502 | cmd.exe with wsmprovhost.exe parent |
+| 14:26:37 | 100504 | Encoded PowerShell with wsmprovhost.exe parent |
+| 14:34:07 | 100501 | Registry Run Key value SOC-INC-001 modified |
+
+The decoded PowerShell command printed a lab marker.
+The Run Key value contained cmd.exe /c echo SOC-INC-001.
+These are controlled test artifacts, not malicious indicators.
+
+An attempted connection to 192.168.50.30:55000 was excluded from the
+confirmed timeline because matching Sysmon Event 3 was not observed.
+Independent rule 100505 validation is not merged into this incident.
+
+## Response Verification
+
+Process replay:
+- Rule 92057 detected PID 7380 at level 12.
+- PID, creation time, and command line were checked before termination.
+- Stop-Process was requested at 03:56:20 UTC on 2026-10-07.
+- A query at 03:56:22 UTC confirmed the PID was absent.
+- Matching Sysmon termination telemetry remains unverified.
+
+Account exercise:
+- nam.user was initially enabled and not locked out.
+- Disable was verified on DC01 and corroborated by Event 4725,
+  Record ID 18248.
+- The enabled baseline was restored and corroborated by Event 4722,
+  Record ID 18261.
+- Authentication blocking, existing session revocation, and successful
+  login after restoration were not tested.
+
+## Detection Findings
+
+Four live baseline tests passed:
+- PowerShell parent with -EncodedCommand: 92057, level 12.
+- CMD parent with -EncodedCommand: 100504, level 8.
+- CMD parent with -enc: 100504, level 8.
+- Ordinary -Command: 92027, level 4, with no tested encoded detection hit.
+
+Rule 100504 in Git was synchronized with the live-validated manager copy.
+No new manager tuning was deployed during these tests.
+The remaining XML configuration differences require separate review.
+
+## Evidence and Integrity
+
+- [Original analysis](analysis.md)
+- [Original timeline](timeline.md)
+- [Process response report](response-replay.md)
+- [Account response report](account-response.md)
+- [Live detection test report](../../detections/wazuh/tests/encoded-powershell/README.md)
+- [Process evidence](evidence/response-replay/)
+- [Account evidence](evidence/account-response/)
+
+Response artifacts have SHA-256 manifests. Their transferred hashes
+matched source values and staged Git bytes were verified.
+The detection report describes its separate integrity limitations.
+
+DFIR-001 is a separate investigation using hunting evidence. Its events
+must not be treated as part of this incident without correlation evidence.
+
+## Closure Criteria Still Open
+
+- Verify original persistence cleanup with evidence for the correct user.
+- Document sustained endpoint monitoring and required functional recovery.
+- Deploy a justified new tuning change and compare before/after tests.
+- Complete the separate DFIR report and validate its evidence references.
+
+The verified exercises are complete within their stated scope.
+The overall incident lifecycle remains open.
+
+## Analyst Lessons
+
+A missing custom rule ID does not imply missing detection.
+Telemetry gaps must be distinguished from rule failures.
+Response requires target identity checks and post-action verification.
+Independent exercises must retain separate users, timestamps, and evidence.
