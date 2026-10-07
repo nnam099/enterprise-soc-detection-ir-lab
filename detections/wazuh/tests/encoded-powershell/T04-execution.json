@@ -1,0 +1,13 @@
+﻿{
+    "TestId":  "T04",
+    "Marker":  "SOC-REG-T04-20261007T043559Z",
+    "StartedAtUtc":  "2026-10-07T04:35:59.3858253Z",
+    "Hostname":  "WIN10-01",
+    "User":  "WIN10-01\\localadmin",
+    "ChildPID":  1792,
+    "ParentPID":  7928,
+    "CreationDateUtc":  "2026-10-07T04:35:59.4198250Z",
+    "CommandLine":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -Command \"Write-Output \u0027SOC-REG-T04-20261007T043559Z\u0027; Start-Sleep -Seconds 8\" ",
+    "Payload":  "Write-Output \u0027SOC-REG-T04-20261007T043559Z\u0027; Start-Sleep -Seconds 8",
+    "ExpectedResult":  "No alert from encoded detections 100504 or 92057"
+}

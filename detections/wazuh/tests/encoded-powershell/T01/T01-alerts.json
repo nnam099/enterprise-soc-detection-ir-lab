@@ -1,0 +1,87 @@
+[
+  {
+    "timestamp": "2026-10-07T04:26:24.985+0000",
+    "rule": {
+      "level": 12,
+      "description": "Powershell.exe spawned a powershell process which executed a base64 encoded command",
+      "id": "92057",
+      "mitre": {
+        "id": [
+          "T1059.001"
+        ],
+        "tactic": [
+          "Execution"
+        ],
+        "technique": [
+          "PowerShell"
+        ]
+      },
+      "firedtimes": 1,
+      "mail": true,
+      "groups": [
+        "sysmon",
+        "sysmon_eid1_detections",
+        "windows"
+      ]
+    },
+    "agent": {
+      "id": "001",
+      "name": "SOC-WIN10",
+      "ip": "192.168.50.20"
+    },
+    "manager": {
+      "name": "soc-wazuh"
+    },
+    "id": "1791347184.764241",
+    "decoder": {
+      "name": "windows_eventchannel"
+    },
+    "data": {
+      "win": {
+        "system": {
+          "providerName": "Microsoft-Windows-Sysmon",
+          "providerGuid": "{5770385f-c22a-43e0-bf4c-06f5698ffbd9}",
+          "eventID": "1",
+          "version": "5",
+          "level": "4",
+          "task": "1",
+          "opcode": "0",
+          "keywords": "0x8000000000000000",
+          "systemTime": "2026-10-07T04:26:23.3181760Z",
+          "eventRecordID": "17143",
+          "processID": "2128",
+          "threadID": "2972",
+          "channel": "Microsoft-Windows-Sysmon/Operational",
+          "computer": "WIN10-01.SOC-LAB.LOCAL",
+          "severityValue": "INFORMATION",
+          "message": "\"Process Create:\r\nRuleName: -\r\nUtcTime: 2026-10-07 04:26:23.240\r\nProcessGuid: {e12a69d9-c9ef-6ac5-1f01-000000001f00}\r\nProcessId: 5968\r\nImage: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\r\nFileVersion: 10.0.19041.3996 (WinBuild.160101.0800)\r\nDescription: Windows PowerShell\r\nProduct: Microsoft® Windows® Operating System\r\nCompany: Microsoft Corporation\r\nOriginalFileName: PowerShell.EXE\r\nCommandLine: \"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFMATwBDAC0AUgBFAEcALQBUADAAMQAtADIAMAAyADYAMQAwADAANwBUADAANAAyADYAMgAzAFoAJwA7ACAAUwB0AGEAcgB0AC0AUwBsAGUAZQBwACAALQBTAGUAYwBvAG4AZABzACAANQA= \r\nCurrentDirectory: C:\\Windows\\system32\\\r\nUser: WIN10-01\\localadmin\r\nLogonGuid: {e12a69d9-c98f-6ac5-89ea-150000000000}\r\nLogonId: 0x15EA89\r\nTerminalSessionId: 1\r\nIntegrityLevel: High\r\nHashes: MD5=2E5A8590CF6848968FC23DE3FA1E25F1,SHA256=9785001B0DCF755EDDB8AF294A373C0B87B2498660F724E76C4D53F9C217C7A3,IMPHASH=3D08F4848535206D772DE145804FF4B6\r\nParentProcessGuid: {e12a69d9-c990-6ac5-fd00-000000001f00}\r\nParentProcessId: 7928\r\nParentImage: C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\r\nParentCommandLine: \"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \r\nParentUser: WIN10-01\\localadmin\""
+        },
+        "eventdata": {
+          "utcTime": "2026-10-07 04:26:23.240",
+          "processGuid": "{e12a69d9-c9ef-6ac5-1f01-000000001f00}",
+          "processId": "5968",
+          "image": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+          "fileVersion": "10.0.19041.3996 (WinBuild.160101.0800)",
+          "description": "Windows PowerShell",
+          "product": "Microsoft® Windows® Operating System",
+          "company": "Microsoft Corporation",
+          "originalFileName": "PowerShell.EXE",
+          "commandLine": "\\\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\\" -NoProfile -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFMATwBDAC0AUgBFAEcALQBUADAAMQAtADIAMAAyADYAMQAwADAANwBUADAANAAyADYAMgAzAFoAJwA7ACAAUwB0AGEAcgB0AC0AUwBsAGUAZQBwACAALQBTAGUAYwBvAG4AZABzACAANQA=",
+          "currentDirectory": "C:\\\\Windows\\\\system32\\\\",
+          "user": "WIN10-01\\\\localadmin",
+          "logonGuid": "{e12a69d9-c98f-6ac5-89ea-150000000000}",
+          "logonId": "0x15ea89",
+          "terminalSessionId": "1",
+          "integrityLevel": "High",
+          "hashes": "MD5=2E5A8590CF6848968FC23DE3FA1E25F1,SHA256=9785001B0DCF755EDDB8AF294A373C0B87B2498660F724E76C4D53F9C217C7A3,IMPHASH=3D08F4848535206D772DE145804FF4B6",
+          "parentProcessGuid": "{e12a69d9-c990-6ac5-fd00-000000001f00}",
+          "parentProcessId": "7928",
+          "parentImage": "C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe",
+          "parentCommandLine": "\\\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\\"",
+          "parentUser": "WIN10-01\\\\localadmin"
+        }
+      }
+    },
+    "location": "EventChannel"
+  }
+]

@@ -6,3 +6,6 @@
 # Preserve original account response evidence bytes
 /incidents/SOC-INC-001/evidence/account-response/*.json -text
 /incidents/SOC-INC-001/evidence/account-response/*.xml -text
+
+# Preserve original Windows detection test records
+/detections/wazuh/tests/encoded-powershell/T*-execution.json -text

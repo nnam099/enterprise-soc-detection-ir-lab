@@ -1,0 +1,16 @@
+﻿{
+    "TestId":  "T02",
+    "Marker":  "SOC-REG-T02-20261007T043302Z",
+    "StartedAtUtc":  "2026-10-07T04:33:03.0420734Z",
+    "Hostname":  "WIN10-01",
+    "User":  "WIN10-01\\localadmin",
+    "ChildPID":  4568,
+    "ParentPID":  7132,
+    "ExpectedParent":  "cmd.exe",
+    "CreationDateUtc":  "2026-10-07T04:33:03.3049900Z",
+    "CommandLine":  "powershell.exe  -NoProfile -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFMATwBDAC0AUgBFAEcALQBUADAAMgAtADIAMAAyADYAMQAwADAANwBUADAANAAzADMAMAAyAFoAJwA7ACAAUwB0AGEAcgB0AC0AUwBsAGUAZQBwACAALQBTAGUAYwBvAG4AZABzACAAOAA= ",
+    "EncodedValue":  "VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFMATwBDAC0AUgBFAEcALQBUADAAMgAtADIAMAAyADYAMQAwADAANwBUADAANAAzADMAMAAyAFoAJwA7ACAAUwB0AGEAcgB0AC0AUwBsAGUAZQBwACAALQBTAGUAYwBvAG4AZABzACAAOAA=",
+    "DecodedPayload":  "Write-Output \u0027SOC-REG-T02-20261007T043302Z\u0027; Start-Sleep -Seconds 8",
+    "ExpectedRule":  "100504",
+    "ExpectedLevel":  8
+}

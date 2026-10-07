@@ -9,15 +9,6 @@
       T1112    - Modify Registry
       T1547.001 - Registry Run Keys / Startup Folder
   -->
-   <!-- Tuning: Reduce severity for legitimate Edge WebView2 unpacking in Temp folders -->
-  <rule id="100001" level="3">
-    <if_sid>92213</if_sid>
-    <match>msedgewebview2.exe</match>
-    <description>Benign: Edge WebView2 unpacking temporary files (Tuned from Rule 92213)</description>
-    <mitre>
-      <id>T1105</id>
-    </mitre>
-  </rule>
 
   <rule id="100501" level="7">
     <if_sid>92300</if_sid>
@@ -30,7 +21,7 @@
 
   <!--
     SOC-LAB WinRM Remote Process Detection
-    Source: Sysmon Event ID 1 - Process Create
+    Parent: Wazuh Sysmon rule 92052
     MITRE ATT&CK: T1021.006 - Windows Remote Management
   -->
   <rule id="100502" level="8">
@@ -94,6 +85,15 @@
     <description>SOC Lab: PowerShell initiated TCP connection to $(win.eventdata.destinationIp):$(win.eventdata.destinationPort) by $(win.eventdata.user)</description>
     <mitre>
       <id>T1095</id>
+    </mitre>
+  </rule>
+  <!-- Tuning: Reduce severity for legitimate Edge WebView2 unpacking in Temp folders -->
+  <rule id="100001" level="3">
+    <if_sid>92213</if_sid>
+    <match>msedgewebview2.exe</match>
+    <description>Benign: Edge WebView2 unpacking temporary files (Tuned from Rule 92213)</description>
+    <mitre>
+      <id>T1105</id>
     </mitre>
   </rule>
 

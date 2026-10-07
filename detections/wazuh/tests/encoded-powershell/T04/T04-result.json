@@ -1,0 +1,10 @@
+{
+  "test_id": "T04",
+  "marker": "SOC-REG-T04-20261007T043559Z",
+  "checked_at_utc": "2026-10-07T04:36:43.372094+00:00",
+  "scope": "Current archives.json and alerts.json at collection time",
+  "archives_matches": 1,
+  "alerts_matches": 1,
+  "encoded_detection_hits": 0,
+  "verdict": "PASS"
+}
