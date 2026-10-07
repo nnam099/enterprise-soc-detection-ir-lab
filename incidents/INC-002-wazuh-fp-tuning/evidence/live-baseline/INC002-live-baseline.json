@@ -1,0 +1,13 @@
+﻿{
+    "TestId":  "INC002-LIVE-BASELINE",
+    "Marker":  "SOC-INC002-BASELINE-20261007T052657Z",
+    "StartedAtUtc":  "2026-10-07T05:26:57.9272310Z",
+    "Hostname":  "WIN10-01",
+    "Operator":  "WIN10-01\\localadmin",
+    "CreatorPID":  756,
+    "Files":  [
+                  "C:\\Users\\LOCALA~1\\AppData\\Local\\Temp\\SOC-INC002-BASELINE-20261007T052657Z-msedgewebview2.exe.dll",
+                  "C:\\Users\\LOCALA~1\\AppData\\Local\\Temp\\SOC-INC002-BASELINE-20261007T052657Z-control.dll"
+              ],
+    "ContentType":  "Plain text; not executable DLL content"
+}

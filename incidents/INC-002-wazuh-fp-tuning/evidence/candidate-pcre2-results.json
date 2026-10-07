@@ -1,0 +1,70 @@
+{
+  "scope": "PCRE2 field predicates only; Wazuh hierarchy and alert selection untested",
+  "library": "libpcre2-8.so.0",
+  "results": [
+    {
+      "test": "P01-original",
+      "image": "C:\\\\Program Files (x86)\\\\Microsoft\\\\EdgeWebView\\\\Application\\\\154.0.4258.48\\\\msedgewebview2.exe",
+      "target": "C:\\\\Users\\\\NAM~1.USE\\\\AppData\\\\Local\\\\Temp\\\\msedge_chrome_Unpacker_BeginUnzipping2856_1027040000\\\\Microsoft.CognitiveServices.Speech.core.dll",
+      "expected_match": true,
+      "actual_match": true,
+      "pass": true
+    },
+    {
+      "test": "P02-single-backslash",
+      "image": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\154.0.4258.48\\msedgewebview2.exe",
+      "target": "C:\\Users\\NAM~1.USE\\AppData\\Local\\Temp\\msedge_chrome_Unpacker_BeginUnzipping2856_1027040000\\Microsoft.CognitiveServices.Speech.core.dll",
+      "expected_match": true,
+      "actual_match": true,
+      "pass": true
+    },
+    {
+      "test": "P03-uppercase",
+      "image": "C:\\\\PROGRAM FILES (X86)\\\\MICROSOFT\\\\EDGEWEBVIEW\\\\APPLICATION\\\\154.0.4258.48\\\\MSEDGEWEBVIEW2.EXE",
+      "target": "C:\\\\USERS\\\\NAM~1.USE\\\\APPDATA\\\\LOCAL\\\\TEMP\\\\MSEDGE_CHROME_UNPACKER_BEGINUNZIPPING2856_1027040000\\\\MICROSOFT.COGNITIVESERVICES.SPEECH.CORE.DLL",
+      "expected_match": true,
+      "actual_match": true,
+      "pass": true
+    },
+    {
+      "test": "N01-image-in-temp",
+      "image": "C:\\Users\\nam.user\\AppData\\Local\\Temp\\msedgewebview2.exe",
+      "target": "C:\\\\Users\\\\NAM~1.USE\\\\AppData\\\\Local\\\\Temp\\\\msedge_chrome_Unpacker_BeginUnzipping2856_1027040000\\\\Microsoft.CognitiveServices.Speech.core.dll",
+      "expected_match": false,
+      "actual_match": false,
+      "pass": true
+    },
+    {
+      "test": "N02-other-dll",
+      "image": "C:\\\\Program Files (x86)\\\\Microsoft\\\\EdgeWebView\\\\Application\\\\154.0.4258.48\\\\msedgewebview2.exe",
+      "target": "C:\\\\Users\\\\NAM~1.USE\\\\AppData\\\\Local\\\\Temp\\\\msedge_chrome_Unpacker_BeginUnzipping2856_1027040000\\\\unrelated.dll",
+      "expected_match": false,
+      "actual_match": false,
+      "pass": true
+    },
+    {
+      "test": "N03-other-folder",
+      "image": "C:\\\\Program Files (x86)\\\\Microsoft\\\\EdgeWebView\\\\Application\\\\154.0.4258.48\\\\msedgewebview2.exe",
+      "target": "C:\\\\Users\\\\NAM~1.USE\\\\AppData\\\\Local\\\\Temp\\\\OtherFolder2856_1027040000\\\\Microsoft.CognitiveServices.Speech.core.dll",
+      "expected_match": false,
+      "actual_match": false,
+      "pass": true
+    },
+    {
+      "test": "N04-other-process",
+      "image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "target": "C:\\\\Users\\\\NAM~1.USE\\\\AppData\\\\Local\\\\Temp\\\\msedge_chrome_Unpacker_BeginUnzipping2856_1027040000\\\\Microsoft.CognitiveServices.Speech.core.dll",
+      "expected_match": false,
+      "actual_match": false,
+      "pass": true
+    },
+    {
+      "test": "N05-filename-suffix",
+      "image": "C:\\\\Program Files (x86)\\\\Microsoft\\\\EdgeWebView\\\\Application\\\\154.0.4258.48\\\\msedgewebview2.exe",
+      "target": "C:\\\\Users\\\\NAM~1.USE\\\\AppData\\\\Local\\\\Temp\\\\msedge_chrome_Unpacker_BeginUnzipping2856_1027040000\\\\Microsoft.CognitiveServices.Speech.core.dll.exe",
+      "expected_match": false,
+      "actual_match": false,
+      "pass": true
+    }
+  ]
+}

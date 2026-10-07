@@ -1,0 +1,10 @@
+﻿{
+    "CheckedAtUtc":  "2026-10-07T05:23:19.4428534Z",
+    "Path":  "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\154.0.4258.48\\msedgewebview2.exe",
+    "SHA256":  "8454A3B710D8A8A7002AF5F16349FE6214DF14CEC90A2008E4790BF5728C4A3B",
+    "MatchesEventHash":  true,
+    "SignatureStatus":  "Valid",
+    "SignerSubject":  "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US",
+    "SignerThumbprint":  "4028CAD637509D4744B17EC5B42AED8D7A31E6AF",
+    "Scope":  "Current executable; dropped DLL not verified"
+}

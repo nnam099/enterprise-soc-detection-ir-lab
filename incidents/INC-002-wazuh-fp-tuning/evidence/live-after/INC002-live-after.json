@@ -1,0 +1,15 @@
+﻿{
+    "TestId":  "INC002-LIVE-AFTER",
+    "Marker":  "SOC-INC002-AFTER-20261007T053411Z",
+    "StartedAtUtc":  "2026-10-07T05:34:11.8804059Z",
+    "Hostname":  "WIN10-01",
+    "Operator":  "WIN10-01\\localadmin",
+    "CreatorPID":  756,
+    "Files":  [
+                  "C:\\Users\\LOCALA~1\\AppData\\Local\\Temp\\SOC-INC002-AFTER-20261007T053411Z-msedgewebview2.exe.dll",
+                  "C:\\Users\\LOCALA~1\\AppData\\Local\\Temp\\SOC-INC002-AFTER-20261007T053411Z-control.dll"
+              ],
+    "ContentType":  "Plain text; not executable DLL content",
+    "ExpectedRule":  "92213",
+    "ExpectedLevel":  15
+}

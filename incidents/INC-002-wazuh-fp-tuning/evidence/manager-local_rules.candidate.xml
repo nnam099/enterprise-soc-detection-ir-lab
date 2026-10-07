@@ -9,13 +9,6 @@
       T1112    - Modify Registry
       T1547.001 - Registry Run Keys / Startup Folder
   -->
-   <!-- Tuning: Reduce severity for legitimate Edge WebView2 unpacking in Temp folders -->
-  <rule id="100001" level="3">
-    <if_sid>92213</if_sid>
-    <field name="win.eventdata.image" type="pcre2">(?i)^C:\\+Program Files \(x86\)\\+Microsoft\\+EdgeWebView\\+Application\\+[0-9]+(?:\.[0-9]+){3}\\+msedgewebview2\.exe$</field>
-    <field name="win.eventdata.targetFilename" type="pcre2">(?i)^C:\\+Users\\+[^\\]+\\+AppData\\+Local\\+Temp\\+msedge_chrome_Unpacker_BeginUnzipping[0-9]+_[0-9]+\\+Microsoft\.CognitiveServices\.Speech\.core\.dll$</field>
-    <description>Reduced severity: WebView2 Speech DLL unpacking pattern; benign intent requires triage</description>
-  </rule>
 
   <rule id="100501" level="7">
     <if_sid>92300</if_sid>
@@ -28,7 +21,7 @@
 
   <!--
     SOC-LAB WinRM Remote Process Detection
-    Source: Sysmon Event ID 1 - Process Create
+    Parent: Wazuh Sysmon rule 92052
     MITRE ATT&CK: T1021.006 - Windows Remote Management
   -->
   <rule id="100502" level="8">
@@ -93,6 +86,13 @@
     <mitre>
       <id>T1095</id>
     </mitre>
+  </rule>
+  <!-- Tuning: Reduce severity for legitimate Edge WebView2 unpacking in Temp folders -->
+  <rule id="100001" level="3">
+    <if_sid>92213</if_sid>
+    <field name="win.eventdata.image" type="pcre2">(?i)^C:\\+Program Files \(x86\)\\+Microsoft\\+EdgeWebView\\+Application\\+[0-9]+(?:\.[0-9]+){3}\\+msedgewebview2\.exe$</field>
+    <field name="win.eventdata.targetFilename" type="pcre2">(?i)^C:\\+Users\\+[^\\]+\\+AppData\\+Local\\+Temp\\+msedge_chrome_Unpacker_BeginUnzipping[0-9]+_[0-9]+\\+Microsoft\.CognitiveServices\.Speech\.core\.dll$</field>
+    <description>Reduced severity: WebView2 Speech DLL unpacking pattern; benign intent requires triage</description>
   </rule>
 
 </group>

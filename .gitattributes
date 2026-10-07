@@ -9,3 +9,8 @@
 
 # Preserve original Windows detection test records
 /detections/wazuh/tests/encoded-powershell/T*-execution.json -text
+
+# Preserve INC-002 collected evidence bytes
+/incidents/INC-002-wazuh-fp-tuning/evidence/*.json -text
+/incidents/INC-002-wazuh-fp-tuning/evidence/*.jsonl -text
+/incidents/INC-002-wazuh-fp-tuning/evidence/*.xml -text

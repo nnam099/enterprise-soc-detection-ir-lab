@@ -1,0 +1,10 @@
+{
+  "test_id": "INC002-LIVE-AFTER",
+  "marker": "SOC-INC002-AFTER-20261007T053411Z",
+  "scope": "Matching events in current archives.json and alerts.json",
+  "checks": {
+    "archives": true,
+    "alerts": true
+  },
+  "verdict": "PASS"
+}
