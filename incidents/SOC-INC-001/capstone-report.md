@@ -12,8 +12,10 @@ tests. These exercises extend the portfolio's response evidence but are
 not represented as actions performed during the original simulation.
 
 Verdict: authorized controlled lab activity; no real compromise established.
-Status: investigation documented; response exercises verified; full
-incident closure and new tuning with before/after regression remain open.
+Status: investigation documented; response exercises and sampled recovery
+checks verified. Separate INC-002 tuning has live before/after evidence
+for preserving severity in the tested PowerShell cases.
+Full incident closure remains open.
 
 ## Scope and Evidence Boundaries
 
@@ -64,6 +66,22 @@ Account exercise:
 - Authentication blocking, existing session revocation, and successful
   login after restoration were not tested.
 
+## Run Key Verification and Sampled Monitoring
+
+On 2026-10-07T05:51:59.2292509Z, the SOC-INC-001 value was absent
+from the loaded Run key of the original nam.user SID.
+
+Eleven subsequent samples from 06:22:50.7140884Z to 06:28:04.4634662Z
+spanned 313.75 seconds. The value was absent and Sysmon64/WazuhSvc
+were Running at every sample. A subsequent manager check reported
+agent 001 as Active.
+
+These are October current-state checks, not proof of the historical
+deletion action. Changes between samples and functional recovery
+remain outside the verified scope.
+
+[Recovery report and supporting screenshots](recovery-verification.md)
+
 ## Detection Findings
 
 Four live baseline tests passed:
@@ -76,6 +94,19 @@ Rule 100504 in Git was synchronized with the live-validated manager copy.
 No new manager tuning was deployed during these tests.
 The remaining XML configuration differences require separate review.
 
+## Separate WebView2 Tuning Review
+
+INC-002 correlated a historical file creation event with WebView2
+process ancestry and a subsequent executable signature/hash check.
+The assessment is likely benign; the created DLL was not verified.
+
+The old rule reduced severity when msedgewebview2.exe appeared in a
+PowerShell-created target filename. After narrowing and deploying rule
+100001, both controlled PowerShell file cases received 92213 / level 15.
+The intended WebView2 level 3 branch remains unverified by live telemetry.
+
+[INC-002 triage and validation](../INC-002-wazuh-fp-tuning/triage-report.md)
+
 ## Evidence and Integrity
 
 - [Original analysis](analysis.md)
@@ -85,6 +116,7 @@ The remaining XML configuration differences require separate review.
 - [Live detection test report](../../detections/wazuh/tests/encoded-powershell/README.md)
 - [Process evidence](evidence/response-replay/)
 - [Account evidence](evidence/account-response/)
+- [Recovery evidence](evidence/recovery/)
 
 Response artifacts have SHA-256 manifests. Their transferred hashes
 matched source values and staged Git bytes were verified.
@@ -95,10 +127,15 @@ must not be treated as part of this incident without correlation evidence.
 
 ## Closure Criteria Still Open
 
-- Verify original persistence cleanup with evidence for the correct user.
-- Document sustained endpoint monitoring and required functional recovery.
-- Deploy a justified new tuning change and compare before/after tests.
-- Complete the separate DFIR report and validate its evidence references.
+- Assess required functional recovery and post-restoration authentication.
+- Define and complete any longer monitoring period required for closure.
+- Verify the intended WebView2 severity-reduction branch in Wazuh.
+- Document a final closure decision with accepted evidence limitations.
+
+Correct-SID Run Key absence and short sampled monitoring are documented.
+Historical deletion time and actor remain unverified.
+The separate DFIR-001 controlled review and evidence pipeline verification
+are complete within their documented scope.
 
 The verified exercises are complete within their stated scope.
 The overall incident lifecycle remains open.

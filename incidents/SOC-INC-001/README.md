@@ -111,6 +111,10 @@ for the incident PowerShell process.
 - [Live detection baseline](../../detections/wazuh/tests/encoded-powershell/README.md)
 
 The October response exercises are separate from the September simulation.
-Full incident closure and new tuning with before/after regression remain open.
+Run Key absence and sampled follow-up monitoring are documented.
+Separate INC-002 tuning has live before/after evidence for the tested
+PowerShell file creation cases. Its intended WebView2 reduction branch
+and successful post-restoration domain authentication remain unverified.
+Full incident closure remains open.
 
 - [Run Key current-state verification](recovery-verification.md)

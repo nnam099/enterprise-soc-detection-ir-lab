@@ -15,6 +15,9 @@ and response exercises retain separate timelines and evidence.
 - [AD account containment and restoration](incidents/SOC-INC-001/account-response.md)
 - [Encoded PowerShell live detection validation](detections/wazuh/tests/encoded-powershell/README.md)
 
+- [Run Key verification and sampled monitoring](incidents/SOC-INC-001/recovery-verification.md)
+- [WebView2 triage and before/after tuning](incidents/INC-002-wazuh-fp-tuning/triage-report.md)
+
 ## Verified Outcomes
 
 | Work item | Result | Scope |
@@ -24,6 +27,17 @@ and response exercises retain separate timelines and evidence.
 | AD account response | Disabled state and restored enabled state verified | Security events 4725 and 4722 corroborated actions |
 | Encoded PowerShell validation | Four live tests passed their defined expectations | Three positive tests and one encoded negative control |
 | Evidence preservation | Source hashes matched for transferred Windows response and execution records | Git index hashes also checked |
+
+Run Key checks confirmed the SOC-INC-001 value was absent under the
+original user SID. Eleven follow-up samples spanning 313.75 seconds
+recorded absence and Running Sysmon/Wazuh services. Agent 001 was
+reported Active in a subsequent manager check.
+
+INC-002 tuning replaced a broad text match with specific creator-image
+and target-file predicates. A PowerShell-created filename containing
+msedgewebview2.exe retained level 15 after tuning, compared with level 3
+before tuning. The intended WebView2 level 3 branch remains unverified
+through matching live telemetry.
 
 Process termination telemetry from Sysmon Event 5 remains unverified.
 Account restoration does not establish session revocation or successful
@@ -114,11 +128,14 @@ and AD account disable and restoration.
 
 Remaining priorities:
 
-- Document original persistence cleanup and recovery monitoring.
-- Review the scope and supporting evidence of the WebView2 tuning rule.
-- Validate any new tuning change with before-and-after regression tests.
+- Verify the intended WebView2 severity-reduction branch in Wazuh.
+- Assess functional recovery and post-restoration domain authentication.
+- Define a longer monitoring scope if required for closure.
 - Review anomaly detection evaluation and reproducibility.
 - Complete the final incident closure assessment.
+
+Historical Run Key deletion time and actor remain unverified.
+The sampled checks do not establish continuous absence or a fully clean endpoint.
 
 ## Lab Use
 
