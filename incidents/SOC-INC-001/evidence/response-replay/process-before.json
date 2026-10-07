@@ -1,0 +1,12 @@
+﻿{
+    "ReplayId":  "SOC-INC-001-RESPONSE-REPLAY",
+    "CollectedAtUtc":  "2026-10-07T03:53:15.2647982Z",
+    "Hostname":  "WIN10-01",
+    "User":  "WIN10-01\\localadmin",
+    "ProcessId":  7380,
+    "ParentProcessId":  7576,
+    "CreationDateUtc":  "2026-10-07T03:53:13.1588790Z",
+    "ExecutablePath":  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "CommandLine":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -EncodedCommand VwByAGkAdABlAC0ATwB1AHQAcAB1AHQAIAAnAFMATwBDAC0ASQBOAEMALQAwADAAMQAtAFIARQBTAFAATwBOAFMARQAtAFIARQBQAEwAQQBZACcAOwAgAFMAdABhAHIAdAAtAFMAbABlAGUAcAAgAC0AUwBlAGMAbwBuAGQAcwAgADkAMAAwAA== ",
+    "DecodedPayload":  "Write-Output \u0027SOC-INC-001-RESPONSE-REPLAY\u0027; Start-Sleep -Seconds 900"
+}

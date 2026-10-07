@@ -1,0 +1,9 @@
+﻿{
+    "ReplayId":  "SOC-INC-001-RESPONSE-REPLAY",
+    "Action":  "Stop-Process",
+    "TargetProcessId":  7380,
+    "RequestedAtUtc":  "2026-10-07T03:56:20.5616761Z",
+    "VerifiedAtUtc":  "2026-10-07T03:56:22.6866738Z",
+    "ProcessAbsent":  true,
+    "Operator":  "WIN10-01\\localadmin"
+}
