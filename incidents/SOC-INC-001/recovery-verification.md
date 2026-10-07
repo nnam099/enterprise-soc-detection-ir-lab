@@ -68,3 +68,12 @@ The monitoring record matched its Windows source SHA-256 after transfer.
 These checks establish sampled absence and service status only.
 Changes between samples, other persistence mechanisms, and successful
 post-recovery domain authentication remain unverified.
+
+## Supporting Screenshots
+
+These screenshots support presentation of the recovery checks.
+The JSON samples and captured agent output remain the primary evidence.
+
+![Run Key monitoring](../../screenshots/phase4-incident/63-soc-inc-001-recovery-monitoring.png)
+
+![Agent status after monitoring](../../screenshots/phase4-incident/64-soc-inc-001-agent-after-monitoring.png)
