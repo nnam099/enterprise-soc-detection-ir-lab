@@ -68,7 +68,9 @@ Account exercise:
   DC01 Event 4768, Record ID 18763, recorded Status 0x0 at
   2026-10-07T06:59:15.4728370Z from client 192.168.50.20.
   This supports successful post-restoration domain authentication;
-  desktop sign-in and full application recovery remain unverified.
+  the October 8 follow-up additionally verified an observed desktop
+  session, DC Kerberos authentication, and profile file readback.
+  Recovery of all applications remains unverified.
 
 ## Run Key Verification and Sampled Monitoring
 
@@ -131,7 +133,8 @@ must not be treated as part of this incident without correlation evidence.
 
 ## Closure Criteria Still Open
 
-- Assess any remaining application and desktop recovery requirements.
+- Assess remaining application recovery requirements; the October 8
+  desktop and profile file checks passed within their stated scope.
 - Define and complete any longer monitoring period required for closure.
 - Verify the intended WebView2 severity-reduction branch in Wazuh.
 - Document a final closure decision with accepted evidence limitations.

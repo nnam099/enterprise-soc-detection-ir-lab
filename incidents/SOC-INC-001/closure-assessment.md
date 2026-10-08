@@ -15,6 +15,8 @@ open. No real compromise or fully clean endpoint is asserted.
 - Run Key absence under the original user SID.
 - Eleven sampled checks over approximately five minutes fourteen seconds.
 - Post-restoration domain authentication and target-identity process creation.
+- October 8 desktop session under the target SID, successful DC Kerberos
+  authentication, and profile file creation/readback.
 - Four live encoded PowerShell validation tests.
 
 The October response exercises are separate from the September simulation.
@@ -24,8 +26,9 @@ The October response exercises are separate from the September simulation.
 - Historical Run Key deletion time and actor remain unverified.
 - Sampled monitoring does not prove continuous absence.
 - Sysmon Event 5 process termination evidence remains unverified.
-- Existing session revocation and full desktop/application recovery remain
-  unverified.
+- Existing session revocation and recovery of all applications remain
+  unverified. October 8 desktop and profile file checks passed within
+  their documented scope.
 
 ## Separate Follow-up Work
 

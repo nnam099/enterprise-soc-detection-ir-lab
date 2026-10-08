@@ -44,7 +44,10 @@ unverified through matching live telemetry.
 Process termination telemetry from Sysmon Event 5 remains unverified.
 A separate post-restoration check verified successful domain authentication
 and creation of a PowerShell process under the target SID.
-Existing session revocation and full application recovery remain unverified.
+An October 8 follow-up verified an observed desktop session under the
+target SID, successful DC Kerberos authentication, and profile file
+creation/readback. Existing session revocation and recovery of all
+applications remain unverified.
 
 ## Lab Architecture
 
@@ -135,7 +138,8 @@ Remaining priorities:
 
 - Verify the intended WebView2 severity-reduction branch through live
   telemetry; its adapted historical replay has passed.
-- Assess any remaining application and desktop recovery requirements.
+- Assess remaining application recovery requirements; scoped desktop
+  and profile file recovery checks passed on October 8.
 - Define a longer monitoring scope if required for closure.
 - Expand anomaly detection evaluation beyond the single encoded test event.
 - Complete the final incident closure assessment.

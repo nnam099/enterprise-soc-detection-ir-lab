@@ -63,7 +63,9 @@ Git attributes preserve JSON and XML bytes without text normalization.
 ## Limits and Remaining Work
 
 - Failed authentication while disabled was not tested.
-- Successful authentication after recovery was not tested.
+- Successful post-restoration authentication was verified in separate
+  October 7 and October 8 follow-up checks; see the
+  [recovery report](recovery-verification.md).
 - Existing sessions and tickets were not tested or revoked.
 - Collection of these DC events into Wazuh was not verified.
 - This exercise does not establish full endpoint recovery or eradication.
