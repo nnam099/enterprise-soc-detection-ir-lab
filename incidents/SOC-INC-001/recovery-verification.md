@@ -37,7 +37,8 @@ The transferred record matched its Windows source SHA-256:
 No registry modification was performed during this check.
 Historical deletion telemetry remains unverified.
 Other persistence locations and sustained recurrence monitoring were
-not assessed by this check. Full incident closure remains open.
+not assessed by this check. The subsequent scoped educational closure
+is documented in the [closure assessment](closure-assessment.md).
 
 ## Sampled Follow-up Monitoring
 
@@ -163,3 +164,18 @@ Preserved JSON and event XML remain the primary evidence.
 ![Profile file test](../../screenshots/phase4-incident/74-soc-inc-001-profile-file-recovery.png)
 
 ![DC Kerberos authentication](../../screenshots/phase4-incident/75-soc-inc-001-desktop-kerberos-authentication.png)
+
+## Functional Test Cleanup
+
+At 2026-10-08T04:41:38.1008224Z, the operator reported successful
+cleanup of the functional test directory on WIN10-01:
+
+`C:\Users\nam.user\SOC-INC001-RECOVERY-e1777bac-7762-46dd-aec8-f330d0e3b446`
+
+The cleanup command checked the two expected files and their SHA-256
+values before deletion. The subsequent path check returned
+TEST_DIRECTORY_ABSENT=True. This is an operator-reported console result;
+no separate cleanup event export was collected.
+
+Transferred evidence had already been verified and published in
+commit 851638f. Repository evidence was retained.

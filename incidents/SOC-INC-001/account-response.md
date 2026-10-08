@@ -70,6 +70,6 @@ Git attributes preserve JSON and XML bytes without text normalization.
 - Collection of these DC events into Wazuh was not verified.
 - This exercise does not establish full endpoint recovery or eradication.
 
-The account state exercise is complete. The overall SOC-INC-001
-response lifecycle remains open pending the remaining validation,
-detection improvement, and final incident report.
+The account state exercise is complete. SOC-INC-001 was subsequently
+closed as an educational exercise within its verified scope; see the
+[closure assessment](closure-assessment.md) for accepted limitations.

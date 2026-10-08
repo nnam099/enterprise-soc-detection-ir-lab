@@ -2,9 +2,17 @@
 
 ## Decision
 
-The documented investigation and response exercises are complete within
-their stated educational scope. Full incident lifecycle closure remains
-open. No real compromise or fully clean endpoint is asserted.
+Decision date: 2026-10-08.
+
+SOC-INC-001 is closed as an educational exercise within the verified
+scope of the documented investigation, separate response exercises,
+and scoped recovery checks. The evidence limitations below are accepted
+for this lab closure. No real compromise, fully clean endpoint, or
+complete production incident lifecycle is asserted.
+
+The eleven-sample monitoring window is accepted for this exercise.
+Longer monitoring and application-specific recovery checks remain
+follow-up work if the lab scope is expanded.
 
 ## Verified Work
 
@@ -52,8 +60,10 @@ differences or errors. This was a partial data rescue, not a VM backup.
 The temporary SSD rescue directory was subsequently deleted at the
 user's request on 2026-10-07; that rescue copy is no longer retained.
 
-The external HDD was unmounted. All lab VMs were shut off at the final
-reported check. Original VM disks and backing files must be retained.
+The external HDD was unmounted. The October 7 final check recorded all
+lab VMs shut off. SOC-DC01 and SOC-WIN10 were subsequently started for
+the October 8 recovery checks. Original VM disks and backing files
+must be retained.
 
 ## References
 

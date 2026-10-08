@@ -140,9 +140,13 @@ Remaining priorities:
   telemetry; its adapted historical replay has passed.
 - Assess remaining application recovery requirements; scoped desktop
   and profile file recovery checks passed on October 8.
-- Define a longer monitoring scope if required for closure.
+- Extend monitoring if the exercise scope is expanded; the existing
+  sampled window is accepted for scoped lab closure.
 - Expand anomaly detection evaluation beyond the single encoded test event.
-- Complete the final incident closure assessment.
+
+SOC-INC-001 is closed as an educational exercise within its verified
+scope, with accepted limitations recorded in the
+[closure assessment](incidents/SOC-INC-001/closure-assessment.md).
 
 Historical Run Key deletion time and actor remain unverified.
 The sampled checks do not establish continuous absence or a fully clean endpoint.

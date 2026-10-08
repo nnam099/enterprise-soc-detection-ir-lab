@@ -15,7 +15,8 @@ Verdict: authorized controlled lab activity; no real compromise established.
 Status: investigation documented; response exercises and sampled recovery
 checks verified. Separate INC-002 tuning has live before/after evidence
 for preserving severity in the tested PowerShell cases.
-Full incident closure remains open.
+SOC-INC-001 is closed as an educational exercise within its verified
+scope, with accepted evidence limitations documented in the closure assessment.
 
 ## Scope and Evidence Boundaries
 
@@ -131,21 +132,24 @@ The detection report describes its separate integrity limitations.
 DFIR-001 is a separate investigation using hunting evidence. Its events
 must not be treated as part of this incident without correlation evidence.
 
-## Closure Criteria Still Open
+## Scoped Closure and Follow-up
 
-- Assess remaining application recovery requirements; the October 8
-  desktop and profile file checks passed within their stated scope.
-- Define and complete any longer monitoring period required for closure.
-- Verify the intended WebView2 severity-reduction branch in Wazuh.
-- Document a final closure decision with accepted evidence limitations.
+SOC-INC-001 is closed as an educational exercise on 2026-10-08.
+The closure assessment records the verified scope and accepted limits.
 
-Correct-SID Run Key absence and short sampled monitoring are documented.
-Historical deletion time and actor remain unverified.
-The separate DFIR-001 controlled review and evidence pipeline verification
-are complete within their documented scope.
+Correct-SID Run Key absence, eleven monitoring samples spanning about
+five minutes fourteen seconds, post-restoration authentication, and the
+October 8 desktop/profile file checks support this scoped decision.
+The sampled monitoring window is accepted for this exercise.
 
-The verified exercises are complete within their stated scope.
-The overall incident lifecycle remains open.
+Historical Run Key deletion time and actor, Sysmon Event 5 termination
+telemetry, existing session revocation, and recovery of all applications
+remain unverified. These limits do not become verified through closure.
+Longer monitoring may be added if the exercise scope is expanded.
+
+INC-002 live WebView2 positive-branch validation and broader anomaly
+evaluation remain separate follow-up work. They are not SOC-INC-001
+closure criteria. DFIR-001 remains a separate controlled evidence review.
 
 ## Analyst Lessons
 
