@@ -46,6 +46,8 @@ External HDD filesystem errors interrupted the VM backup preparation.
 Approximately 9 GB of selected existing HDD files were copied to the host
 SSD and compared with the source using rsync checksums, with no reported
 differences or errors. This was a partial data rescue, not a VM backup.
+The temporary SSD rescue directory was subsequently deleted at the
+user's request on 2026-10-07; that rescue copy is no longer retained.
 
 The external HDD was unmounted. All lab VMs were shut off at the final
 reported check. Original VM disks and backing files must be retained.

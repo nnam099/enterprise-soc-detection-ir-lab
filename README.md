@@ -36,8 +36,10 @@ reported Active in a subsequent manager check.
 INC-002 tuning replaced a broad text match with specific creator-image
 and target-file predicates. A PowerShell-created filename containing
 msedgewebview2.exe retained level 15 after tuning, compared with level 3
-before tuning. The intended WebView2 level 3 branch remains unverified
-through matching live telemetry.
+before tuning. An adapted historical replay selected rule 100001 at level 3.
+The test temporarily adapted base rule 60000 for JSON decoding and
+restored it afterward. The intended WebView2 level 3 branch remains
+unverified through matching live telemetry.
 
 Process termination telemetry from Sysmon Event 5 remains unverified.
 A separate post-restoration check verified successful domain authentication
@@ -131,7 +133,8 @@ and AD account disable and restoration.
 
 Remaining priorities:
 
-- Verify the intended WebView2 severity-reduction branch in Wazuh.
+- Verify the intended WebView2 severity-reduction branch through live
+  telemetry; its adapted historical replay has passed.
 - Assess any remaining application and desktop recovery requirements.
 - Define a longer monitoring scope if required for closure.
 - Expand anomaly detection evaluation beyond the single encoded test event.

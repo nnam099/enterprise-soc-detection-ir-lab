@@ -152,3 +152,32 @@ are not visible in this capture. Preserved JSON remains primary evidence.
 This is historical telemetry, not post-deployment validation.
 
 ![Historical WebView2 file creation](../../screenshots/phase4-incident/critical-alert-t1105-details.png)
+
+
+## Adapted Historical Replay — 2026-10-08
+
+Historical Sysmon Event 11, Record ID 13956, was replayed using the
+full_log string extracted from the preserved archive record.
+Input SHA-256:
+`cba3ff4dd2a4b1081714ce78694df8b2959d8f76ca9d159ab0a74ff0f94fb18b`.
+
+The initial unmodified logtest run decoded the input as JSON but did not
+reach Phase 3. Exit code 0 alone was not treated as a successful rule test.
+
+For the adapted test harness, rule 60000 temporarily had its ossec
+category removed and its decoded_as changed from windows_eventchannel
+to json. Rule 100001 was unchanged. Logtest selected rule 100001 at
+level 3.
+
+The original base-rule bytes were restored after the test.
+The subsequent configuration test returned 0 and the manager was active.
+The manager was not restarted during the harness exercise.
+Transferred evidence passed all stored SHA-256 manifest checks.
+
+This is a positive adapted historical replay, not live EventChannel
+ingestion validation. The live WebView2 positive branch remains unverified.
+Earlier live PowerShell negative-control results remain separate evidence.
+
+[Replay evidence](evidence/historical-replay-20261008/)
+
+![Adapted historical replay](../../screenshots/phase4-incident/72-inc002-webview2-adapted-historical-replay.png)
