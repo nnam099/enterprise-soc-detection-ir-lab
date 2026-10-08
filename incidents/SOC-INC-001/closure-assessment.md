@@ -50,20 +50,41 @@ These results do not establish operational detection effectiveness.
 
 ## Preservation Status
 
-Repository documentation and evidence are published in Git.
-A standalone backup of the three SOC VM disks has not been completed.
+Repository documentation and investigation evidence are retained in Git.
 
-External HDD filesystem errors interrupted the VM backup preparation.
-Approximately 9 GB of selected existing HDD files were copied to the host
-SSD and compared with the source using rsync checksums, with no reported
-differences or errors. This was a partial data rescue, not a VM backup.
-The temporary SSD rescue directory was subsequently deleted at the
-user's request on 2026-10-07; that rescue copy is no longer retained.
+On 2026-10-08, standalone QCOW2 backups of SOC-DC01, SOC-WAZUH,
+and SOC-WIN10 were completed on the external HDD with the VMs shut off.
+Each backup merges the active overlay and its backing chain.
+The three images occupy approximately 86 GiB in total.
 
-The external HDD was unmounted. The October 7 final check recorded all
-lab VMs shut off. SOC-DC01 and SOC-WIN10 were subsequently started for
-the October 8 recovery checks. Original VM disks and backing files
-must be retained.
+Backup directory:
+`SOC-Lab-Backup-20261008-1dYQ67`
+
+For each image, `qemu-img check` reported no errors and
+`qemu-img compare` against the source chain reported
+`Images are identical` with exit code 0.
+These results were observed in operator-provided console output;
+separate raw verification logs were not saved during these commands.
+
+The backup includes original domain XML, prepared restore XML,
+libvirt network XML and network status records, and BACKUP-README.txt.
+External snapshot history is not preserved by the flattened images.
+Restore boot testing has not been performed.
+
+The prepared restore XML requires path and identity review before use.
+Its default disk paths overlap the original backing-file paths;
+restoration must not overwrite those files.
+Original VM disks and backing files remain retained on the host.
+
+Before backup, the HDD exFAT filesystem was repaired. A subsequent
+read-only filesystem check reported clean with exit code 0.
+This does not establish the physical health of the HDD.
+
+The HDD was synced, unmounted, and powered off after backup.
+On 2026-10-08, the temporary SSD rescue copy
+`hdd-rescue-20261008-5ee8Xu` was deleted at the user's request.
+The rescued personal files and CAPE archive are retained on the HDD;
+the temporary SSD copy is no longer available.
 
 ## References
 
