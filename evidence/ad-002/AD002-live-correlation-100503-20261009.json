@@ -1,0 +1,262 @@
+{
+  "case_id": "AD-002",
+  "test": "Live Authentication Correlation",
+  "test_type": "Controlled lab simulation",
+  "source_host": "SOC-DC01",
+  "agent_id": "002",
+  "target_account": "soc.ad002.test",
+  "rule_100503_threshold": "5 incorrect passwords / 60 seconds / same account",
+  "correlation_record_id": "23033",
+  "rule_counts": {
+    "60104": 5,
+    "100507": 4,
+    "100503": 1
+  },
+  "evidence_note": "Kerberos 4771 alerts have no full_log in alerts.json. Their raw hashes were obtained from archives.json. No missing raw content was reconstructed.",
+  "events": {
+    "archives": {
+      "23024": {
+        "timestamp": "2026-10-09T06:30:42.849+0000",
+        "agent_id": "002",
+        "eventRecordID": "23024",
+        "eventID": "4771",
+        "targetUserName": "soc.ad002.test",
+        "status": "0x18",
+        "subStatus": null,
+        "ruleID": "60104",
+        "raw_available": true,
+        "raw_sha256": "4a09e958fdc248c6e686057c5867d5c00992a1848690ff81a7373fb8fa5eeaa7"
+      },
+      "23025": {
+        "timestamp": "2026-10-09T06:30:42.859+0000",
+        "agent_id": "002",
+        "eventRecordID": "23025",
+        "eventID": "4625",
+        "targetUserName": "soc.ad002.test",
+        "status": "0xc000006d",
+        "subStatus": "0xc000006a",
+        "ruleID": "100507",
+        "raw_available": true,
+        "raw_sha256": "30a6b99791079bf2bca4553e02279f9337f57a2032ed1c2d71957f10ec546e75"
+      },
+      "23026": {
+        "timestamp": "2026-10-09T06:30:42.861+0000",
+        "agent_id": "002",
+        "eventRecordID": "23026",
+        "eventID": "4771",
+        "targetUserName": "soc.ad002.test",
+        "status": "0x18",
+        "subStatus": null,
+        "ruleID": "60104",
+        "raw_available": true,
+        "raw_sha256": "6560ec2f254a1d3d73adf65e0cf97f538234348e7fbdab64b1670b371774ec1f"
+      },
+      "23027": {
+        "timestamp": "2026-10-09T06:30:42.868+0000",
+        "agent_id": "002",
+        "eventRecordID": "23027",
+        "eventID": "4625",
+        "targetUserName": "soc.ad002.test",
+        "status": "0xc000006d",
+        "subStatus": "0xc000006a",
+        "ruleID": "100507",
+        "raw_available": true,
+        "raw_sha256": "56e3925726f82b7073ca37390ddc051b4aa4a1556f34a0879e203e34a62f5ef9"
+      },
+      "23028": {
+        "timestamp": "2026-10-09T06:30:44.576+0000",
+        "agent_id": "002",
+        "eventRecordID": "23028",
+        "eventID": "4771",
+        "targetUserName": "soc.ad002.test",
+        "status": "0x18",
+        "subStatus": null,
+        "ruleID": "60104",
+        "raw_available": true,
+        "raw_sha256": "e4ca0810a1900a95eebd330481a67a95dd5754732177fe81a251446ded7e22c4"
+      },
+      "23029": {
+        "timestamp": "2026-10-09T06:30:44.583+0000",
+        "agent_id": "002",
+        "eventRecordID": "23029",
+        "eventID": "4625",
+        "targetUserName": "soc.ad002.test",
+        "status": "0xc000006d",
+        "subStatus": "0xc000006a",
+        "ruleID": "100507",
+        "raw_available": true,
+        "raw_sha256": "d1d6c17a7aae10801a3294dc969ba81ee90e50890467a587af2ff4082969da57"
+      },
+      "23030": {
+        "timestamp": "2026-10-09T06:30:44.601+0000",
+        "agent_id": "002",
+        "eventRecordID": "23030",
+        "eventID": "4771",
+        "targetUserName": "soc.ad002.test",
+        "status": "0x18",
+        "subStatus": null,
+        "ruleID": "60104",
+        "raw_available": true,
+        "raw_sha256": "a513951c64c6046d7b736d5a68abce9d0ab5c98dc0039afebd695c750337855a"
+      },
+      "23031": {
+        "timestamp": "2026-10-09T06:30:44.619+0000",
+        "agent_id": "002",
+        "eventRecordID": "23031",
+        "eventID": "4625",
+        "targetUserName": "soc.ad002.test",
+        "status": "0xc000006d",
+        "subStatus": "0xc000006a",
+        "ruleID": "100507",
+        "raw_available": true,
+        "raw_sha256": "537304c6a17b52bc400f355aa52e6b2077d2f66625a17a5a28e4338a62660425"
+      },
+      "23032": {
+        "timestamp": "2026-10-09T06:30:46.251+0000",
+        "agent_id": "002",
+        "eventRecordID": "23032",
+        "eventID": "4771",
+        "targetUserName": "soc.ad002.test",
+        "status": "0x18",
+        "subStatus": null,
+        "ruleID": "60104",
+        "raw_available": true,
+        "raw_sha256": "4ba24415c3be412cc5806d0a70b844026a3392b0aec229d8e41a10745addff06"
+      },
+      "23033": {
+        "timestamp": "2026-10-09T06:30:46.254+0000",
+        "agent_id": "002",
+        "eventRecordID": "23033",
+        "eventID": "4625",
+        "targetUserName": "soc.ad002.test",
+        "status": "0xc000006d",
+        "subStatus": "0xc000006a",
+        "ruleID": "100503",
+        "raw_available": true,
+        "raw_sha256": "a17cd66124c1fbb4fa647afcb6b44e5f93b1597f5ea3cd2f019a7a6b1144bb8d"
+      }
+    },
+    "alerts": {
+      "23024": {
+        "timestamp": "2026-10-09T06:30:42.849+0000",
+        "agent_id": "002",
+        "eventRecordID": "23024",
+        "eventID": "4771",
+        "targetUserName": "soc.ad002.test",
+        "status": "0x18",
+        "subStatus": null,
+        "ruleID": "60104",
+        "raw_available": false,
+        "raw_sha256": null
+      },
+      "23025": {
+        "timestamp": "2026-10-09T06:30:42.859+0000",
+        "agent_id": "002",
+        "eventRecordID": "23025",
+        "eventID": "4625",
+        "targetUserName": "soc.ad002.test",
+        "status": "0xc000006d",
+        "subStatus": "0xc000006a",
+        "ruleID": "100507",
+        "raw_available": true,
+        "raw_sha256": "30a6b99791079bf2bca4553e02279f9337f57a2032ed1c2d71957f10ec546e75"
+      },
+      "23026": {
+        "timestamp": "2026-10-09T06:30:42.861+0000",
+        "agent_id": "002",
+        "eventRecordID": "23026",
+        "eventID": "4771",
+        "targetUserName": "soc.ad002.test",
+        "status": "0x18",
+        "subStatus": null,
+        "ruleID": "60104",
+        "raw_available": false,
+        "raw_sha256": null
+      },
+      "23027": {
+        "timestamp": "2026-10-09T06:30:42.868+0000",
+        "agent_id": "002",
+        "eventRecordID": "23027",
+        "eventID": "4625",
+        "targetUserName": "soc.ad002.test",
+        "status": "0xc000006d",
+        "subStatus": "0xc000006a",
+        "ruleID": "100507",
+        "raw_available": true,
+        "raw_sha256": "56e3925726f82b7073ca37390ddc051b4aa4a1556f34a0879e203e34a62f5ef9"
+      },
+      "23028": {
+        "timestamp": "2026-10-09T06:30:44.576+0000",
+        "agent_id": "002",
+        "eventRecordID": "23028",
+        "eventID": "4771",
+        "targetUserName": "soc.ad002.test",
+        "status": "0x18",
+        "subStatus": null,
+        "ruleID": "60104",
+        "raw_available": false,
+        "raw_sha256": null
+      },
+      "23029": {
+        "timestamp": "2026-10-09T06:30:44.583+0000",
+        "agent_id": "002",
+        "eventRecordID": "23029",
+        "eventID": "4625",
+        "targetUserName": "soc.ad002.test",
+        "status": "0xc000006d",
+        "subStatus": "0xc000006a",
+        "ruleID": "100507",
+        "raw_available": true,
+        "raw_sha256": "d1d6c17a7aae10801a3294dc969ba81ee90e50890467a587af2ff4082969da57"
+      },
+      "23030": {
+        "timestamp": "2026-10-09T06:30:44.601+0000",
+        "agent_id": "002",
+        "eventRecordID": "23030",
+        "eventID": "4771",
+        "targetUserName": "soc.ad002.test",
+        "status": "0x18",
+        "subStatus": null,
+        "ruleID": "60104",
+        "raw_available": false,
+        "raw_sha256": null
+      },
+      "23031": {
+        "timestamp": "2026-10-09T06:30:44.619+0000",
+        "agent_id": "002",
+        "eventRecordID": "23031",
+        "eventID": "4625",
+        "targetUserName": "soc.ad002.test",
+        "status": "0xc000006d",
+        "subStatus": "0xc000006a",
+        "ruleID": "100507",
+        "raw_available": true,
+        "raw_sha256": "537304c6a17b52bc400f355aa52e6b2077d2f66625a17a5a28e4338a62660425"
+      },
+      "23032": {
+        "timestamp": "2026-10-09T06:30:46.251+0000",
+        "agent_id": "002",
+        "eventRecordID": "23032",
+        "eventID": "4771",
+        "targetUserName": "soc.ad002.test",
+        "status": "0x18",
+        "subStatus": null,
+        "ruleID": "60104",
+        "raw_available": false,
+        "raw_sha256": null
+      },
+      "23033": {
+        "timestamp": "2026-10-09T06:30:46.254+0000",
+        "agent_id": "002",
+        "eventRecordID": "23033",
+        "eventID": "4625",
+        "targetUserName": "soc.ad002.test",
+        "status": "0xc000006d",
+        "subStatus": "0xc000006a",
+        "ruleID": "100503",
+        "raw_available": true,
+        "raw_sha256": "a17cd66124c1fbb4fa647afcb6b44e5f93b1597f5ea3cd2f019a7a6b1144bb8d"
+      }
+    }
+  }
+}

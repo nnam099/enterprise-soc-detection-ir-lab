@@ -1,0 +1,43 @@
+{
+  "case_id": "AD-002",
+  "date": "2026-10-09",
+  "host": "SOC-DC01",
+  "agent_id": "002",
+  "test_type": "Controlled Authentication Failure",
+  "results": [
+    {
+      "timestamp": "2026-10-09T05:46:45.506+0000",
+      "event_id": "4625",
+      "record_id": "22625",
+      "target_user": "soc.ad002.test",
+      "status": "0xc000015b",
+      "sub_status": "0x0",
+      "source_ip": "::1",
+      "logon_type": "2",
+      "raw_event_sha256": "8a170ec70fc6a3018384b93174ce6a61d415a7dac41bef6b6018f582a4a45b1a"
+    },
+    {
+      "timestamp": "2026-10-09T05:47:04.227+0000",
+      "event_id": "4771",
+      "record_id": "22628",
+      "target_user": "soc.ad002.test",
+      "status": "0x18",
+      "sub_status": null,
+      "source_ip": "::1",
+      "logon_type": null,
+      "raw_event_sha256": "9ebcf0c50fb5f76d43541bb254d68a19b298cf559d3b45e737095f7a5989ae15"
+    },
+    {
+      "timestamp": "2026-10-09T05:47:04.227+0000",
+      "event_id": "4625",
+      "record_id": "22629",
+      "target_user": "soc.ad002.test",
+      "status": "0xc000006d",
+      "sub_status": "0xc000006a",
+      "source_ip": "::1",
+      "logon_type": "2",
+      "raw_event_sha256": "d9f9682a7038145e7f1a3767afc0c397a66be92d34ede2b8c22ec52fdcc786f8"
+    }
+  ],
+  "finding": "Rule 100503 counts 60122 without filtering logon failure reasons."
+}
