@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="hostGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#16213e"/>
+    </linearGradient>
+    <linearGradient id="netGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f3460"/>
+      <stop offset="100%" stop-color="#1a1a40"/>
+    </linearGradient>
+    <linearGradient id="dcGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2d6a4f"/>
+      <stop offset="100%" stop-color="#1b4332"/>
+    </linearGradient>
+    <linearGradient id="winGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0077b6"/>
+      <stop offset="100%" stop-color="#023e8a"/>
+    </linearGradient>
+    <linearGradient id="wazuhGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#9b2226"/>
+      <stop offset="100%" stop-color="#6a040f"/>
+    </linearGradient>
+    <linearGradient id="parrotGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a0ca3"/>
+      <stop offset="100%" stop-color="#240046"/>
+    </linearGradient>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="620" rx="12" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="450" y="38" text-anchor="middle" fill="#e6edf3" font-size="18" font-weight="700">Enterprise SOC Detection &amp; Incident Response Lab — Architecture</text>
+  <text x="450" y="58" text-anchor="middle" fill="#8b949e" font-size="12">Isolated QEMU/KVM Environment on Parrot OS (8 GB RAM)</text>
+
+  <!-- Parrot Host Box -->
+  <rect x="30" y="75" width="840" height="530" rx="10" fill="url(#hostGrad)" stroke="#30363d" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="50" y="100" fill="#79c0ff" font-size="13" font-weight="600">Parrot OS Host — Analyst Workstation + Hypervisor</text>
+  <text x="50" y="118" fill="#8b949e" font-size="11">192.168.50.1 (virbr50) · 12 vCPU · 8 GB RAM · KVM/QEMU via libvirt</text>
+
+  <!-- QEMU/KVM Box -->
+  <rect x="60" y="135" width="780" height="410" rx="8" fill="url(#netGrad)" stroke="#58a6ff" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="80" y="160" fill="#58a6ff" font-size="12" font-weight="600">QEMU/KVM — Isolated Virtual Network</text>
+  <text x="80" y="178" fill="#8b949e" font-size="11">soc-net · 192.168.50.0/24 · NAT mode · Bridge virbr50</text>
+
+  <!-- SOC-DC01 -->
+  <rect x="100" y="200" width="210" height="180" rx="8" fill="url(#dcGrad)" stroke="#40916c" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="205" y="226" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">SOC-DC01</text>
+  <text x="205" y="244" text-anchor="middle" fill="#b7e4c7" font-size="11">192.168.50.10</text>
+  <line x1="130" y1="255" x2="280" y2="255" stroke="#40916c" stroke-width="0.5"/>
+  <text x="120" y="275" fill="#d8f3dc" font-size="11">Windows Server 2022</text>
+  <text x="120" y="293" fill="#d8f3dc" font-size="11">Active Directory DS</text>
+  <text x="120" y="311" fill="#d8f3dc" font-size="11">DNS Server</text>
+  <text x="120" y="329" fill="#d8f3dc" font-size="11">Security Auditing</text>
+  <text x="120" y="352" fill="#95d5b2" font-size="10">RAM: 1.5 GB</text>
+  <text x="120" y="368" fill="#95d5b2" font-size="10">Domain: SOC-LAB.LOCAL</text>
+
+  <!-- SOC-WIN10 -->
+  <rect x="345" y="200" width="210" height="180" rx="8" fill="url(#winGrad)" stroke="#48cae4" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="450" y="226" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">SOC-WIN10</text>
+  <text x="450" y="244" text-anchor="middle" fill="#ade8f4" font-size="11">192.168.50.20</text>
+  <line x1="375" y1="255" x2="525" y2="255" stroke="#48cae4" stroke-width="0.5"/>
+  <text x="365" y="275" fill="#caf0f8" font-size="11">Windows 10 Endpoint</text>
+  <text x="365" y="293" fill="#caf0f8" font-size="11">Domain-Joined (WIN10-01)</text>
+  <text x="365" y="311" fill="#caf0f8" font-size="11">Sysmon Telemetry</text>
+  <text x="365" y="329" fill="#caf0f8" font-size="11">Wazuh Agent (001)</text>
+  <text x="365" y="352" fill="#90e0ef" font-size="10">RAM: 2 GB</text>
+  <text x="365" y="368" fill="#90e0ef" font-size="10">Security + Sysmon Logs</text>
+
+  <!-- SOC-WAZUH -->
+  <rect x="590" y="200" width="210" height="180" rx="8" fill="url(#wazuhGrad)" stroke="#e5383b" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="695" y="226" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">SOC-WAZUH</text>
+  <text x="695" y="244" text-anchor="middle" fill="#ffccd5" font-size="11">192.168.50.30</text>
+  <line x1="620" y1="255" x2="770" y2="255" stroke="#e5383b" stroke-width="0.5"/>
+  <text x="610" y="275" fill="#ffd7d7" font-size="11">Wazuh Manager</text>
+  <text x="610" y="293" fill="#ffd7d7" font-size="11">Wazuh Indexer</text>
+  <text x="610" y="311" fill="#ffd7d7" font-size="11">Wazuh Dashboard</text>
+  <text x="610" y="329" fill="#ffd7d7" font-size="11">Custom Detection Rules</text>
+  <text x="610" y="352" fill="#ffb3b3" font-size="10">RAM: 3 GB</text>
+  <text x="610" y="368" fill="#ffb3b3" font-size="10">Wazuh v4.14.8</text>
+
+  <!-- AD/DNS Arrow: DC01 <-> WIN10 -->
+  <line x1="310" y1="270" x2="345" y2="270" stroke="#52b788" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="345" y1="285" x2="310" y2="285" stroke="#52b788" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <text x="314" y="262" fill="#95d5b2" font-size="9" font-weight="600">AD / DNS</text>
+
+  <!-- Agent Telemetry Arrow: WIN10 -> WAZUH -->
+  <line x1="555" y1="275" x2="590" y2="275" stroke="#48cae4" stroke-width="2"/>
+  <polygon points="590,271 590,279 598,275" fill="#48cae4"/>
+  <text x="548" y="262" fill="#90e0ef" font-size="9" font-weight="600">Wazuh Agent</text>
+  <text x="548" y="295" fill="#90e0ef" font-size="9">Telemetry</text>
+
+  <!-- Analyst Access Box -->
+  <rect x="200" y="430" width="500" height="90" rx="8" fill="url(#parrotGrad)" stroke="#7b2cbf" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="450" y="458" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Analyst Workstation (Parrot OS Host)</text>
+  <text x="450" y="478" text-anchor="middle" fill="#c77dff" font-size="11">SOC Investigation · Log Analysis · Evidence Collection · DFIR</text>
+  <text x="450" y="498" text-anchor="middle" fill="#c77dff" font-size="11">Detection Engineering · Threat Hunting · AI Anomaly Scoring</text>
+
+  <!-- Analyst arrows to VMs -->
+  <line x1="320" y1="430" x2="250" y2="380" stroke="#9d4edd" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="450" y1="430" x2="450" y2="380" stroke="#9d4edd" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="580" y1="430" x2="660" y2="380" stroke="#9d4edd" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Resource Mode Note -->
+  <rect x="60" y="555" width="780" height="35" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="450" y="577" text-anchor="middle" fill="#8b949e" font-size="11">⚠ Resource Constraint: Max 2 core VMs active concurrently · Operational modes: Identity | Detection | Attack | DFIR</text>
+
+  <!-- Green arrow marker -->
+  <defs>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#52b788"/>
+    </marker>
+  </defs>
+</svg>
