@@ -1,0 +1,29 @@
+{
+  "case_id": "AD-001",
+  "date": "2026-10-09",
+  "agent": "SOC-DC01",
+  "rule_id": "100506",
+  "test_type": "Live Positive/Negative Regression",
+  "results": {
+    "positive": {
+      "status": "PASS",
+      "event_id": "4104",
+      "record_id": "832",
+      "timestamp": "2026-10-09T03:43:12.673+0000",
+      "command_indicator": "Get-ADUser",
+      "archive_present": true,
+      "alert_100506_present": true,
+      "raw_event_sha256": "b5c9b41ec650c9a270d394663a5188c0788675e6e70c10416cb8dfe23ff58167"
+    },
+    "negative": {
+      "status": "PASS",
+      "event_id": "4104",
+      "record_id": "837",
+      "timestamp": "2026-10-09T05:05:32.583+0000",
+      "command_indicator": "Get-Date",
+      "archive_present": true,
+      "alert_100506_present": false,
+      "raw_event_sha256": "77dc883d18cbd9f4f152c0714111b78e69677aca62a73a49355b54ee279aa182"
+    }
+  }
+}

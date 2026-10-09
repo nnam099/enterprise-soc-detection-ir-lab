@@ -150,7 +150,7 @@ flowchart LR
 
 ### Custom Wazuh Detection Rules
 
-All rules are maintained in [`configs/wazuh/rules/local_rules.xml`](configs/wazuh/rules/local_rules.xml).
+Core Wazuh custom rules are maintained in [`configs/wazuh/rules/local_rules.xml`](configs/wazuh/rules/local_rules.xml). The independently documented AD-001 detection is available as [Rule 100506](detections/wazuh/rules/100506-ad-enumeration.xml).
 
 | Rule ID | Level | Detection Use Case | Telemetry Source | MITRE ATT&CK | Validation Status | Evidence |
 |---|---|---|---|---|---|---|
@@ -159,7 +159,23 @@ All rules are maintained in [`configs/wazuh/rules/local_rules.xml`](configs/wazu
 | 100503 | 10 | Repeated failed logons (5 in 60s) | Windows Event 4625 | [T1110](https://attack.mitre.org/techniques/T1110/) | ✅ Validated | [HUNT-002](hunting/HUNT-002-authentication.md) |
 | 100504 | 8 | Encoded PowerShell command | Sysmon Event 1 | [T1059.001](https://attack.mitre.org/techniques/T1059/001/) | ✅ Validated | [HUNT-001](hunting/HUNT-001-powershell.md) · [Live tests](detections/wazuh/tests/encoded-powershell/README.md) |
 | 100505 | 7 | PowerShell network connection to lab target | Sysmon Event 3 | [T1095](https://attack.mitre.org/techniques/T1095/) | ⚠️ Partially | Independently validated; excluded from SOC-INC-001 due to missing Event 3 |
+| 100506 | 3 | PowerShell AD enumeration (`Get-ADUser`, `Get-ADGroup`, `Get-ADGroupMember`) | PowerShell Event 4104 | [T1087.002](https://attack.mitre.org/techniques/T1087/002/) | ✅ Live regression 2/2 | [AD-001 Case Study](ad-labs/AD-001-domain-enumeration/README.md) · [Rule XML](detections/wazuh/rules/100506-ad-enumeration.xml) · [Evidence](evidence/ad-001/AD001-regression-20261009.json) |
 | 100001 | 3 | WebView2 Speech DLL severity reduction | Sysmon Event 11 | — | ⚠️ Partially | [INC-002](incidents/INC-002-wazuh-fp-tuning/triage-report.md) (PS tests pass; live WebView2 unverified) |
+
+### AD-001 — Active Directory Enumeration Detection
+
+**Completed 2026-10-09:** SOC-DC01 PowerShell Event 4104 was
+collected by Wazuh Agent 002 and detected by custom Rule 100506.
+
+- **Positive control:** `Get-ADUser` → Event Record 832 → Alert 100506.
+- **Negative control:** `Get-Date` → Event Record 837 → no Alert 100506.
+- **Regression:** 2/2 controlled live test cases passed.
+- **Tuning:** Investigated a Rule Matching Gap and resolved it
+  by inheriting from built-in PowerShell Rule 91802.
+- **Limitations:** Only `Get-ADUser` was positively tested;
+  the result does not establish production detection accuracy.
+
+[Read the AD-001 Detection Engineering Case Study](ad-labs/AD-001-domain-enumeration/README.md).
 
 ### Detection Logic Summary
 
