@@ -1,0 +1,53 @@
+{
+  "case_id": "AD-002",
+  "test": "Live Incorrect Password Detection",
+  "source_host": "SOC-DC01",
+  "agent_id": "002",
+  "target_account": "soc.ad002.test",
+  "events": {
+    "archives": {
+      "22945": {
+        "timestamp": "2026-10-09T06:22:36.592+0000",
+        "eventRecordID": "22945",
+        "eventID": "4771",
+        "targetUserName": "soc.ad002.test",
+        "status": "0x18",
+        "subStatus": null,
+        "ruleID": "60104",
+        "raw_event_sha256": "9fb81f4acaa8fa91eeeb08141816079c908f13e3e3b2a07a856c2e31c4882fcc"
+      },
+      "22946": {
+        "timestamp": "2026-10-09T06:22:36.596+0000",
+        "eventRecordID": "22946",
+        "eventID": "4625",
+        "targetUserName": "soc.ad002.test",
+        "status": "0xc000006d",
+        "subStatus": "0xc000006a",
+        "ruleID": "100507",
+        "raw_event_sha256": "280dfb80bb18f8a7906809b2896fcd5aef10812f2029774c3997355d43fe2c05"
+      }
+    },
+    "alerts": {
+      "22945": {
+        "timestamp": "2026-10-09T06:22:36.592+0000",
+        "eventRecordID": "22945",
+        "eventID": "4771",
+        "targetUserName": "soc.ad002.test",
+        "status": "0x18",
+        "subStatus": null,
+        "ruleID": "60104",
+        "raw_event_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "22946": {
+        "timestamp": "2026-10-09T06:22:36.596+0000",
+        "eventRecordID": "22946",
+        "eventID": "4625",
+        "targetUserName": "soc.ad002.test",
+        "status": "0xc000006d",
+        "subStatus": "0xc000006a",
+        "ruleID": "100507",
+        "raw_event_sha256": "280dfb80bb18f8a7906809b2896fcd5aef10812f2029774c3997355d43fe2c05"
+      }
+    }
+  }
+}
