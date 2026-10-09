@@ -1,0 +1,10 @@
+<group name="soc_ad_discovery,">
+  <rule id="100506" level="3">
+    <if_sid>91802</if_sid>
+    <field name="win.system.eventID">^4104$</field>
+    <field name="win.system.channel">^Microsoft-Windows-PowerShell/Operational$</field>
+    <field name="win.eventdata.scriptBlockText" type="pcre2">(?i)\bGet-AD(?:User|Group|GroupMember)\b</field>
+    <description>SOC Lab: PowerShell Active Directory enumeration observed</description>
+    <group>discovery,powershell,active_directory,</group>
+  </rule>
+</group>
