@@ -18,8 +18,8 @@ An evidence-driven Windows enterprise security operations lab demonstrating Acti
 - **Structured Hypothesis-Driven Threat Hunting**
   Executed four structured hunts (HUNT-001 to HUNT-004) across encoded PowerShell, authentication anomalies, WinRM execution, and registry persistence. Identified rule blind spots (WinRM parent relationships) and demonstrated the principle that *Alert ≠ Incident* on shared benign autostart patterns ([Hunting Reports](hunting/README.md) · [MITRE Matrix](hunting/MITRE-COVERAGE.md)).
 
-- **Incident Investigation & Response Validation (SOC-INC-001)**
-  Investigated a controlled multi-stage simulation combining WinRM execution, encoded PowerShell, and Run key persistence. Conducted independently verified response drills: process termination, AD account disable/restore (`4725`/`4722`), and 11-sample persistence monitoring ([Capstone Report](incidents/SOC-INC-001/capstone-report.md) · [Timeline](incidents/SOC-INC-001/timeline.md)).
+- **INC-003 — End-to-End Incident Response Capstone**
+  Completed an authorized encoded PowerShell simulation using Sysmon and Wazuh: alert triage, targeted process containment, post-containment verification, 3/3 scoped regression tests, and 7/7 SHA-256 evidence checks ([Incident Report](incidents/INC-003/incident-report.md) · [Regression](detections/regression-tests/INC-003-regression.md)).
 
 - **DFIR Acquisition & SHA-256 Evidence Integrity Verification**
   Reconstructed automated forensic event timelines with Python and JSON Schema (`DFIR-001`), acquired native Windows EVTX and Prefetch artifacts (`DFIR-002`, 261/261 SHA-256 verified), and corroborated historical hunting events against native Sysmon logs by ProcessGuid ([DFIR Cases](dfir/cases/)).
@@ -105,10 +105,9 @@ Core detection rules are maintained in [`configs/wazuh/rules/local_rules.xml`](c
 
 ## Investigation, Incident Response & DFIR
 
-**Featured IR Capstone — [INC-003: Controlled PowerShell Incident Response](incidents/INC-003/incident-report.md)** — Verified Detection, Triage, targeted Containment, post-containment checks, 3/3 scoped Regression Tests, and 7/7 SHA-256 Evidence Verification. *Authorized benign simulation.*
-
 | Case Study | Focus & Scope | Verified Technical Outcome | Documentation & Evidence |
 |---|---|---|---|
+| **INC-003** | Controlled PowerShell IR | Rule 92057 detection, PID 4512 containment, post-containment checks, 3/3 scoped regression PASS, 7/7 evidence hashes verified. Authorized benign simulation. | [Incident Report](incidents/INC-003/incident-report.md) · [Timeline](incidents/INC-003/timeline.md) · [Evidence](incidents/INC-003/evidence-manifest.md) |
 | **HUNT-001–004** | Threat Hunting | Investigated encoded PowerShell, logon bursts, WinRM executions, and Run keys. Identified WinRM parent-process blind spots and demonstrated that benign Edge autostart shares Run key alert signatures with persistence (**Alert ≠ Incident**). | [Threat Hunting Reports](hunting/README.md) · [MITRE Matrix](hunting/MITRE-COVERAGE.md) |
 | **SOC-INC-001** | Incident Investigation & Response | Correlated a controlled 3-stage simulation (`wsmprovhost.exe` → encoded PowerShell → Run key) over a 9-minute window. Separately verified containment and recovery: process termination (`Stop-Process`), AD account disable/restore (`4725`/`4722`), and Run key absence across 11 monitoring samples. | [Capstone Report](incidents/SOC-INC-001/capstone-report.md) · [Timeline](incidents/SOC-INC-001/timeline.md) · [Analysis](incidents/SOC-INC-001/analysis.md) |
 | **INC-002** | Detection Tuning | Investigated a high-severity (level 15) alert triggered by Edge WebView2 Speech DLL unpacking in user Temp, assessed as likely benign. Narrowed Rule 100001 predicate to match the specific executable path and temp unpacker pattern, verified via adapted historical replay. | [Triage Report](incidents/INC-002-wazuh-fp-tuning/triage-report.md) |
