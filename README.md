@@ -105,6 +105,8 @@ Core detection rules are maintained in [`configs/wazuh/rules/local_rules.xml`](c
 
 ## Investigation, Incident Response & DFIR
 
+**Featured IR Capstone — [INC-003: Controlled PowerShell Incident Response](incidents/INC-003/incident-report.md)** — Verified Detection, Triage, targeted Containment, post-containment checks, 3/3 scoped Regression Tests, and 7/7 SHA-256 Evidence Verification. *Authorized benign simulation.*
+
 | Case Study | Focus & Scope | Verified Technical Outcome | Documentation & Evidence |
 |---|---|---|---|
 | **HUNT-001–004** | Threat Hunting | Investigated encoded PowerShell, logon bursts, WinRM executions, and Run keys. Identified WinRM parent-process blind spots and demonstrated that benign Edge autostart shares Run key alert signatures with persistence (**Alert ≠ Incident**). | [Threat Hunting Reports](hunting/README.md) · [MITRE Matrix](hunting/MITRE-COVERAGE.md) |
@@ -165,7 +167,7 @@ Sampled post-containment verification confirming Run Key value absence during sa
 | [`detections/`](detections/) | Custom Wazuh XML rules, test cases, and regression test suites |
 | [`ad-labs/`](ad-labs/) | Active Directory detection engineering case studies (AD-001 enumeration, AD-002 authentication) |
 | [`hunting/`](hunting/) | Hypothesis-driven threat hunting reports (HUNT-001–004) and MITRE ATT&CK coverage matrix |
-| [`incidents/`](incidents/) | Controlled incident investigations (SOC-INC-001) and detection tuning case studies (INC-002) |
+| [`incidents/`](incidents/) | Controlled incident investigations (SOC-INC-001, INC-003) and detection tuning case studies (INC-002) |
 | [`dfir/`](dfir/) | Digital forensics case studies (DFIR-001, DFIR-002), timeline pipelines, and checksum manifests |
 | [`evidence/`](evidence/) | Host baselines, live regression outputs, and cryptographic hash verification logs |
 | [`screenshots/`](screenshots/) | Visual evidence of lab infrastructure, telemetry, alerts, investigation, and recovery |
