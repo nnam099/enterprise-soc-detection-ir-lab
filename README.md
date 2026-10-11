@@ -4,6 +4,18 @@ An evidence-driven Windows enterprise security operations lab demonstrating Acti
 
 ---
 
+## Featured Case Studies
+
+| Case Study | SOC Skills Demonstrated | Verified Results |
+|---|---|---|
+| **[INC-003 — Incident Response Capstone](incidents/INC-003/incident-report.md)** | Wazuh alert triage, Sysmon investigation, targeted process containment, recovery verification, and detection regression | Authorized PowerShell simulation; targeted PID 4512 containment; 3/3 scoped regression tests and 7/7 SHA-256 evidence checks PASS |
+| **[AD-002 — Authentication Detection & Tuning](ad-labs/AD-002-authentication/README.md)** | Windows failed-logon detection, Wazuh rule engineering, account-based correlation, and controlled live validation | Rules 100507/100503; 3/3 synthetic regression PASS; live DC authentication correlation verified |
+| **[AD-003 — Authentication Investigation](incidents/AD-003/investigation-report.md)** | Windows Event 4624/4625/4776 correlation, evidence acquisition, SHA-256 integrity checks, and offline detection validation | Four Windows events verified; 5/5 evidence hashes PASS; 9/9 configuration checks and 6/6 Python reference-model tests PASS; **AD-003 live Wazuh ingestion and runtime correlation not verified** |
+
+AD-003 validation details: [Offline Detection Validation](detections/ad-003/offline-validation-results.md).
+
+---
+
 ## Key Highlights
 
 - **Active Directory & Endpoint Telemetry Baseline**
@@ -34,7 +46,7 @@ An evidence-driven Windows enterprise security operations lab demonstrating Acti
 
 | Component | IP | Role |
 |---|---|---|
-| **SOC-DC01** | 192.168.50.10 | Windows Server 2022, Active Directory DS / DNS (1.5 GB RAM) |
+| **SOC-DC01** | 192.168.50.10 | Windows Server 2022, Active Directory DS / DNS (2.0 GB RAM) |
 | **SOC-WIN10** | 192.168.50.20 | Windows 10 Endpoint, Sysmon, Wazuh Agent (2.0 GB RAM) |
 | **SOC-WAZUH** | 192.168.50.30 | Wazuh SIEM Manager, Indexer & Dashboard v4.14.8 (3.0 GB RAM) |
 | **Parrot OS** | 192.168.50.1 | Hypervisor Host (QEMU/KVM), NAT Gateway, Analyst Workstation |
