@@ -211,7 +211,7 @@ Verified outcomes:
 **Technical disposition:** Controlled simulation
 successfully contained and verified.
 
-**Case closure:** Closed — authorized benign simulation (2026-10-11). Technical verification, regression testing, and evidence integrity checks completed. GitHub publication remains pending.
+**Case closure:** Closed — authorized benign simulation (2026-10-11). Technical verification, regression testing, and evidence integrity checks completed. GitHub publication completed.
 
 ## 12. Lessons Learned
 
