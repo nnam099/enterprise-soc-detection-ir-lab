@@ -6,15 +6,20 @@ An evidence-driven Windows enterprise security operations lab demonstrating Acti
 
 ## Featured Case Studies
 
-| Case Study | SOC Skills Demonstrated | Verified Results |
-|---|---|---|
-| **[INC-003 — Incident Response Capstone](incidents/INC-003/incident-report.md)** | Wazuh alert triage, Sysmon investigation, targeted process containment, recovery verification, and detection regression | Authorized PowerShell simulation; targeted PID 4512 containment; 3/3 scoped regression tests and 7/7 SHA-256 evidence checks PASS |
-| **[AD-002 — Authentication Detection & Tuning](ad-labs/AD-002-authentication/README.md)** | Windows failed-logon detection, Wazuh rule engineering, account-based correlation, and controlled live validation | Rules 100507/100503; 3/3 synthetic regression PASS; live DC authentication correlation verified |
-| **[AD-003 — Authentication Investigation](incidents/AD-003/investigation-report.md)** | Windows Event 4624/4625/4776 correlation, evidence acquisition, SHA-256 integrity checks, and offline detection validation | Four Windows events verified; 5/5 evidence hashes PASS; 9/9 configuration checks and 6/6 Python reference-model tests PASS; **Historical Agent-to-Manager connectivity failure confirmed; subsequent Event 4624 ingestion 3/3 PASS with Rule 60106; AD-003 live detection regression 3/3 scoped PASS (Rules 100507/100503; positive and below-threshold tests); cross-account and timeframe boundary tests pending** |
+The following case studies demonstrate detection, investigation, response, and evidence-based validation through independent, authorized lab exercises.
 
-AD-003 validation details: [Offline Detection Validation](detections/ad-003/offline-validation-results.md).
+| Case Study | SOC Capabilities | Verified Outcome |
+|---|---|---|
+| **[INC-003 — Incident Response](incidents/INC-003/incident-report.md)** | Wazuh/Sysmon triage, targeted process containment, recovery verification, regression testing | Containment of simulated PID 4512; 3/3 scoped regression PASS; 7/7 SHA-256 checks PASS |
+| **[AD-002 — Authentication Detection](ad-labs/AD-002-authentication/README.md)** | Incorrect-password classification, same-account correlation, detection tuning | Rules 100507/100503; 3/3 synthetic regression PASS; live DC correlation verified |
+| **[AD-003 — Authentication Investigation](incidents/AD-003/investigation-report.md)** | Windows authentication investigation, telemetry troubleshooting, live detection regression | Historical Agent-to-Manager connectivity failure investigated; ingestion recovery 3/3 PASS; scoped live detection regression 3/3 PASS |
+
+**AD-003 evidence:** [Offline Validation](detections/ad-003/offline-validation-results.md) · [Live Regression Results](detections/ad-003/live-regression-results.md) · [Regression JSON Evidence](evidence/ad-003/AD003-R02-rule100503.json).
+
+**Scope:** These are controlled lab simulations, not production incidents. Cross-account separation and 60-second timeframe-boundary tests remain outstanding for AD-003.
 
 ---
+
 
 ## Key Highlights
 
@@ -88,10 +93,10 @@ Core detection rules are maintained in [`configs/wazuh/rules/local_rules.xml`](c
 |---|---|---|---|---|
 | [**100501**](configs/wazuh/rules/local_rules.xml) | Registry Run Key modification | Sysmon EID 13 | [T1112](https://attack.mitre.org/techniques/T1112/) / [T1547.001](https://attack.mitre.org/techniques/T1547/001/) | [HUNT-004](hunting/HUNT-004-persistence.md) · [SOC-INC-001 Timeline](incidents/SOC-INC-001/timeline.md) |
 | [**100502**](configs/wazuh/rules/local_rules.xml) | WinRM process execution | Sysmon EID 1 | [T1021.006](https://attack.mitre.org/techniques/T1021/006/) | [HUNT-003](hunting/HUNT-003-winrm.md) · [SOC-INC-001 Timeline](incidents/SOC-INC-001/timeline.md) |
-| [**100503**](configs/wazuh/rules/local_rules.xml) | Tuned incorrect-password correlation | Windows EID 4625 | [T1110](https://attack.mitre.org/techniques/T1110/) | [AD-002 Regression](ad-labs/AD-002-authentication/regression-results.md) · [Live Correlation](evidence/ad-002/AD002-live-correlation-100503-20261009.json) |
+| [**100503**](configs/wazuh/rules/local_rules.xml) | Tuned incorrect-password correlation | Windows EID 4625 | [T1110](https://attack.mitre.org/techniques/T1110/) | [AD-002 Regression](ad-labs/AD-002-authentication/regression-results.md) · [Live Correlation](evidence/ad-002/AD002-live-correlation-100503-20261009.json) · [AD-003 Live Regression](detections/ad-003/live-regression-results.md) |
 | [**100504**](configs/wazuh/rules/local_rules.xml) | Encoded PowerShell command | Sysmon EID 1 | [T1059.001](https://attack.mitre.org/techniques/T1059/001/) | [HUNT-001](hunting/HUNT-001-powershell.md) · [Live Tests](detections/wazuh/tests/encoded-powershell/README.md) |
 | [**100506**](detections/wazuh/rules/100506-ad-enumeration.xml) | Active Directory enumeration | PowerShell EID 4104 | [T1087.002](https://attack.mitre.org/techniques/T1087/002/) | [AD-001 Lab](ad-labs/AD-001-domain-enumeration/README.md) · [Live Regression](evidence/ad-001/AD001-regression-20261009.json) |
-| [**100507**](detections/wazuh/rules/100507-incorrect-password.xml) | Incorrect-password classifier | Windows EID 4625 | [T1110](https://attack.mitre.org/techniques/T1110/) | [AD-002 Lab](ad-labs/AD-002-authentication/README.md) · [Live Detection](evidence/ad-002/AD002-live-detection-100507-20261009.json) |
+| [**100507**](detections/wazuh/rules/100507-incorrect-password.xml) | Incorrect-password classifier | Windows EID 4625 | [T1110](https://attack.mitre.org/techniques/T1110/) | [AD-002 Lab](ad-labs/AD-002-authentication/README.md) · [Live Detection](evidence/ad-002/AD002-live-detection-100507-20261009.json) · [AD-003 Live Regression](detections/ad-003/live-regression-results.md) |
 
 ### Active Directory Detection Engineering Case Studies
 
