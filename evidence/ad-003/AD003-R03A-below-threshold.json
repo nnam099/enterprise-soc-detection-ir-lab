@@ -1,0 +1,47 @@
+{
+  "test_id": "AD003-R03A",
+  "description": "Below-threshold negative regression",
+  "expected_records": [
+    "25770",
+    "25772"
+  ],
+  "archives": {
+    "25770": {
+      "timestamp": "2026-10-12T12:37:27.161+0000",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "target_user": "soc.ad003.test",
+      "rule_id": "100507"
+    },
+    "25772": {
+      "timestamp": "2026-10-12T12:37:29.233+0000",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "target_user": "soc.ad003.test",
+      "rule_id": "100507"
+    }
+  },
+  "alerts": {
+    "25770": {
+      "timestamp": "2026-10-12T12:37:27.161+0000",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "target_user": "soc.ad003.test",
+      "rule_id": "100507"
+    },
+    "25772": {
+      "timestamp": "2026-10-12T12:37:29.233+0000",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "target_user": "soc.ad003.test",
+      "rule_id": "100507"
+    }
+  },
+  "unexpected_correlation_alerts": [],
+  "status": "PASS",
+  "limitations": [
+    "Does not test cross-account separation",
+    "Does not test 60-second timeframe boundary",
+    "No general false-positive rate is established"
+  ]
+}

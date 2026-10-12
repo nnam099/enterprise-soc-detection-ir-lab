@@ -184,8 +184,11 @@ scope, while the underlying infrastructure cause remains undetermined.
 A separate October 12 recovery verification confirmed 3/3 Windows
 Security Event 4624 records ingested and matched to built-in Rule 60106.
 
-AD-003-specific live runtime validation of custom Rules 100507
-and 100503 remains outstanding.
+Subsequent live regression on October 12 verified custom Rule 100507
+for individual incorrect-password events and Rule 100503 for five
+same-account failures within 60 seconds. A below-threshold negative
+test also passed. The three scoped tests achieved 3/3 PASS; cross-account
+and timeframe-boundary scenarios remain untested.
 
 No malicious compromise or brute-force attack was confirmed.
 
@@ -235,10 +238,34 @@ SHA-256: `58952851a3d4e0555f66abac2575442d397df713d6b8f668a631bcd8b3b28f1d`
 - October 11 AD-003 historical events were not recovered in the examined archive.
 - October 12 recovery verification is a separate test, not a replay of the original authentication simulation.
 - Live Event 4624 ingestion and built-in Rule 60106 were verified.
-- AD-003-specific runtime validation of custom Rules 100507 and 100503 remains outstanding.
+- On October 12, custom Rules 100507 and 100503 passed three scoped live regression tests (see Section 10.4). Cross-account separation and timeframe-boundary tests remain outstanding.
 - No configuration change was necessary to restore observed connectivity.
 - No production false-positive rate or continuous historical availability is claimed.
 - The underlying infrastructure cause of the October 11 connection failure remains unknown.
+
+### 10.4 Live Detection Regression — 2026-10-12
+
+After recovery of Agent-to-Manager connectivity, three controlled
+authentication regression tests were completed on SOC-DC01.
+
+| Test | Expected | Observed | Result |
+|---|---|---|---|
+| AD003-R01 | Single incorrect password triggers Rule 100507 | Event 25687 triggered Rule 100507, Level 3 | PASS |
+| AD003-R02 | Five failed logons within 60 seconds trigger Rule 100503 | Events 25720, 25722, 25724, 25726 matched 100507; Event 25731 triggered 100503, Level 10 | PASS |
+| AD003-R03A | Two failures below threshold do not trigger Rule 100503 | Events 25770 and 25772 matched 100507; no correlation alert in the scoped test window | PASS |
+
+**Result: 3/3 scoped live regression tests PASS.**
+
+Evidence was collected from Wazuh Archives and Alerts, transferred
+to Parrot, and verified with SHA-256.
+
+See [Live Detection Regression Results](../../detections/ad-003/live-regression-results.md)
+for the test matrix, evidence links, hashes, and limitations.
+
+These tests are separate from the October 11 historical authentication
+simulation. Cross-account separation and the 60-second timeframe
+boundary were not live-tested, and no production false-positive rate
+was established.
 
 ## 11. Related Documentation
 
