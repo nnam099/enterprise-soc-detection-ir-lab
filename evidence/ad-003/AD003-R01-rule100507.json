@@ -1,0 +1,26 @@
+{
+  "test_id": "AD003-R01",
+  "description": "Single incorrect-password live detection",
+  "source": "SOC-DC01",
+  "results": {
+    "archives": {
+      "timestamp": "2026-10-12T12:28:56.076+0000",
+      "agent_id": "002",
+      "event_record_id": "25687",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "rule_id": "100507",
+      "rule_level": 3
+    },
+    "alerts": {
+      "timestamp": "2026-10-12T12:28:56.076+0000",
+      "agent_id": "002",
+      "event_record_id": "25687",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "rule_id": "100507",
+      "rule_level": 3
+    }
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,108 @@
+{
+  "test_id": "AD003-R02",
+  "test": "Five incorrect-password attempts within 60 seconds",
+  "agent_id": "002",
+  "expected_records": [
+    "25720",
+    "25722",
+    "25724",
+    "25726",
+    "25731"
+  ],
+  "archives": [
+    {
+      "record_id": "25720",
+      "timestamp": "2026-10-12T12:32:36.777+0000",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "target_user": "soc.ad003.test",
+      "rule_id": "100507",
+      "rule_level": 3
+    },
+    {
+      "record_id": "25722",
+      "timestamp": "2026-10-12T12:32:38.798+0000",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "target_user": "soc.ad003.test",
+      "rule_id": "100507",
+      "rule_level": 3
+    },
+    {
+      "record_id": "25724",
+      "timestamp": "2026-10-12T12:32:40.908+0000",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "target_user": "soc.ad003.test",
+      "rule_id": "100507",
+      "rule_level": 3
+    },
+    {
+      "record_id": "25726",
+      "timestamp": "2026-10-12T12:32:42.928+0000",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "target_user": "soc.ad003.test",
+      "rule_id": "100507",
+      "rule_level": 3
+    },
+    {
+      "record_id": "25731",
+      "timestamp": "2026-10-12T12:32:44.990+0000",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "target_user": "soc.ad003.test",
+      "rule_id": "100503",
+      "rule_level": 10
+    }
+  ],
+  "alerts": [
+    {
+      "record_id": "25720",
+      "timestamp": "2026-10-12T12:32:36.777+0000",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "target_user": "soc.ad003.test",
+      "rule_id": "100507",
+      "rule_level": 3
+    },
+    {
+      "record_id": "25722",
+      "timestamp": "2026-10-12T12:32:38.798+0000",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "target_user": "soc.ad003.test",
+      "rule_id": "100507",
+      "rule_level": 3
+    },
+    {
+      "record_id": "25724",
+      "timestamp": "2026-10-12T12:32:40.908+0000",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "target_user": "soc.ad003.test",
+      "rule_id": "100507",
+      "rule_level": 3
+    },
+    {
+      "record_id": "25726",
+      "timestamp": "2026-10-12T12:32:42.928+0000",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "target_user": "soc.ad003.test",
+      "rule_id": "100507",
+      "rule_level": 3
+    },
+    {
+      "record_id": "25731",
+      "timestamp": "2026-10-12T12:32:44.990+0000",
+      "event_id": "4625",
+      "sub_status": "0xc000006a",
+      "target_user": "soc.ad003.test",
+      "rule_id": "100503",
+      "rule_level": 10
+    }
+  ],
+  "status": "PASS",
+  "limitation": "Negative and cross-account correlation tests are not included."
+}
