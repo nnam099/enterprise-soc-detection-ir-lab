@@ -1,0 +1,38 @@
+{
+  "case_id": "AD-003",
+  "verification_date": "2026-10-12",
+  "test": "Live Windows Security Event Ingestion",
+  "results": [
+    {
+      "record_id": "25370",
+      "event_id": "4624",
+      "channel": "Security",
+      "timestamp": "2026-10-12T11:55:44.674+0000",
+      "agent_id": "002",
+      "agent_name": "SOC-DC01",
+      "rule_id": "60106"
+    },
+    {
+      "record_id": "25373",
+      "event_id": "4624",
+      "channel": "Security",
+      "timestamp": "2026-10-12T11:55:44.710+0000",
+      "agent_id": "002",
+      "agent_name": "SOC-DC01",
+      "rule_id": "60106"
+    },
+    {
+      "record_id": "25386",
+      "event_id": "4624",
+      "channel": "Security",
+      "timestamp": "2026-10-12T11:56:44.027+0000",
+      "agent_id": "002",
+      "agent_name": "SOC-DC01",
+      "rule_id": "60106"
+    }
+  ],
+  "verified": 3,
+  "expected": 3,
+  "status": "PASS",
+  "limitation": "Only Event 4624 and Rule 60106 verified; custom rules 100507/100503 not tested."
+}

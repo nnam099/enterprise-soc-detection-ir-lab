@@ -171,15 +171,75 @@ rule failure because ingestion of these specific events was not verified.
 
 ## 9. Final Conclusion
 
-AD-003 successfully demonstrated controlled Windows authentication
-telemetry collection, evidence correlation, secure transfer, and integrity
-verification.
+AD-003 demonstrated controlled Windows authentication telemetry
+collection, evidence correlation, secure transfer, and SHA-256 verification.
 
-The Python reference model passed six behavioral checks, while Wazuh
-runtime detection remains unverified.
+The Python reference model passed six behavioral checks.
 
-The investigation did not identify a confirmed malicious incident.
+Historical Wazuh Agent logs confirmed repeated Agent-to-Manager
+connection failures during the October 11 authentication simulation.
+This explains the missing AD-003 SIEM visibility within the investigated
+scope, while the underlying infrastructure cause remains undetermined.
 
-## 10. Related Documentation
+A separate October 12 recovery verification confirmed 3/3 Windows
+Security Event 4624 records ingested and matched to built-in Rule 60106.
+
+AD-003-specific live runtime validation of custom Rules 100507
+and 100503 remains outstanding.
+
+No malicious compromise or brute-force attack was confirmed.
+
+## 10. Historical Connectivity Gap and Recovery Verification
+
+### 10.1 Historical Findings — 2026-10-11
+
+The original AD-003 authentication simulation generated four verified Windows Security Events on SOC-DC01 between 10:12 and 10:14 (UTC+07:00).
+
+Historical Wazuh Agent logs confirmed repeated connection failures to `192.168.50.30:1514/TCP` during the same interval:
+
+- 10:02:21 — Wazuh Agent started.
+- 10:12:10 — Connection failure, error 1216.
+- 10:12:41 — Connection failure, error 1216.
+- 10:13:12 — Connection failure, error 1216.
+- 10:13:43 — Connection failure, error 1216.
+- 10:14:04 — Enrollment connection failure on TCP/1515, error 1208.
+
+The examined October 11 Wazuh archive contained 3,719 valid JSON records: 2,292 from Agent 000, 1,427 from Agent 001, and none from Agent 002.
+
+**Root Cause Assessment:** Agent-to-Manager connectivity failure is the evidenced immediate explanation for the missing AD-003 SIEM telemetry. The underlying cause of the connection failure was not established.
+
+The missing events must not be classified as a confirmed failure of custom detection Rules 100507 or 100503.
+
+### 10.2 Live Pipeline Recovery Verification — 2026-10-12
+
+After SOC-WAZUH and SOC-DC01 were started, Agent 002 was confirmed Active.
+
+Three newly observed Windows Security Event 4624 records were independently matched to Wazuh archive entries:
+
+| EventRecordID | Event ID | Channel | Wazuh Rule | Result |
+|---|---|---|---|---|
+| 25370 | 4624 | Security | 60106 | PASS |
+| 25373 | 4624 | Security | 60106 | PASS |
+| 25386 | 4624 | Security | 60106 | PASS |
+
+**Live ingestion verification: 3/3 PASS.**
+
+A sanitized evidence summary was transferred from SOC-WAZUH to Parrot and verified using SHA-256.
+
+Evidence: [AD003 Live Ingestion](../../evidence/ad-003/AD003-live-ingestion-20261012.json)
+
+SHA-256: `58952851a3d4e0555f66abac2575442d397df713d6b8f668a631bcd8b3b28f1d`
+
+### 10.3 Detection Coverage and Limitations
+
+- October 11 AD-003 historical events were not recovered in the examined archive.
+- October 12 recovery verification is a separate test, not a replay of the original authentication simulation.
+- Live Event 4624 ingestion and built-in Rule 60106 were verified.
+- AD-003-specific runtime validation of custom Rules 100507 and 100503 remains outstanding.
+- No configuration change was necessary to restore observed connectivity.
+- No production false-positive rate or continuous historical availability is claimed.
+- The underlying infrastructure cause of the October 11 connection failure remains unknown.
+
+## 11. Related Documentation
 
 - detections/ad-003/offline-validation-results.md
