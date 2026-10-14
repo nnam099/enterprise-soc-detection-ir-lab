@@ -123,8 +123,8 @@ the normal `-Command` argument.
 - Child image: powershell.exe
 - EncodedCommand: absent
 - Actual alert: Rule 92032, Level 3
-- Rule 100504: not triggered
-- Rule 92057: not triggered
+- Rule 100504: no alert observed
+- Rule 92057: no alert observed
 
 The event was found in both Wazuh
 `alerts.json` and `archives.json`.

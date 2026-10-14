@@ -33,7 +33,7 @@ infection or confirmed unauthorized compromise.
 | MITRE ATT&CK | T1059.001 — PowerShell |
 | Actual impact | No malicious impact intended or established |
 | Response status | Containment and verification completed |
-| Documentation status | Closed; GitHub publication pending |
+| Documentation status | Closed; published on GitHub |
 
 The Wazuh alert level is a detection severity,
 not proof of an actual high-severity compromise.
@@ -77,7 +77,7 @@ All times below are in UTC+07:00.
 
 ## 5. Detection and Triage
 
-The confirmed incident alert contained:
+The verified simulation alert contained:
 
 - Wazuh Agent: 001
 - Rule ID: 92057
@@ -156,8 +156,8 @@ for this benign simulation.
 | POS-02 | CMD to encoded PowerShell | 100504, Level 8 | PASS |
 | NEG-01 | CMD to normal PowerShell | 92032, Level 3 | PASS for encoded-rule negative condition |
 
-For NEG-01, neither Rule 100504 nor Rule 92057
-triggered. Event 20785 was confirmed in Wazuh
+For NEG-01, no alerts from Rule 100504 or
+Rule 92057 were observed. Event 20785 was confirmed in Wazuh
 alerts.json and archives.json.
 
 Rule 92032 matched the CMD parent execution
@@ -181,6 +181,8 @@ Seven source evidence files were collected:
 
 All seven files passed SHA-256 integrity verification
 after transfer to the Parrot analyst host.
+
+See the [Evidence Manifest](evidence-manifest.md) for the seven evidence files and their SHA-256 values.
 
 Original evidence is stored outside the public
 Git repository. Only reviewed, sanitized summaries

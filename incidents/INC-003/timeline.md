@@ -25,7 +25,7 @@
 | 07:32:28 | Regression | POS-02: CMD launched encoded PowerShell | Record 20782 |
 | 07:32:29 | Detection | Custom Rule 100504, Level 8 triggered | Wazuh alert 20782 |
 | 07:34:08 | Regression | NEG-01: CMD launched normal PowerShell | Record 20785 |
-| 07:34:10 | Detection review | Rule 92032 triggered; encoded-command rules did not | Alert and archive 20785 |
+| 07:34:10 | Detection review | Rule 92032 triggered; no alerts from Rules 100504 or 92057 were observed | Alert and archive 20785 |
 
 Timestamps are derived from endpoint event records,
 Wazuh alerts, and analyst transcripts. Second-level
