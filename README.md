@@ -11,6 +11,7 @@ The following case studies demonstrate detection, investigation, response, and e
 | Case Study | SOC Capabilities | Verified Outcome |
 |---|---|---|
 | **[INC-003 — Incident Response](incidents/INC-003/incident-report.md)** | Wazuh/Sysmon triage, targeted process containment, recovery verification, regression testing | Containment of simulated PID 4512; 3/3 scoped regression PASS; 7/7 SHA-256 checks PASS |
+| **[Wazuh I/O Mitigation](docs/performance/wazuh-io-optimization-2026-10-14.md)** | Disk I/O profiling, feed-update troubleshooting, configuration backup and rollback planning | Guest I/O full PSI avg10: 60.13% to 0.00% in observed samples; Vulnerability Detection temporarily disabled |
 | **[AD-002 — Authentication Detection](ad-labs/AD-002-authentication/README.md)** | Incorrect-password classification, same-account correlation, detection tuning | Rules 100507/100503; 3/3 synthetic regression PASS; live DC correlation verified |
 | **[AD-003 — Authentication Investigation](incidents/AD-003/investigation-report.md)** | Windows authentication investigation, telemetry troubleshooting, live detection regression | Historical Agent-to-Manager connectivity failure investigated; ingestion recovery 3/3 PASS; scoped live detection regression 3/3 PASS |
 
