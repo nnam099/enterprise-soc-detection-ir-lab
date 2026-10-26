@@ -123,7 +123,7 @@ The attacker resolves OPNsense's WAN MAC but every scanned port is filtered, con
 
 ## Next Steps (Course Completion)
 
-1. Enable **Suricata IDS** on OPNsense and forward alerts/logs to Wazuh by syslog.
+1. Enable **Suricata IDS** on OPNsense and forward alerts/logs to Wazuh by syslog. *Blocked: OPNsense admin password is unknown; see [`opnsense-password-recovery.md`](../docs/opnsense-password-recovery.md).*
 2. Add a **Kali VM** on `Vung_WAN` (`192.168.50.10`) or renumber WAN to `.70` first.
 3. Run the full attack chain: `nmap` → `vsftpd 2.3.4` exploit → reverse shell → OPNsense/Wazuh alert → containment.
 4. Capture **PCAP** (`tcpdump -i virbr71`) and a SHA-256 manifest.

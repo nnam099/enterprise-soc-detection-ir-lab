@@ -91,10 +91,13 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
 - Bằng chứng: [`exploit-vsftpd-20261026.md`](../../evidence/network-lab/exploit-vsftpd-20261026.md)
 - Nhận xét: firewall chặn từ WAN nhưng không bảo vệ khi attacker đã ở trong LAN → cần segmentation, IDS/EDR và vá lỗi.
 
-### 5.3 DoS `[CẦN ĐIỀN]`
+### 5.3 DoS — đã hoàn thành (mức ứng dụng)
 
-- Đề xuất: hping3/Slowloris mức thấp vào Metasploitable.
-- Đo trước/sau, ghi nhận log firewall/IDS.
+- Công cụ: ApacheBench từ Parrot host `10.0.0.254`.
+- Kịch bản: 200 request đồng thời trong 10 giây vào Apache `10.0.0.5`.
+- Kết quả: thời gian phản hồi tăng từ **58 ms → 1.143 ms (~20 lần)**, không có request lỗi; phục hồi ngay sau khi dừng.
+- Bằng chứng: [`dos-http-20261026.md`](../../evidence/network-lab/dos-http-20261026.md)
+- Hạn chế: không dùng được SYN flood (`hping3` cần root); chưa có IDS. Hướng tiếp theo: slowloris/rate-limit.
 
 ## 6. Phát hiện & ứng cứu (Ch4)
 
@@ -110,13 +113,14 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
 | Phát hiện hành vi trên endpoint | Đạt (Wazuh) |
 | Ứng cứu & khôi phục | Đạt (INC-003) |
 | IDS/IPS | Chưa |
-| Khai thác & DoS | Khai thác: Đạt (LAN, vsftpd root shell) · DoS: Chưa |
+| Khai thác & DoS | Khai thác: Đạt (LAN, vsftpd root shell) · DoS: Đạt (HTTP load, ~20× latency) |
 | Độ tái lập | Cao (script + evidence) |
 
 ## 8. Hạn chế
 
 - 8 GB RAM, tối đa 2 VM → không chạy đồng thời toàn bộ hệ thống.
 - Attacker WAN-side hiện là clone Metasploitable; khai thác LAN dùng Parrot host.
+- DoS mới ở mức ứng dụng (HTTP load), chưa có SYN flood/slowloris do giới hạn quyền.
 - Chưa có Suricata/IDS và chưa gửi log mạng về Wazuh.
 - Một số bằng chứng cũ (Lab6) không tái lập được trước khi sửa mạng.
 

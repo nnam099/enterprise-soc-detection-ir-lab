@@ -10,6 +10,7 @@ Evidence and screenshots that require manual collection to strengthen the portfo
 | 2026-10-26 | `Vung_LAN`/`Vung_WAN` restored; OPNsense 26.7 + Metasploitable 2 reachable; DHCP reservation `.5`; FTP/SSH/HTTP verified | **PASS 10/10** | [Network Lab Validation](../evidence/network-lab/network-lab-20261026.md) |
 | 2026-10-26 | WAN-side recon through OPNsense: 21/22/80 filtered from `192.168.50.10`, open from LAN; PCAP captured | **PASS** | [Firewall Test](../evidence/network-lab/firewall-test-20261026.md) |
 | 2026-10-26 | Internal exploitation: vsftpd 2.3.4 backdoor from Parrot host → root shell on `10.0.0.5` | **PASS** | [Exploit Validation](../evidence/network-lab/exploit-vsftpd-20261026.md) |
+| 2026-10-26 | HTTP load test from Parrot host: response time 58 ms → 1,143 ms (~20×), full recovery | **PASS (degradation)** | [DoS Test](../evidence/network-lab/dos-http-20261026.md) |
 
 ## Missing Configuration Artifacts
 

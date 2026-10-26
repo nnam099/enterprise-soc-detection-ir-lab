@@ -25,6 +25,16 @@ Directory: [`lan-exploit/`](lan-exploit/)
 
 Evidence: [`evidence/network-lab/exploit-vsftpd-20261026.md`](../evidence/network-lab/exploit-vsftpd-20261026.md)
 
+## LAN DoS (Application Layer)
+
+Directory: [`lan-dos/`](lan-dos/)
+
+| Script | Purpose |
+|---|---|
+| `http-load.sh` | Baseline → 200-concurrent load → recovery using ApacheBench |
+
+Evidence: [`evidence/network-lab/dos-http-20261026.md`](../evidence/network-lab/dos-http-20261026.md)
+
 ## Safety
 
 - Only run while `Vung_WAN` is isolated (no forward/NAT).
