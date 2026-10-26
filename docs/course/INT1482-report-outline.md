@@ -103,7 +103,8 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
 
 - Wazuh alert: encoded PowerShell, WinRM, failed logon, registry persistence.
 - Quy trình containment/recovery: `incidents/INC-003`, `incidents/SOC-INC-001`.
-- `[CẦN ĐIỀN]` alert IDS Suricata + log OPNsense → Wazuh (nếu bật).
+- IDS: Suricata 8.0.6 trên OPNsense đã bắt **10 alert** cho scan từ WAN (SID 1000001/1000002) — [`ids-suricata-20261026.md`](../../evidence/network-lab/ids-suricata-20261026.md).
+- `[CẦN ĐIỀN]` gửi alert OPNsense/Suricata về Wazuh (syslog) nếu muốn hợp nhất dashboard.
 
 ## 7. Đánh giá
 
@@ -112,7 +113,7 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
 | Firewall chặn recon từ WAN | Đạt (PCAP) |
 | Phát hiện hành vi trên endpoint | Đạt (Wazuh) |
 | Ứng cứu & khôi phục | Đạt (INC-003) |
-| IDS/IPS | Chưa |
+| IDS/IPS | Đạt IDS (Suricata 8.0.6, custom rules); IPS chưa |
 | Khai thác & DoS | Khai thác: Đạt (LAN, vsftpd root shell) · DoS: Đạt (HTTP load, ~20× latency) |
 | Độ tái lập | Cao (script + evidence) |
 

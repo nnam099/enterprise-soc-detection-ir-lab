@@ -112,7 +112,7 @@ Script: [`automation/network-lab-check.sh`](../../automation/network-lab-check.s
 |---|---|
 | WAN-side attacker | ✅ Temporary `Attacker-MSF` clone validated; Kali VM still preferred |
 | Recon with/without firewall | ✅ Filtered from WAN, open from LAN, PCAP captured |
-| Suricata IDS on OPNsense | Not enabled — admin password unknown; see [`opnsense-password-recovery.md`](../../docs/opnsense-password-recovery.md) |
+| Suricata IDS on OPNsense | Manually validated (Suricata 8.0.6, 10 lab alerts); OPNsense service/Wazuh integration pending |
 | OPNsense/Suricata logs to Wazuh | Not configured |
 | Attack scenario | LAN vsftpd 2.3.4 exploit completed (root shell); WAN exploit not performed |
 | DoS test | HTTP application-layer load completed (58 → 1,143 ms); SYN flood/slowloris pending |

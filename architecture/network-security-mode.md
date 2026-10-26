@@ -123,10 +123,10 @@ The attacker resolves OPNsense's WAN MAC but every scanned port is filtered, con
 
 ## Next Steps (Course Completion)
 
-1. Enable **Suricata IDS** on OPNsense and forward alerts/logs to Wazuh by syslog. *Blocked: OPNsense admin password is unknown; see [`opnsense-password-recovery.md`](../docs/opnsense-password-recovery.md).*
-2. Add a **Kali VM** on `Vung_WAN` (`192.168.50.10`) or renumber WAN to `.70` first.
-3. Run the full attack chain: `nmap` → `vsftpd 2.3.4` exploit → reverse shell → OPNsense/Wazuh alert → containment.
-4. Capture **PCAP** (`tcpdump -i virbr71`) and a SHA-256 manifest.
+1. **Suricata IDS** is manually validated (8.0.6, 10 lab alerts). Remaining: run it through the OPNsense IDS service and forward alerts to Wazuh by syslog.
+2. `Attacker-MSF` already covers the WAN side; a Kali VM is optional for a course-style demo.
+3. The LAN exploit chain (vsftpd → root shell) is complete. A WAN-side exploit is optional.
+4. Recon PCAP is captured; an exploit-stage PCAP remains optional.
 5. Add Wazuh rules for port scan, FTP exploit, and SSH brute force.
 6. Write the Vietnamese report and map each section to Ch1–Ch4.
 

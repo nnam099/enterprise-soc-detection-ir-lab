@@ -1,7 +1,23 @@
 # OPNsense Admin Password Recovery — Status
 
 **Date:** 2026-10-26
-**Status:** NOT RESET — admin password unknown; OPNsense itself boots and forwards traffic normally.
+**Status:** **RESOLVED (2026-10-26)** — admin password reset offline; OPNsense boots, web login verified, firewall and IDS validated.
+
+> The new password is not stored in this repository. It was shared with the lab owner and should be changed after the lab work.
+
+---
+
+## Resolution
+
+The reset was performed on a **copy** of the OPNsense disk:
+
+1. Backed up the original: `/home/nnam09/VM/lab/OPNsense-Lab6-backup-20261026.qcow2`.
+2. Connected the copy via `qemu-nbd` and located the bcrypt hash in `config.xml` (5 copies, including backups).
+3. Replaced the 60-byte hash in place at the exact raw offsets — Linux UFS write support was unavailable, so no filesystem mount was needed.
+4. Booted `OPNsense-ResetTest` from the edited copy and verified `Dashboard | Lobby` login over HTTPS.
+5. Applied the verified copy to `/var/lib/libvirt/images/OPNsense-Lab6.qcow2` and re-verified login on the main VM.
+
+This preserved the WAN/LAN/DHCP configuration and avoided a reinstall.
 
 ---
 
