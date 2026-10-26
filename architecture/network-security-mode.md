@@ -1,0 +1,121 @@
+# Network Security Mode
+
+**Status:** Operational (restored 2026-10-26)
+
+This mode reuses the course lab components (`OPNsense-Lab6`, `Metasploitable2`) to cover the network-attack and firewall portions of the Network Security syllabus. It is separate from the SOC detection mode and must not run at the same time as the SOC VMs on the 8 GB host.
+
+---
+
+## Topology
+
+```mermaid
+flowchart LR
+    A["Attacker<br/>(Parrot host or Kali VM)<br/>192.168.50.10*"]
+    O["OPNsense 26.7<br/>WAN 192.168.50.1/24<br/>LAN 10.0.0.1/24"]
+    M["Metasploitable 2<br/>10.0.0.5/24<br/>FTP 21 · SSH 22 · HTTP 80"]
+
+    A ---|"Vung_WAN · virbr71<br/>L2-only"| O
+    O ---|"Vung_LAN · virbr72<br/>10.0.0.0/24"| M
+```
+
+\* The attacker IP is reserved for a future Kali VM. On this host the Parrot machine is attached to `virbr72` as `10.0.0.254` for validation only.
+
+---
+
+## Virtual Networks
+
+| Network | Bridge | Subnet | Host IP | Notes |
+|---|---|---|---|---|
+| `Vung_WAN` | `virbr71` | 192.168.50.0/24 | **none** (L2-only) | OPNsense WAN `.1`; isolated, no NAT/forward |
+| `Vung_LAN` | `virbr72` | 10.0.0.0/24 | 10.0.0.254 | OPNsense LAN `.1`; DHCP `.100–.200`; reservation `.5` |
+
+### Why `Vung_WAN` is L2-only
+
+The original Lab 6 setup gave the libvirt bridge the same `.1` address as the OPNsense WAN interface, causing duplicate-IP/ARP problems. The fix is a bridge without an IP; OPNsense owns `192.168.50.1` exclusively.
+
+### IP overlap warning
+
+`Vung_WAN` uses `192.168.50.0/24`, the same subnet as `soc-net`. This is safe only because:
+
+- `Vung_WAN` has **no host IP** and is isolated (no forward).
+- SOC VMs are shut down while Network Security Mode runs.
+
+When OPNsense is next reconfigured, renumber its WAN to `192.168.70.0/24` to remove the overlap permanently. Until then, **never run SOC VMs and this mode together**.
+
+---
+
+## DHCP Reservation
+
+`Metasploitable2` has no static IPv4 configured in the guest. `Vung_LAN` provides a fixed lease:
+
+```xml
+<dhcp>
+  <range start='10.0.0.100' end='10.0.0.200'/>
+  <host mac='52:54:00:86:b8:60' name='metasploitable' ip='10.0.0.5'/>
+</dhcp>
+```
+
+This keeps the address stable across reboots without editing the guest.
+
+---
+
+## Start / Stop
+
+```bash
+# start
+virsh -c qemu:///system start OPNsense-Lab6
+virsh -c qemu:///system start Metasploitable2
+
+# verify
+./automation/network-lab-check.sh
+
+# stop (OPNsense handles ACPI; Metasploitable does not — use console `sudo poweroff`)
+virsh -c qemu:///system shutdown OPNsense-Lab6
+virsh -c qemu:///system shutdown Metasploitable2
+```
+
+Resource use: OPNsense 1.5 GiB + Metasploitable 0.5 GiB ≈ **2 GiB**, which fits the 8 GB host.
+
+---
+
+## Verified Services (2026-10-26)
+
+| Target | Check | Result |
+|---|---|---|
+| 10.0.0.1 | ICMP + HTTPS | 0% loss, HTTP `200` |
+| 10.0.0.5 | DHCP lease | `10.0.0.5/24`, MAC `52:54:00:86:b8:60` |
+| 10.0.0.5 | TCP 21/22/80 | open |
+| 10.0.0.5 | Service versions | vsftpd 2.3.4, OpenSSH 4.7p1, Apache 2.2.8 |
+| 10.0.0.5 | HTTP | `200 OK` |
+
+---
+
+## Course Mapping
+
+| Syllabus topic | Use in this mode |
+|---|---|
+| Ch2 — protocol/device vulnerabilities | Metasploitable 2 exposed services (vsftpd 2.3.4, Apache 2.2.8, OpenSSH 4.7p1) |
+| Ch3.1 — reconnaissance | Host discovery and service enumeration against 10.0.0.5 |
+| Ch3.2 — scanning | Nmap connect/version scan, with and without the firewall |
+| Ch3.3 — intrusion | Controlled exploit of a lab-only service (e.g. vsftpd 2.3.4) |
+| Ch3.4 — DoS | Rate/connection exhaustion against the lab target, detected at OPNsense |
+| Ch4 — prevention/response | OPNsense rules, IDS alerts, containment and evidence capture |
+| Lab 5 | Firewall topology / DMZ concepts |
+| Lab 6 | Recon with and without a firewall |
+
+---
+
+## Next Steps (Course Completion)
+
+1. Enable **Suricata IDS** on OPNsense and forward alerts/logs to Wazuh by syslog.
+2. Add a **Kali VM** on `Vung_WAN` (`192.168.50.10`) or renumber WAN to `.70` first.
+3. Run the full attack chain: `nmap` → `vsftpd 2.3.4` exploit → reverse shell → OPNsense/Wazuh alert → containment.
+4. Capture **PCAP** (`tcpdump -i virbr71`) and a SHA-256 manifest.
+5. Add Wazuh rules for port scan, FTP exploit, and SSH brute force.
+6. Write the Vietnamese report and map each section to Ch1–Ch4.
+
+## Safety
+
+- `Vung_WAN` has no forward/NAT; the lab cannot reach the internet through it.
+- Never expose Metasploitable 2 to a physical or untrusted network.
+- Do not run this mode together with `SOC-DC01`, `SOC-WIN10`, or `SOC-WAZUH` on the 8 GB host.

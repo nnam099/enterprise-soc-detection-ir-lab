@@ -42,6 +42,12 @@ The following case studies demonstrate detection, investigation, response, and e
 - **DFIR Acquisition & SHA-256 Evidence Integrity Verification**
   Reconstructed automated forensic event timelines with Python and JSON Schema (`DFIR-001`), acquired native Windows EVTX and Prefetch artifacts (`DFIR-002`, 261/261 SHA-256 verified), and corroborated historical hunting events against native Sysmon logs by ProcessGuid ([DFIR Cases](dfir/cases/)).
 
+- **Lab Connectivity & Platform Validation (2026-10-26)**
+  Booted all three VMs in rotation and verified `soc-net` reachability, AD DS/DNS/Kerberos/LDAP health, Wazuh dashboard/API availability, and live agent ingestion (42 alerts from `SOC-WIN10` within three minutes). Reusable check: [`automation/lab-connectivity-check.sh`](automation/lab-connectivity-check.sh) · [Evidence](evidence/lab-connectivity/lab-connectivity-20261026.md).
+
+- **Network Security Mode Restored (2026-10-26)**
+  Recreated the missing `Vung_LAN` / `Vung_WAN` libvirt networks, restored OPNsense 26.7 + Metasploitable 2, fixed the target address with a DHCP reservation (`10.0.0.5`), and verified FTP/SSH/HTTP plus firewall access. Check: [`automation/network-lab-check.sh`](automation/network-lab-check.sh) · [Mode](architecture/network-security-mode.md) · [Evidence](evidence/network-lab/network-lab-20261026.md).
+
 ---
 
 ## SOC Architecture
@@ -57,6 +63,10 @@ The following case studies demonstrate detection, investigation, response, and e
 | **SOC-WAZUH** | 192.168.50.30 | Wazuh SIEM Manager, Indexer & Dashboard v4.14.8 (3.0 GB RAM) |
 | **Parrot OS** | 192.168.50.1 | Hypervisor Host (QEMU/KVM), NAT Gateway, Analyst Workstation |
 
+> **Naming:** the libvirt domain `SOC-DC01` runs the AD computer `DC01.soc-lab.local`; Wazuh agent IDs are `001` (`SOC-WIN10`) and `002` (`SOC-DC01`). See the [IP Plan](architecture/ip-plan.md) for verified service ports and DNS records.
+
+**Cloud:** not deployed. The design and acceptance criteria for a future hybrid extension are in [Cloud Integration](architecture/cloud.md).
+
 **Environment & Resource Operating Modes:**
 - **Network**: Isolated libvirt NAT network `soc-net` (`192.168.50.0/24`) on bridge `virbr50`.
 - **Domain**: `SOC-LAB.LOCAL` with active Kerberos authentication and centralized DNS.
@@ -65,6 +75,7 @@ The following case studies demonstrate detection, investigation, response, and e
   - *Detection Mode* (`SOC-WIN10` + `SOC-WAZUH`): Sysmon and EventChannel telemetry ingestion, alert testing.
   - *Attack Mode* (`SOC-WIN10` + `SOC-WAZUH` / `SOC-DC01`): Controlled adversary technique simulations.
   - *DFIR Mode* (Target Windows VM + Parrot OS): Forensic artifact acquisition and timeline verification.
+  - *Network Security Mode* (`OPNsense-Lab6` + `Metasploitable2`): Firewall, DMZ, reconnaissance, scanning and IDS exercises ([details](architecture/network-security-mode.md)). Runs separately from the SOC rotation.
 
 ---
 
@@ -179,8 +190,9 @@ Sampled post-containment verification confirming Run Key value absence during sa
 
 | Directory | Description |
 |---|---|
-| [`architecture/`](architecture/) | Network topology, IP addressing plan, 8 GB resource modes, and architectural diagram |
+| [`architecture/`](architecture/) | Network topology, IP addressing plan, 8 GB resource modes, network security mode, cloud integration plan, and architectural diagram |
 | [`configs/`](configs/) | Deployed Wazuh custom rules (`local_rules.xml`) and SIEM configuration files |
+| [`automation/`](automation/) | Reusable read-only checks, including [`lab-connectivity-check.sh`](automation/lab-connectivity-check.sh) |
 | [`detections/`](detections/) | Custom Wazuh XML rules, test cases, and regression test suites |
 | [`ad-labs/`](ad-labs/) | Active Directory detection engineering case studies (AD-001 enumeration, AD-002 authentication) |
 | [`hunting/`](hunting/) | Hypothesis-driven threat hunting reports (HUNT-001–004) and MITRE ATT&CK coverage matrix |
