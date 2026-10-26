@@ -15,6 +15,16 @@ Expected result: TCP 21/22/80 are `filtered` from `192.168.50.10` while the same
 
 Evidence: [`evidence/network-lab/firewall-test-20261026.md`](../evidence/network-lab/firewall-test-20261026.md)
 
+## LAN Exploitation
+
+Directory: [`lan-exploit/`](lan-exploit/)
+
+| Script | Purpose |
+|---|---|
+| `vsftpd_backdoor.py` | Trigger CVE-2011-2523 on the lab Metasploitable target and run non-destructive commands |
+
+Evidence: [`evidence/network-lab/exploit-vsftpd-20261026.md`](../evidence/network-lab/exploit-vsftpd-20261026.md)
+
 ## Safety
 
 - Only run while `Vung_WAN` is isolated (no forward/NAT).

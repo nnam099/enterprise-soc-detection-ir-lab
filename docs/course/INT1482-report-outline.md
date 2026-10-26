@@ -83,11 +83,13 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
 - `nmap -sV` từ LAN → vsftpd 2.3.4, OpenSSH 4.7p1, Apache 2.2.8.
 - Nhận xét: firewall chặn truy cập trực tiếp; target vẫn lộ dịch vụ khi đứng trong LAN.
 
-### 5.2 Khai thác `[CẦN ĐIỀN]`
+### 5.2 Khai thác — đã hoàn thành
 
-- Đề xuất: vsftpd 2.3.4 backdoor (CVE-2011-2523) trong lab cô lập.
-- Chỉ chạy khi có Kali/attacker phù hợp; ghi lại PCAP + ảnh shell.
-- Không đưa payload phá hoại vào repo.
+- CVE-2011-2523: backdoor vsftpd 2.3.4.
+- Thực hiện từ **Parrot host** `10.0.0.254` trong `Vung_LAN`.
+- Kết quả: `uid=0(root)`, hostname `metasploitable`.
+- Bằng chứng: [`exploit-vsftpd-20261026.md`](../../evidence/network-lab/exploit-vsftpd-20261026.md)
+- Nhận xét: firewall chặn từ WAN nhưng không bảo vệ khi attacker đã ở trong LAN → cần segmentation, IDS/EDR và vá lỗi.
 
 ### 5.3 DoS `[CẦN ĐIỀN]`
 
@@ -108,13 +110,13 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
 | Phát hiện hành vi trên endpoint | Đạt (Wazuh) |
 | Ứng cứu & khôi phục | Đạt (INC-003) |
 | IDS/IPS | Chưa |
-| Khai thác & DoS | Chưa |
+| Khai thác & DoS | Khai thác: Đạt (LAN, vsftpd root shell) · DoS: Chưa |
 | Độ tái lập | Cao (script + evidence) |
 
 ## 8. Hạn chế
 
 - 8 GB RAM, tối đa 2 VM → không chạy đồng thời toàn bộ hệ thống.
-- Attacker hiện là clone Metasploitable, chưa phải Kali.
+- Attacker WAN-side hiện là clone Metasploitable; khai thác LAN dùng Parrot host.
 - Chưa có Suricata/IDS và chưa gửi log mạng về Wazuh.
 - Một số bằng chứng cũ (Lab6) không tái lập được trước khi sửa mạng.
 

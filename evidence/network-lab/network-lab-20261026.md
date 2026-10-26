@@ -114,7 +114,7 @@ Script: [`automation/network-lab-check.sh`](../../automation/network-lab-check.s
 | Recon with/without firewall | ✅ Filtered from WAN, open from LAN, PCAP captured |
 | Suricata IDS on OPNsense | Not enabled |
 | OPNsense/Suricata logs to Wazuh | Not configured |
-| Attack scenario (vsftpd 2.3.4) + PCAP | Not performed; recon only |
+| Attack scenario | LAN vsftpd 2.3.4 exploit completed (root shell); WAN exploit not performed |
 | DoS test + mitigation evidence | Not performed |
 | Metasploitable ACPI shutdown | Does not honor ACPI; use console `sudo poweroff` (verified) or `virsh destroy` after timeout |
 
