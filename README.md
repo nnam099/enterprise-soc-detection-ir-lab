@@ -46,7 +46,7 @@ The following case studies demonstrate detection, investigation, response, and e
   Booted all three VMs in rotation and verified `soc-net` reachability, AD DS/DNS/Kerberos/LDAP health, Wazuh dashboard/API availability, and live agent ingestion (42 alerts from `SOC-WIN10` within three minutes). Reusable check: [`automation/lab-connectivity-check.sh`](automation/lab-connectivity-check.sh) · [Evidence](evidence/lab-connectivity/lab-connectivity-20261026.md).
 
 - **Network Security Mode Restored (2026-10-26)**
-  Recreated the missing `Vung_LAN` / `Vung_WAN` libvirt networks, restored OPNsense 26.7 + Metasploitable 2, fixed the target address with a DHCP reservation (`10.0.0.5`), and verified FTP/SSH/HTTP plus firewall access. Check: [`automation/network-lab-check.sh`](automation/network-lab-check.sh) · [Mode](architecture/network-security-mode.md) · [Evidence](evidence/network-lab/network-lab-20261026.md).
+  Recreated the missing `Vung_LAN` / `Vung_WAN` libvirt networks, restored OPNsense 26.7 + Metasploitable 2, fixed the target address with a DHCP reservation (`10.0.0.5`), and verified FTP/SSH/HTTP plus firewall access. WAN-side recon from `192.168.50.10` is **filtered** while the same ports are **open** from the LAN, with PCAP evidence. Check: [`automation/network-lab-check.sh`](automation/network-lab-check.sh) · [Mode](architecture/network-security-mode.md) · [Firewall Test](evidence/network-lab/firewall-test-20261026.md).
 
 ---
 
@@ -192,7 +192,8 @@ Sampled post-containment verification confirming Run Key value absence during sa
 |---|---|
 | [`architecture/`](architecture/) | Network topology, IP addressing plan, 8 GB resource modes, network security mode, cloud integration plan, and architectural diagram |
 | [`configs/`](configs/) | Deployed Wazuh custom rules (`local_rules.xml`) and SIEM configuration files |
-| [`automation/`](automation/) | Reusable read-only checks, including [`lab-connectivity-check.sh`](automation/lab-connectivity-check.sh) |
+| [`automation/`](automation/) | Reusable read-only checks, including [`lab-connectivity-check.sh`](automation/lab-connectivity-check.sh) and [`network-lab-check.sh`](automation/network-lab-check.sh) |
+| [`attacks/`](attacks/) | Authorized, non-destructive lab simulations (WAN recon with PCAP) |
 | [`detections/`](detections/) | Custom Wazuh XML rules, test cases, and regression test suites |
 | [`ad-labs/`](ad-labs/) | Active Directory detection engineering case studies (AD-001 enumeration, AD-002 authentication) |
 | [`hunting/`](hunting/) | Hypothesis-driven threat hunting reports (HUNT-001–004) and MITRE ATT&CK coverage matrix |

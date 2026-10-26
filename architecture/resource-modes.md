@@ -8,7 +8,7 @@ This lab runs on an 8 GB Parrot OS host, so not all VMs are started at the same 
 | Detection Mode | SOC-WIN10 + SOC-WAZUH | Wazuh ingestion, dashboards, detection testing |
 | Attack Mode | SOC-WIN10 + SOC-WAZUH or SOC-DC01 + SOC-WIN10 | Controlled telemetry generation |
 | DFIR Mode | One Windows VM + Parrot | EVTX, timeline, process and memory analysis |
-| Network Security Mode | OPNsense-Lab6 + Metasploitable2 (+ Parrot host as attacker) | Firewall, DMZ, recon, scanning, IDS exercises |
+| Network Security Mode | OPNsense-Lab6 + Metasploitable2 (+ optional Attacker-MSF) | Firewall, DMZ, recon, scanning, IDS exercises |
 
 Hard rule: do not run DC01 + WIN10 + WAZUH + OPNsense at the same time. Network Security Mode is separate from the SOC rotation and must not run together with any SOC VM.
 

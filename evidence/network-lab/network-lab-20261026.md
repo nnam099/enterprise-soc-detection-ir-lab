@@ -110,10 +110,11 @@ Script: [`automation/network-lab-check.sh`](../../automation/network-lab-check.s
 
 | Item | Status |
 |---|---|
-| WAN-side attacker (Kali on `Vung_WAN`) | Not yet attached; needed for true through-firewall recon |
+| WAN-side attacker | ✅ Temporary `Attacker-MSF` clone validated; Kali VM still preferred |
+| Recon with/without firewall | ✅ Filtered from WAN, open from LAN, PCAP captured |
 | Suricata IDS on OPNsense | Not enabled |
 | OPNsense/Suricata logs to Wazuh | Not configured |
-| Attack scenario (vsftpd 2.3.4) + PCAP | Not captured |
+| Attack scenario (vsftpd 2.3.4) + PCAP | Not performed; recon only |
 | DoS test + mitigation evidence | Not performed |
 | Metasploitable ACPI shutdown | Does not honor ACPI; use console `sudo poweroff` (verified) or `virsh destroy` after timeout |
 
@@ -124,6 +125,7 @@ Script: [`automation/network-lab-check.sh`](../../automation/network-lab-check.s
 ```text
 OPNsense-Lab6   shut off
 Metasploitable2 shut off
+Attacker-MSF    shut off
 Vung_LAN        active (DHCP reservation persists)
 Vung_WAN        active (L2-only)
 SOC VMs         shut off

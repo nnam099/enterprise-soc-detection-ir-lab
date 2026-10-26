@@ -8,6 +8,7 @@ Evidence and screenshots that require manual collection to strengthen the portfo
 |---|---|---|---|
 | 2026-10-26 | Three-VM boot, `soc-net` connectivity, AD DS/DNS/Kerberos/LDAP, Wazuh dashboard login, live agent ingest | **PASS 3/3** | [Lab Connectivity Validation](../evidence/lab-connectivity/lab-connectivity-20261026.md) |
 | 2026-10-26 | `Vung_LAN`/`Vung_WAN` restored; OPNsense 26.7 + Metasploitable 2 reachable; DHCP reservation `.5`; FTP/SSH/HTTP verified | **PASS 10/10** | [Network Lab Validation](../evidence/network-lab/network-lab-20261026.md) |
+| 2026-10-26 | WAN-side recon through OPNsense: 21/22/80 filtered from `192.168.50.10`, open from LAN; PCAP captured | **PASS** | [Firewall Test](../evidence/network-lab/firewall-test-20261026.md) |
 
 ## Missing Configuration Artifacts
 
@@ -22,10 +23,10 @@ Evidence and screenshots that require manual collection to strengthen the portfo
 |---|---|---|
 | `detections/sigma/` | Empty | Write Sigma YAML equivalents for rules 100501–100504 |
 | `playbooks/` | Empty | Create Markdown IR playbooks for encoded PowerShell and persistence |
-| `attacks/` | Empty | Document controlled simulation scripts used in SOC-INC-001 |
+| `attacks/` | Populated | [`wan-recon/`](../attacks/wan-recon/) contains non-destructive through-firewall recon and PCAP scripts |
 | `configs/sysmon/` | Empty | Export and commit the active Sysmon configuration |
 | `configs/windows-auditing/` | Empty | Export and commit the Windows audit policy |
-| `automation/` | Populated | [`lab-connectivity-check.sh`](../automation/lab-connectivity-check.sh) added 2026-10-26; extend with evidence collection helpers |
+| `automation/` | Populated | Connectivity, network-lab and evidence checks; extend as needed |
 | Cloud integration | Not deployed | Complete [`architecture/cloud.md`](../architecture/cloud.md) acceptance criteria before claiming cloud capability |
 | `investigations/` | Empty | Move or link relevant investigation content |
 
@@ -34,7 +35,7 @@ Evidence and screenshots that require manual collection to strengthen the portfo
 | Item | Current Status | What Is Needed |
 |---|---|---|
 | INC-002 live WebView2 positive branch | Predicate/replay passed; live event unverified | Trigger a matching WebView2 file creation and capture the Wazuh alert at level 3 |
-| Network Security Mode WAN-side attacker | Not attached | Add a Kali VM on `Vung_WAN`, capture through-firewall recon/exploit and PCAP |
+| Network Security Mode WAN-side attacker | Temporary Metasploitable clone validated; Kali VM pending | Replace `Attacker-MSF` with Kali, capture an exploit stage and IDS alerts |
 | Sysmon Event 5 process termination | Not found in response replay | Capture Sysmon Event 5 for a future process termination exercise |
 | Historical Run Key deletion time/actor | Unknown | Not recoverable unless registry auditing captured the deletion |
 | Endpoint Event 4624 for post-restoration auth | Not yet incorporated | Export Event 4624 from SOC-WIN10 for the October 7 authentication |

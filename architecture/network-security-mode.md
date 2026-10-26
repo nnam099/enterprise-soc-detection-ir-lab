@@ -84,9 +84,25 @@ Resource use: OPNsense 1.5 GiB + Metasploitable 0.5 GiB ≈ **2 GiB**, which fit
 |---|---|---|
 | 10.0.0.1 | ICMP + HTTPS | 0% loss, HTTP `200` |
 | 10.0.0.5 | DHCP lease | `10.0.0.5/24`, MAC `52:54:00:86:b8:60` |
-| 10.0.0.5 | TCP 21/22/80 | open |
-| 10.0.0.5 | Service versions | vsftpd 2.3.4, OpenSSH 4.7p1, Apache 2.2.8 |
-| 10.0.0.5 | HTTP | `200 OK` |
+| 10.0.0.5 | TCP 21/22/80 from LAN | open (vsftpd 2.3.4, OpenSSH 4.7p1, Apache 2.2.8) |
+| 10.0.0.5 | TCP 21/22/80 from WAN | **filtered** by OPNsense |
+| 192.168.50.1 | TCP 443 from WAN | **filtered** |
+
+### WAN-Side Attacker (Temporary)
+
+`Attacker-MSF` is a disposable Metasploitable-derived clone used to validate the WAN path:
+
+| Setting | Value |
+|---|---|
+| WAN NIC | `Vung_WAN`, 192.168.50.10/24 |
+| Management NIC | `default` (libvirt DHCP) |
+| Disk | standalone copy `/home/nnam09/VM/lab/Attacker-MSF-standalone.qcow2` |
+| RAM / vCPU | 512 MiB / 1 |
+
+The attacker resolves OPNsense's WAN MAC but every scanned port is filtered, confirming firewall policy rather than a routing failure. See [firewall test evidence](../evidence/network-lab/firewall-test-20261026.md) and [PCAP](../evidence/network-lab/pcap/wan-scan-20261026.pcap).
+
+> This clone is a validation aid, not the final course attacker. Replace it with Kali when available.
+
 
 ---
 
