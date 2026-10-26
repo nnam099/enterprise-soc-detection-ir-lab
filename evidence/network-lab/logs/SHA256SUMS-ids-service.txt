@@ -1,0 +1,2 @@
+3a08198fcd27749cdc9d4ef0c45afbf5f90c6ebef44426cfba6a9f7c45638f95  wazuh-ids-service-20261026.json
+fb0353bb4b49164f14dcb590d7e09d9ef17635ce269204fdc2e490a35bc9c64b  relay-ids-service-20261026.log

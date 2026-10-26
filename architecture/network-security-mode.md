@@ -123,7 +123,7 @@ The attacker resolves OPNsense's WAN MAC but every scanned port is filtered, con
 
 ## Next Steps (Course Completion)
 
-1. **Suricata IDS** is validated (8.0.6, 10 lab alerts) and `eve.json` is forwarded to Wazuh via the host relay (rule `86601`). Remaining: run it through the OPNsense IDS service instead of manually.
+1. **Suricata IDS** runs as the OPNsense IDS service (PID 53430) with custom lab rules; `eve.json` is forwarded to Wazuh (rule `86601`). Remaining: IPS mode and ET rulesets.
 2. `Attacker-MSF` already covers the WAN side; a Kali VM is optional for a course-style demo.
 3. The LAN exploit chain (vsftpd → root shell) is complete. A WAN-side exploit is optional.
 4. Recon PCAP is captured; an exploit-stage PCAP remains optional.

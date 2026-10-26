@@ -1,0 +1,2 @@
+10.0.0.1:19448 b'<13>Oct 26 05:31:51 OPNsense.internal {"timestamp":"2026-10-26T05:31:50.907255+0000","flow_id":1926308429706218,"in_iface":"vtnet1","event_type":"alert","src_ip":"192.168.50.10","src_port":40824,"dest'
+10.0.0.1:19448 b'<13>Oct 26 05:31:52 OPNsense.internal {"timestamp":"2026-10-26T05:31:51.896270+0000","flow_id":2160603399764716,"in_iface":"vtnet1","event_type":"alert","src_ip":"192.168.50.10","src_port":40825,"dest'

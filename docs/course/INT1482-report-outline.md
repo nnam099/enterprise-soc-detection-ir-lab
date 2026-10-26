@@ -114,7 +114,7 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
 | Firewall chặn recon từ WAN | Đạt (PCAP) |
 | Phát hiện hành vi trên endpoint | Đạt (Wazuh) |
 | Ứng cứu & khôi phục | Đạt (INC-003) |
-| IDS/IPS | Đạt IDS (Suricata 8.0.6, custom rules); IPS chưa |
+| IDS/IPS | Đạt IDS service (Suricata 8.0.6, PID 53430); IPS chưa |
 | Tích hợp log mạng → SIEM | Đạt: OPNsense syslog → Wazuh (rule 100011) |
 | Khai thác & DoS | Khai thác: Đạt (LAN, vsftpd root shell) · DoS: Đạt (HTTP load, ~20× latency) |
 | Độ tái lập | Cao (script + evidence) |
