@@ -1,0 +1,10 @@
+<group name="lab,syslog,">
+  <rule id="100010" level="3">
+    <match>LABSYSTEST</match>
+    <description>LAB syslog integration test</description>
+  </rule>
+  <rule id="100011" level="3">
+    <match>filterlog</match>
+    <description>LAB OPNsense filterlog event</description>
+  </rule>
+</group>
