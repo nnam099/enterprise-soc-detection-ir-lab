@@ -136,3 +136,7 @@ logger filterlog LABREMOTE
 ```
 
 Then query the Wazuh alerts index for `LABREMOTE`.
+
+## Suricata Forwarding
+
+The same relay also carries Suricata `eve.json`; see [`suricata-wazuh-20261026.md`](suricata-wazuh-20261026.md).

@@ -13,6 +13,7 @@ Evidence and screenshots that require manual collection to strengthen the portfo
 | 2026-10-26 | HTTP load test from Parrot host: response time 58 ms → 1,143 ms (~20×), full recovery | **PASS (degradation)** | [DoS Test](../evidence/network-lab/dos-http-20261026.md) |
 | 2026-10-26 | Suricata 8.0.6 on OPNsense: 10 lab alerts for WAN scan (SID 1000001/1000002) | **PASS** | [IDS Validation](../evidence/network-lab/ids-suricata-20261026.md) |
 | 2026-10-26 | OPNsense syslog → host relay → Wazuh; rule 100011 fired for `filterlog` test | **PASS** | [Syslog Integration](../evidence/network-lab/syslog-integration-20261026.md) |
+| 2026-10-26 | Suricata `eve.json` → Wazuh; 12 alerts parsed by decoder `json`, rule 86601 | **PASS** | [Suricata→Wazuh](../evidence/network-lab/suricata-wazuh-20261026.md) |
 
 ## Missing Configuration Artifacts
 

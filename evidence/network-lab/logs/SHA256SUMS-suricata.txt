@@ -1,0 +1,2 @@
+ef7671d3737a5a0b1ed3c6e1323ee19138054efbf4dbcd9bb4daaffb1bf38fd1  wazuh-suricata-20261026.json
+db005385256bd97d90edf5a20bee5cd1d4e966abc49eb14409d87be2ff0a47a5  relay-suricata-20261026.log

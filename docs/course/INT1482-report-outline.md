@@ -105,6 +105,7 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
 - Quy trình containment/recovery: `incidents/INC-003`, `incidents/SOC-INC-001`.
 - IDS: Suricata 8.0.6 trên OPNsense đã bắt **10 alert** cho scan từ WAN (SID 1000001/1000002) — [`ids-suricata-20261026.md`](../../evidence/network-lab/ids-suricata-20261026.md).
 - Tích hợp log: OPNsense syslog → host relay → Wazuh, rule `100011` đã bắn cho `filterlog` — [`syslog-integration-20261026.md`](../../evidence/network-lab/syslog-integration-20261026.md).
+- Suricata `eve.json` → Wazuh: **12 alert**, decoder `json`, rule built-in `86601` — [`suricata-wazuh-20261026.md`](../../evidence/network-lab/suricata-wazuh-20261026.md).
 
 ## 7. Đánh giá
 
