@@ -15,6 +15,7 @@ Evidence and screenshots that require manual collection to strengthen the portfo
 | 2026-10-26 | OPNsense syslog → host relay → Wazuh; rule 100011 fired for `filterlog` test | **PASS** | [Syslog Integration](../evidence/network-lab/syslog-integration-20261026.md) |
 | 2026-10-26 | Suricata `eve.json` → Wazuh; 12 alerts parsed by decoder `json`, rule 86601 | **PASS** | [Suricata→Wazuh](../evidence/network-lab/suricata-wazuh-20261026.md) |
 | 2026-10-26 | OPNsense IDS **service** running (PID 53430); 2 new alerts, Wazuh total 14 (rule 86601) | **PASS** | [IDS Service](../evidence/network-lab/ids-service-20261026.md) |
+| 2026-10-26 | ET Open subset (3,469 rules) loaded in IDS; full set OOM, IPS blocked by netmap/virtio | **PARTIAL** | [ET Open](../evidence/network-lab/et-open-ids-20261026.md) |
 
 ## Missing Configuration Artifacts
 

@@ -114,7 +114,7 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
 | Firewall chặn recon từ WAN | Đạt (PCAP) |
 | Phát hiện hành vi trên endpoint | Đạt (Wazuh) |
 | Ứng cứu & khôi phục | Đạt (INC-003) |
-| IDS/IPS | Đạt IDS service (Suricata 8.0.6, PID 53430); IPS chưa |
+| IDS/IPS | Đạt IDS service + ET Open subset (3.469 rules); IPS chưa (netmap/virtio) |
 | Tích hợp log mạng → SIEM | Đạt: OPNsense syslog → Wazuh (rule 100011) |
 | Khai thác & DoS | Khai thác: Đạt (LAN, vsftpd root shell) · DoS: Đạt (HTTP load, ~20× latency) |
 | Độ tái lập | Cao (script + evidence) |
@@ -124,7 +124,7 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
 - 8 GB RAM, tối đa 2 VM → không chạy đồng thời toàn bộ hệ thống.
 - Attacker WAN-side hiện là clone Metasploitable; khai thác LAN dùng Parrot host.
 - DoS mới ở mức ứng dụng (HTTP load), chưa có SYN flood/slowloris do giới hạn quyền.
-- Chưa có Suricata/IDS và chưa gửi log mạng về Wazuh.
+- IDS service + ET Open subset (3.469 rules) + Wazuh đã hoạt động; IPS chưa do netmap/virtio, full ET OOM trên 1.5 GB.
 - Một số bằng chứng cũ (Lab6) không tái lập được trước khi sửa mạng.
 
 ## 9. Kết luận & hướng phát triển
