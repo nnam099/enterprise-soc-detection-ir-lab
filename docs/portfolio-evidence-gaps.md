@@ -34,7 +34,7 @@ Evidence and screenshots that require manual collection to strengthen the portfo
 | `configs/sysmon/` | Empty | Export and commit the active Sysmon configuration |
 | `configs/windows-auditing/` | Empty | Export and commit the Windows audit policy |
 | `automation/` | Populated | Connectivity, network-lab and evidence checks; extend as needed |
-| Cloud integration | Not deployed | Complete [`architecture/cloud.md`](../architecture/cloud.md) acceptance criteria before claiming cloud capability |
+| Cloud integration | Deployed (manual console; GuardDuty blocked by SCP) | Evidence at [`evidence/cloud/cloud-deployment-20261027.md`](../evidence/cloud/cloud-deployment-20261027.md); outstanding: GuardDuty, SHA-256 manifest |
 | `investigations/` | Empty | Move or link relevant investigation content |
 
 ## Unverified Evidence Branches

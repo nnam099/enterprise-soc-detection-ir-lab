@@ -54,6 +54,17 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
 - Chi tiết: [`architecture/network-security-mode.md`](../../architecture/network-security-mode.md)
 - Ảnh: `screenshots/phase7-network/`
 
+### 3.3 Hybrid Cloud Mode (mở rộng)
+
+| Thành phần | IP | Vai trò |
+|---|---|---|
+| EC2 `SOC-AWS-01` | Tailscale `100.101.95.40` | Workload Ubuntu 24.04, Wazuh Agent 003 |
+| S3 `soc-hybrid-logs-411109262083` | — | CloudTrail + VPC Flow Logs |
+| Tailscale mesh | SOC-WAZUH `100.80.140.56` · Parrot `100.89.43.28` | VPN mesh nối cloud về on-prem |
+
+- Chi tiết: [`architecture/cloud.md`](../../architecture/cloud.md)
+- Bằng chứng: [`evidence/cloud/cloud-deployment-20261027.md`](../../evidence/cloud/cloud-deployment-20261027.md)
+
 ## 4. Triển khai
 
 ### 4.1 Domain & endpoint
@@ -64,7 +75,7 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
 ### 4.2 SIEM & detection
 
 - Wazuh 4.14.8, agent 001/002.
-- Rule custom: 100501–100507 (registry, WinRM, auth, PowerShell, AD enumeration).
+- Rule custom: 100501–100508 (registry, WinRM, auth, PowerShell, AD enumeration, AWS IAM).
 - Bằng chứng: `detections/`, `ad-labs/`, `hunting/`.
 
 ### 4.3 Firewall & target
@@ -74,6 +85,13 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
   - LAN → target: 21/22/80 **open**.
   - WAN → target: 21/22/80 **filtered**.
   - PCAP: `evidence/network-lab/pcap/wan-scan-20261026.pcap`.
+
+### 4.4 Hybrid Cloud
+
+- EC2 `SOC-AWS-01` (t3.micro, Ubuntu 24.04, ap-southeast-2) chạy Wazuh agent 003, kết nối về SOC-WAZUH qua Tailscale.
+- AWS native logs: CloudTrail + VPC Flow Logs → S3 → kéo về bằng `wodle aws-s3` (profile `wazuh-aws`, IAM least privilege).
+- Rule custom 100508 (level 10, MITRE T1136.001/T1098.001) phát hiện IAM `CreateUser`/`CreateAccessKey`.
+- GuardDuty bị chặn bởi Service Control Policy của tổ chức.
 
 ## 5. Kịch bản tấn công (Ch3)
 
@@ -106,6 +124,7 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
 - IDS: Suricata 8.0.6 trên OPNsense đã bắt **10 alert** cho scan từ WAN (SID 1000001/1000002) — [`ids-suricata-20261026.md`](../../evidence/network-lab/ids-suricata-20261026.md).
 - Tích hợp log: OPNsense syslog → host relay → Wazuh, rule `100011` đã bắn cho `filterlog` — [`syslog-integration-20261026.md`](../../evidence/network-lab/syslog-integration-20261026.md).
 - Suricata `eve.json` → Wazuh: **12 alert**, decoder `json`, rule built-in `86601` — [`suricata-wazuh-20261026.md`](../../evidence/network-lab/suricata-wazuh-20261026.md).
+- Cloud: CloudTrail IAM event → rule 80202 (level 3) và custom 100508 (level 10) — [`cloud-deployment-20261027.md`](../../evidence/cloud/cloud-deployment-20261027.md).
 
 ## 7. Đánh giá
 
@@ -117,6 +136,7 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
 | IDS/IPS | Đạt IDS service + ET Open subset (3.469 rules); IPS chưa (netmap/virtio) |
 | Tích hợp log mạng → SIEM | Đạt: OPNsense syslog → Wazuh (rule 100011) |
 | Khai thác & DoS | Khai thác: Đạt (LAN, vsftpd root shell) · DoS: Đạt (HTTP load, ~20× latency) |
+| Hybrid Cloud | Đạt: agent 003 Active, CloudTrail/Flow Logs → Wazuh, rule 100508; GuardDuty chưa (SCP) |
 | Độ tái lập | Cao (script + evidence) |
 
 ## 8. Hạn chế
@@ -126,6 +146,7 @@ Tóm tắt ngắn, chỉ giữ phần liên quan đến lab:
 - DoS mới ở mức ứng dụng (HTTP load), chưa có SYN flood/slowloris do giới hạn quyền.
 - IDS service + ET Open subset (3.469 rules) + Wazuh đã hoạt động; IPS chưa do netmap/virtio, full ET OOM trên 1.5 GB.
 - Một số bằng chứng cũ (Lab6) không tái lập được trước khi sửa mạng.
+- GuardDuty bị chặn bởi Service Control Policy của tổ chức (account là member account).
 
 ## 9. Kết luận & hướng phát triển
 

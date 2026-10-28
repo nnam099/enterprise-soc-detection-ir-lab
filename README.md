@@ -48,6 +48,9 @@ The following case studies demonstrate detection, investigation, response, and e
 - **Network Security Mode Restored (2026-10-26)**
   Recreated the missing `Vung_LAN` / `Vung_WAN` libvirt networks, restored OPNsense 26.7 + Metasploitable 2, fixed the target address with a DHCP reservation (`10.0.0.5`), and verified FTP/SSH/HTTP plus firewall access. WAN-side recon from `192.168.50.10` is **filtered** while the same ports are **open** from the LAN, with PCAP evidence. Internal vsftpd 2.3.4 exploitation from the Parrot host yielded a root shell, an HTTP load test raised response time from 58 ms to 1,143 ms, Suricata 8.0.6 runs as the **OPNsense IDS service** with an **ET Open subset (3,469 rules)**, and OPNsense syslog plus Suricata `eve.json` are forwarded to Wazuh (rule `100011` and built-in `86601`). IPS mode is blocked by the OPNsense netmap/virtio template. Check: [`automation/network-lab-check.sh`](automation/network-lab-check.sh) · [Mode](architecture/network-security-mode.md) · [Firewall Test](evidence/network-lab/firewall-test-20261026.md) · [Exploit](evidence/network-lab/exploit-vsftpd-20261026.md) · [DoS](evidence/network-lab/dos-http-20261026.md) · [IDS](evidence/network-lab/ids-suricata-20261026.md) · [IDS Service](evidence/network-lab/ids-service-20261026.md) · [ET Open](evidence/network-lab/et-open-ids-20261026.md) · [Syslog](evidence/network-lab/syslog-integration-20261026.md) · [Suricata→Wazuh](evidence/network-lab/suricata-wazuh-20261026.md).
 
+- **Hybrid Cloud SOC Lab — Recommendation #1 (2026-10-27)**
+  Deployed a Free-Tier AWS branch that keeps the Wazuh SIEM on-prem: EC2 workload `SOC-AWS-01` (t3.micro, Ubuntu 24.04, ap-southeast-2) runs the Wazuh agent and reports to SOC-WAZUH over a Tailscale mesh, while CloudTrail + VPC Flow Logs stream to S3 and are pulled by the on-prem `wodle aws-s3`. Agent **003 Active**, CloudTrail IAM events fired built-in rule 80202, and custom rule **100508** (level 10, MITRE T1136.001/T1098.001) was validated via `wazuh-logtest`. GuardDuty is blocked by an org SCP. [Evidence](evidence/cloud/cloud-deployment-20261027.md) · [Design](architecture/cloud.md) · [Rule](detections/wazuh/rules/100508-aws-iam.xml) · [Check](automation/cloud-check.sh) · [Screenshots](screenshots/phase8-cloud/).
+
 ---
 
 ## SOC Architecture
@@ -65,7 +68,7 @@ The following case studies demonstrate detection, investigation, response, and e
 
 > **Naming:** the libvirt domain `SOC-DC01` runs the AD computer `DC01.soc-lab.local`; Wazuh agent IDs are `001` (`SOC-WIN10`) and `002` (`SOC-DC01`). See the [IP Plan](architecture/ip-plan.md) for verified service ports and DNS records.
 
-**Cloud:** not deployed. The design and acceptance criteria for a future hybrid extension are in [Cloud Integration](architecture/cloud.md).
+**Cloud (Hybrid — Recommendation #1):** **deployed** (2026-10-27). The on-prem Wazuh cluster stays untouched while an AWS Free-Tier branch adds EC2 workload `SOC-AWS-01` (agent 003 over Tailscale) plus CloudTrail / VPC Flow Logs → S3, pulled by the `aws-s3` wodle. GuardDuty blocked by org SCP. See [Cloud Integration](architecture/cloud.md) · [Evidence](evidence/cloud/cloud-deployment-20261027.md).
 
 **Environment & Resource Operating Modes:**
 - **Network**: Isolated libvirt NAT network `soc-net` (`192.168.50.0/24`) on bridge `virbr50`.
@@ -109,6 +112,7 @@ Core detection rules are maintained in [`configs/wazuh/rules/local_rules.xml`](c
 | [**100504**](configs/wazuh/rules/local_rules.xml) | Encoded PowerShell command | Sysmon EID 1 | [T1059.001](https://attack.mitre.org/techniques/T1059/001/) | [HUNT-001](hunting/HUNT-001-powershell.md) · [Live Tests](detections/wazuh/tests/encoded-powershell/README.md) |
 | [**100506**](detections/wazuh/rules/100506-ad-enumeration.xml) | Active Directory enumeration | PowerShell EID 4104 | [T1087.002](https://attack.mitre.org/techniques/T1087/002/) | [AD-001 Lab](ad-labs/AD-001-domain-enumeration/README.md) · [Live Regression](evidence/ad-001/AD001-regression-20261009.json) |
 | [**100507**](detections/wazuh/rules/100507-incorrect-password.xml) | Incorrect-password classifier | Windows EID 4625 | [T1110](https://attack.mitre.org/techniques/T1110/) | [AD-002 Lab](ad-labs/AD-002-authentication/README.md) · [Live Detection](evidence/ad-002/AD002-live-detection-100507-20261009.json) · [AD-003 Live Regression](detections/ad-003/live-regression-results.md) |
+| [**100508**](detections/wazuh/rules/100508-aws-iam.xml) | AWS IAM account/credential creation (cloud control plane) | AWS CloudTrail (aws-s3) | [T1136.001](https://attack.mitre.org/techniques/T1136/001/) / [T1098.001](https://attack.mitre.org/techniques/T1098/001/) | [Cloud Deployment Evidence](evidence/cloud/cloud-deployment-20261027.md) |
 
 ### Active Directory Detection Engineering Case Studies
 
@@ -191,6 +195,7 @@ Sampled post-containment verification confirming Run Key value absence during sa
 | Directory | Description |
 |---|---|
 | [`architecture/`](architecture/) | Network topology, IP addressing plan, 8 GB resource modes, network security mode, cloud integration plan, and architectural diagram |
+| [`cloud/`](cloud/) | Hybrid cloud package (Recommendation #1): Terraform IaC, Wazuh `aws-s3` wodle, least-privilege IAM, runbook, acceptance criteria |
 | [`configs/`](configs/) | Deployed Wazuh custom rules (`local_rules.xml`) and SIEM configuration files |
 | [`automation/`](automation/) | Reusable read-only checks, including [`lab-connectivity-check.sh`](automation/lab-connectivity-check.sh) and [`network-lab-check.sh`](automation/network-lab-check.sh) |
 | [`attacks/`](attacks/) | Authorized, non-destructive lab simulations (WAN recon with PCAP) |

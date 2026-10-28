@@ -7,13 +7,16 @@ flowchart TD
     D["SOC-DC01<br/>DC01.soc-lab.local · .10<br/>AD DS + DNS"]
     W["SOC-WIN10<br/>.20<br/>Sysmon + Wazuh Agent 001"]
     Z["SOC-WAZUH<br/>.30<br/>Manager · Indexer · Dashboard"]
-    C["Cloud Integration<br/>PLANNED — not deployed"]
+    C["AWS ap-southeast-2<br/>SOC-AWS-01 (Agent 003)<br/>+ S3 (CloudTrail · Flow Logs)"]
+    S3["S3 Bucket<br/>soc-hybrid-logs-411109262083"]
 
     P --> N
     N --> D
     N --> W
     N --> Z
-    C -.->|"future outbound / agent traffic"| N
+    C -.->|"Tailscale (outbound) — agent 1514/1515"| Z
+    C -.->|"CloudTrail · Flow Logs"| S3
+    S3 -.->|"wodle aws-s3 (pull)"| Z
 ```
 
 ## Data Flow
@@ -26,13 +29,15 @@ flowchart TD
 | Analyst (Parrot host) | SOC-WAZUH | 55000/tcp | Wazuh API |
 | SOC-WIN10 | SOC-DC01 | 53, 88, 389, 445 | DNS, Kerberos, LDAP, SMB |
 | Analyst (Parrot host) | SOC-WIN10 | 5985/tcp | WinRM (service dependent) |
+| EC2 `SOC-AWS-01` (003) | SOC-WAZUH | 1514/1515/tcp | Agent ingest + enrollment over Tailscale |
+| SOC-WAZUH (wodle aws-s3) | S3 bucket | 443/tcp (HTTPS) | Pull CloudTrail / Flow Logs |
 
 The lab uses a dedicated libvirt NAT network named `soc-net` on bridge `virbr50`.
 
 - `soc-net` is persistent, active and set to autostart.
 - VMs are **not** set to autostart; they are started in rotation according to [`resource-modes.md`](resource-modes.md).
 - Internet egress is available through the host NAT, but no lab VM is intentionally exposed to the internet.
-- Cloud integration is **planned only**; see [`cloud.md`](cloud.md).
+- Cloud integration is **deployed** (Recommendation #1, hybrid); see [`cloud.md`](cloud.md) and [`../cloud/`](../cloud/).
 
 ## Network Security Mode
 

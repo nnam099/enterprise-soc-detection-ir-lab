@@ -1,0 +1,9 @@
+
+Wazuh agent_control. List of available agents:
+   ID: 000, Name: soc-wazuh (server), IP: 127.0.0.1, Active/Local
+   ID: 001, Name: SOC-WIN10, IP: any, Disconnected
+   ID: 002, Name: SOC-DC01, IP: any, Disconnected
+   ID: 003, Name: SOC-AWS-01, IP: any, Disconnected
+
+List of agentless devices:
+

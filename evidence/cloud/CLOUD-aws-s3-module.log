@@ -1,0 +1,30 @@
+2026/10/27 05:20:26 wazuh-modulesd:aws-s3: INFO: Fetching logs finished.
+2026/10/27 05:25:15 wazuh-modulesd:aws-s3: INFO: Starting fetching of logs.
+2026/10/27 05:25:15 wazuh-modulesd:aws-s3: INFO: Executing Bucket Analysis: (Bucket: soc-hybrid-logs-411109262083, Type: cloudtrail, Profile: wazuh-aws)
+2026/10/27 05:25:17 wazuh-modulesd:aws-s3: INFO: Executing Bucket Analysis: (Bucket: soc-hybrid-logs-411109262083, Type: vpcflow, Profile: wazuh-aws)
+2026/10/27 05:25:21 wazuh-modulesd:aws-s3: INFO: Fetching logs finished.
+2026/10/27 05:30:15 wazuh-modulesd:aws-s3: INFO: Starting fetching of logs.
+2026/10/27 05:30:15 wazuh-modulesd:aws-s3: INFO: Executing Bucket Analysis: (Bucket: soc-hybrid-logs-411109262083, Type: cloudtrail, Profile: wazuh-aws)
+2026/10/27 05:30:19 wazuh-modulesd:aws-s3: INFO: Executing Bucket Analysis: (Bucket: soc-hybrid-logs-411109262083, Type: vpcflow, Profile: wazuh-aws)
+2026/10/27 05:30:23 wazuh-modulesd:aws-s3: INFO: Fetching logs finished.
+2026/10/27 05:35:15 wazuh-modulesd:aws-s3: INFO: Starting fetching of logs.
+2026/10/27 05:35:15 wazuh-modulesd:aws-s3: INFO: Executing Bucket Analysis: (Bucket: soc-hybrid-logs-411109262083, Type: cloudtrail, Profile: wazuh-aws)
+2026/10/27 05:35:18 wazuh-modulesd:aws-s3: INFO: Executing Bucket Analysis: (Bucket: soc-hybrid-logs-411109262083, Type: vpcflow, Profile: wazuh-aws)
+2026/10/27 05:35:23 wazuh-modulesd:aws-s3: INFO: Fetching logs finished.
+2026/10/27 05:40:15 wazuh-modulesd:aws-s3: INFO: Starting fetching of logs.
+2026/10/27 05:40:15 wazuh-modulesd:aws-s3: INFO: Executing Bucket Analysis: (Bucket: soc-hybrid-logs-411109262083, Type: cloudtrail, Profile: wazuh-aws)
+2026/10/27 05:40:19 wazuh-modulesd:aws-s3: INFO: Executing Bucket Analysis: (Bucket: soc-hybrid-logs-411109262083, Type: vpcflow, Profile: wazuh-aws)
+2026/10/27 05:40:23 wazuh-modulesd:aws-s3: INFO: Fetching logs finished.
+2026/10/27 05:45:15 wazuh-modulesd:aws-s3: INFO: Starting fetching of logs.
+2026/10/27 05:45:15 wazuh-modulesd:aws-s3: INFO: Executing Bucket Analysis: (Bucket: soc-hybrid-logs-411109262083, Type: cloudtrail, Profile: wazuh-aws)
+2026/10/27 05:45:18 wazuh-modulesd:aws-s3: INFO: Executing Bucket Analysis: (Bucket: soc-hybrid-logs-411109262083, Type: vpcflow, Profile: wazuh-aws)
+2026/10/27 05:45:23 wazuh-modulesd:aws-s3: INFO: Fetching logs finished.
+2026/10/28 00:20:45 wazuh-modulesd:aws-s3: INFO: Module AWS started
+2026/10/28 00:20:45 wazuh-modulesd:aws-s3: INFO: Starting fetching of logs.
+2026/10/28 00:20:45 wazuh-modulesd:aws-s3: INFO: Executing Bucket Analysis: (Bucket: soc-hybrid-logs-411109262083, Type: cloudtrail, Profile: wazuh-aws)
+2026/10/28 00:21:32 wazuh-modulesd:aws-s3: INFO: Executing Bucket Analysis: (Bucket: soc-hybrid-logs-411109262083, Type: vpcflow, Profile: wazuh-aws)
+2026/10/28 00:22:04 wazuh-modulesd:aws-s3: INFO: Fetching logs finished.
+2026/10/28 00:25:45 wazuh-modulesd:aws-s3: INFO: Starting fetching of logs.
+2026/10/28 00:25:45 wazuh-modulesd:aws-s3: INFO: Executing Bucket Analysis: (Bucket: soc-hybrid-logs-411109262083, Type: cloudtrail, Profile: wazuh-aws)
+2026/10/28 00:25:48 wazuh-modulesd:aws-s3: INFO: Executing Bucket Analysis: (Bucket: soc-hybrid-logs-411109262083, Type: vpcflow, Profile: wazuh-aws)
+2026/10/28 00:25:52 wazuh-modulesd:aws-s3: INFO: Fetching logs finished.

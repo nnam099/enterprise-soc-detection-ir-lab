@@ -1,0 +1,4 @@
+100.80.140.56  soc-wazuh        khachhanhtltd663@  linux    -                            
+100.75.40.57   laptop-sv8rapiu  khachhanhtltd663@  windows  offline, last seen 218d ago  
+100.89.43.28   parrot-soc       khachhanhtltd663@  linux    -                            
+100.101.95.40  soc-aws-01       khachhanhtltd663@  linux    offline, last seen 14h ago   

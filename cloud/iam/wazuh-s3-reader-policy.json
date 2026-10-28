@@ -1,0 +1,39 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ListLogBucket",
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket",
+        "s3:GetBucketLocation"
+      ],
+      "Resource": [
+        "arn:aws:s3:::soc-hybrid-logs-411109262083"
+      ]
+    },
+    {
+      "Sid": "ReadLogObjects",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::soc-hybrid-logs-411109262083/*"
+      ]
+    },
+    {
+      "Sid": "ReadFlowLogMetadata",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeFlowLogs",
+        "ec2:DescribeVpcs",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeNetworkInterfaces"
+      ],
+      "Resource": [
+        "*"
+      ]
+    }
+  ]
+}

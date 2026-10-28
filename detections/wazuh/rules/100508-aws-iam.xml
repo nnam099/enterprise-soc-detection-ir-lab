@@ -1,0 +1,12 @@
+<group name="local,amazon,aws,cloudtrail,soc_lab,">
+  <rule id="100508" level="10">
+    <if_sid>80202</if_sid>
+    <field name="aws.eventName" type="pcre2">^Create(User|AccessKey)$</field>
+    <description>SOC Lab: AWS IAM account or access key created in the cloud control plane</description>
+    <mitre>
+      <id>T1136.001</id>
+      <id>T1098.001</id>
+    </mitre>
+    <group>amazon,aws_cloudtrail,pci_dss_10.2.1,pci_dss_10.2.5,nist_800_53_AU.6,</group>
+  </rule>
+</group>

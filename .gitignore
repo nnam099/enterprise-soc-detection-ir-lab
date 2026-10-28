@@ -1,11 +1,23 @@
+# Secrets & credentials — never commit
+*.pem
+*.key
+*.ppk
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+.env
+.env.*
+.aws/
+credentials
+id_rsa
+id_ed25519
 
 # Local transfer artifacts
 spice-tools.iso
 spice-transfer/
 
-# Local transfer artifacts
-spice-tools.iso
-spice-transfer/
+# Python
 __pycache__/
 *.pyc
 .venv/
